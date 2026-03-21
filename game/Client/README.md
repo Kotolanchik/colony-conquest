@@ -24,6 +24,13 @@
 - Жильё: демо-юниты `HousingUnitRuntime` + очередь расселения `HousingAssignmentRequestEntry`; `HousingAssignmentSystem` и `HousingDailyComfortSystem` пересчитывают расселение, уют, износ и аварии, метрики `Housing*`.
 - В **Entities Hierarchy** проверка: наличие перечисленных синглтонов/буферов; при росте `DayIndex` у `GameCalendarState` значения в них меняются ежедневно.
 
+**Проверка дипломатии/правосудия/развлечений (`spec/diplomacy_trade_spec.md`, `spec/crime_justice_spec.md`, `spec/entertainment_spec.md`):**
+
+- Дипломатия: `DiplomacySimulationSingleton` + буферы `FactionProfileEntry`, `DiplomaticRelationEntry`, `TradeDealEntry`, `DiplomaticAllianceEntry`, `ActiveWarEntry`; `DiplomacyDailySystem` обновляет отношения/сделки, и пишет метрики `Diplomacy*`.
+- Правосудие: `CrimeJusticeSingleton` + `CrimeJusticeState`, `PoliceForceState`, `JusticeCourtState`; `CrimeJusticeDailySystem` генерирует ежедневные инциденты, рассчитывает раскрываемость и рецидив, пишет метрики `Crime*`.
+- Развлечения: `EntertainmentSimulationSingleton` + `EntertainmentSimulationState`; `EntertainmentDailySystem` считает итоговое настроение/продуктивность, праздники и передаёт `EntertainmentAccess01` в `CrimeJusticeState`.
+- В очереди событий `GameEventQueueEntry` появляются события по торговым завершениям/войнам, преступлениям и праздникам.
+
 ## Замер ECS (фаза 0, дорожная карта §6.1)
 
 Ориентир из мастер-спеки: **~1000 сущностей при 60 FPS**. В коде:
@@ -40,6 +47,9 @@
 - `Assets/_Project/Scripts/PlantBreeding/` — селекция: `PlantBreedingLabState`, `PlantCultivarEntry`, `PlantBreedingWorkOrderEntry`, `PlantBreedingMath`, `PlantBreedingDailySimulationSystem`.
 - `Assets/_Project/Scripts/Religion/` — религия и культы: `ReligionSimulationState`, `ReligiousConflictState`, `CultActivityState`, `HolyWarState`, `ReligionDailySimulationSystem`.
 - `Assets/_Project/Scripts/Housing/` — жильё и комфорт: `HousingUnitRuntime`, `HousingComfortSnapshot`, `HousingAssignmentSystem`, `HousingDailyComfortSystem`, `HousingMath`.
+- `Assets/_Project/Scripts/Diplomacy/` — межфракционные отношения, торговые сделки, союзы и войны: `DiplomacySimulationState`, `DiplomacyDailySystem`, `DiplomacyMath`.
+- `Assets/_Project/Scripts/Justice/` — преступность, полиция, суд, наказания и рецидив: `CrimeJusticeState`, `CrimeJusticeDailySystem`, `CrimeJusticeMath`.
+- `Assets/_Project/Scripts/Entertainment/` — досуг и праздники, влияние на настроение/продуктивность и преступность: `EntertainmentSimulationState`, `EntertainmentDailySystem`, `EntertainmentMath`.
 - `Assets/_Project/Scripts/Settlers/` — схема ECS-компонентов поселенца по `spec/settler_simulation_system_spec.md` §1.1–1.7 (пространство имён `ColonyConquest.Settlers`; симуляция не подключена — только типы).
 - `Assets/_Project/Scripts/Economy/` — идентификаторы и каталог ресурсов по `spec/economic_system_specification.md` §1.2: `ResourceId` (промышленный блок 1…55, сельхоз 56…67, доп. эпоха 1: 68…72, добыча/прочее 73…77, эпоха 2: известь/прокат 78…79, рыба 80, артиллерия эпохи 1: 81…82), `ResourceCatalog`, `ColonyConquest.Economy`.
 

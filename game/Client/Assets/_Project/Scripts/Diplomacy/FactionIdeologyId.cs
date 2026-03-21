@@ -9,6 +9,8 @@ namespace ColonyConquest.Diplomacy
         Communism = 3,
         Technocracy = 4,
         Theocracy = 5,
-        Atheism = 6
+        Atheism = 6,
+        Isolationism = 7,
+        Imperialism = 8
     }
 }

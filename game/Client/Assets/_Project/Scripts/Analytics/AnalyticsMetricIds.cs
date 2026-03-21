@@ -93,5 +93,25 @@ namespace ColonyConquest.Analytics
         public const uint HousingComfortScoreAvg = 0x8403;
         public const uint HousingIncidentsTotal = 0x8404;
         public const uint HousingOvercrowdingHouseholds = 0x8405;
+
+        // --- Дипломатия и торговля (0x85nn) ---
+        public const uint DiplomacyAverageRelations = 0x8501;
+        public const uint DiplomacyTradeProfitDaily = 0x8502;
+        public const uint DiplomacyActiveAlliances = 0x8503;
+        public const uint DiplomacyWarsDeclaredTotal = 0x8504;
+
+        // --- Преступность и правосудие (0x86nn) ---
+        public const uint CrimeLevelPercent = 0x8601;
+        public const uint CrimeIncidentsDaily = 0x8602;
+        public const uint CrimeSolveRateDaily = 0x8603;
+        public const uint CrimeInmatesCount = 0x8604;
+        public const uint CrimeRecidivismCases = 0x8605;
+
+        // --- Развлечения и досуг (0x87nn) ---
+        public const uint EntertainmentMoodFinal = 0x8701;
+        public const uint EntertainmentProductivityModifier = 0x8702;
+        public const uint EntertainmentStressReduction = 0x8703;
+        public const uint EntertainmentGamblingRisk = 0x8704;
+        public const uint EntertainmentAvailability = 0x8705;
     }
 }
