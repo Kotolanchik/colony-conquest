@@ -22,3 +22,4 @@
 ## Заметки / журнал
 
 - 2026-03-21 — `EntertainmentCategoryId.cs`, `EntertainmentActivityKindId.cs` в `game/Client/Assets/_Project/Scripts/Entertainment/`.
+- 2026-03-21 — Заготовка расширена до полной реализации в задаче `spec-entertainment-implementation`.

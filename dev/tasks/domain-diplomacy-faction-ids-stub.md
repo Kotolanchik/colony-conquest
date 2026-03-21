@@ -22,3 +22,4 @@
 ## Заметки / журнал
 
 - 2026-03-21 — `game/Client/Assets/_Project/Scripts/Diplomacy/FactionKindId.cs`, `FactionIdeologyId.cs`.
+- 2026-03-21 — Заготовка расширена до полной реализации в задаче `spec-diplomacy-trade-implementation`.

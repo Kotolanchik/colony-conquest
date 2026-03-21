@@ -23,3 +23,4 @@
 ## Заметки / журнал
 
 - 2026-03-24 — `game/Client/Assets/_Project/Scripts/Diplomacy/TradeDealKindId.cs`, `TradeGoodsCategoryId.cs`, `DiplomaticAllianceKindId.cs`.
+- 2026-03-21 — Заготовка расширена до полной реализации в задаче `spec-diplomacy-trade-implementation`.

@@ -469,6 +469,41 @@
           "labels": ["gameplay", "ecs", "design"],
           "task_file": "dev/tasks/spec-comfort-housing-implementation.md",
           "notes": "HousingUnitRuntime, assignment queue, daily comfort/decay/incidents, analytics metrics"
+        },
+        {
+          "id": "spec-diplomacy-trade-implementation",
+          "title": "Полная реализация spec/diplomacy_trade_spec в ECS (отношения, торговля, союзы, войны)",
+          "spec_refs": [
+            "spec/diplomacy_trade_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md"
+          ],
+          "labels": ["gameplay", "ecs", "design"],
+          "task_file": "dev/tasks/spec-diplomacy-trade-implementation.md",
+          "notes": "DiplomacyDailySystem + trade pricing + alliance maintenance + AI war decision + events/metrics"
+        },
+        {
+          "id": "spec-crime-justice-implementation",
+          "title": "Полная реализация spec/crime_justice_spec в ECS (инциденты, полиция, суд, рецидив)",
+          "spec_refs": [
+            "spec/crime_justice_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md",
+            "spec/religion_cults_spec.md"
+          ],
+          "labels": ["gameplay", "ecs", "design"],
+          "task_file": "dev/tasks/spec-crime-justice-implementation.md",
+          "notes": "CrimeJusticeDailySystem + police/court formulas + punishment + recidivism + events/metrics"
+        },
+        {
+          "id": "spec-entertainment-implementation",
+          "title": "Полная реализация spec/entertainment_spec в ECS (настроение, досуг, праздники, влияние на crime)",
+          "spec_refs": [
+            "spec/entertainment_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md",
+            "spec/crime_justice_spec.md"
+          ],
+          "labels": ["gameplay", "ecs", "design"],
+          "task_file": "dev/tasks/spec-entertainment-implementation.md",
+          "notes": "EntertainmentDailySystem + mood/productivity formulas + festival events + crime integration"
         }
       ]
     },

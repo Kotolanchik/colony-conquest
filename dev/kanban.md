@@ -248,6 +248,21 @@ _(пусто)_
   - Task: `dev/tasks/spec-comfort-housing-implementation.md`  
   - Labels: gameplay, ecs, design
 
+- **spec-diplomacy-trade-implementation** — Полная реализация `spec/diplomacy_trade_spec` в ECS (отношения, торговля, союзы, войны)  
+  - Spec: `spec/diplomacy_trade_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`  
+  - Task: `dev/tasks/spec-diplomacy-trade-implementation.md`  
+  - Labels: gameplay, ecs, design
+
+- **spec-crime-justice-implementation** — Полная реализация `spec/crime_justice_spec` в ECS (инциденты, полиция, суд, рецидив)  
+  - Spec: `spec/crime_justice_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`, `spec/religion_cults_spec.md`  
+  - Task: `dev/tasks/spec-crime-justice-implementation.md`  
+  - Labels: gameplay, ecs, design
+
+- **spec-entertainment-implementation** — Полная реализация `spec/entertainment_spec` в ECS (настроение, досуг, праздники, влияние на crime)  
+  - Spec: `spec/entertainment_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`, `spec/crime_justice_spec.md`  
+  - Task: `dev/tasks/spec-entertainment-implementation.md`  
+  - Labels: gameplay, ecs, design
+
 ## Blocked
 
 _(пусто)_
