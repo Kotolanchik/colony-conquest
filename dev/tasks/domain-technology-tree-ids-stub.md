@@ -23,3 +23,4 @@
 
 - 2026-03-21 — `Assets/_Project/Scripts/Technology/`.
 - 2026-03-24 — `TechResearchTuning` (модификатор эпохи §2.2), `ColonyTechResearchDailySystem`, поля в `ColonyTechProgressState`, миграция `LastResearchDayIndex` для старых суток без взрыва очков.
+- 2026-03-21 — Заготовка расширена до полной реализации в задаче `spec-technology-tree-implementation`.

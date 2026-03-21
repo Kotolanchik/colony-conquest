@@ -263,6 +263,21 @@ _(пусто)_
   - Task: `dev/tasks/spec-entertainment-implementation.md`  
   - Labels: gameplay, ecs, design
 
+- **spec-technology-tree-implementation** — Полная реализация `spec/technology_tree_spec` в ECS (каталог, исследования, переходы эпох)  
+  - Spec: `spec/technology_tree_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`  
+  - Task: `dev/tasks/spec-technology-tree-implementation.md`  
+  - Labels: gameplay, ecs, design
+
+- **spec-political-system-implementation** — Полная реализация `spec/political_system_spec` в ECS (доктрины, законы, решения, интеграции)  
+  - Spec: `spec/political_system_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`, `spec/diplomacy_trade_spec.md`, `spec/crime_justice_spec.md`  
+  - Task: `dev/tasks/spec-political-system-implementation.md`  
+  - Labels: gameplay, ecs, design
+
+- **spec-global-map-implementation** — Полная реализация `spec/global_map_spec` в ECS (территории, ресурсы, армии, открытие карты)  
+  - Spec: `spec/global_map_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`, `spec/technology_tree_spec.md`  
+  - Task: `dev/tasks/spec-global-map-implementation.md`  
+  - Labels: gameplay, ecs, design, world
+
 ## Blocked
 
 _(пусто)_

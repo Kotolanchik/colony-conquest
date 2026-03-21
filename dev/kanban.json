@@ -504,6 +504,42 @@
           "labels": ["gameplay", "ecs", "design"],
           "task_file": "dev/tasks/spec-entertainment-implementation.md",
           "notes": "EntertainmentDailySystem + mood/productivity formulas + festival events + crime integration"
+        },
+        {
+          "id": "spec-technology-tree-implementation",
+          "title": "Полная реализация spec/technology_tree_spec в ECS (каталог, исследования, переходы эпох)",
+          "spec_refs": [
+            "spec/technology_tree_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md"
+          ],
+          "labels": ["gameplay", "ecs", "design"],
+          "task_file": "dev/tasks/spec-technology-tree-implementation.md",
+          "notes": "TechTreeCatalog + TechTreeDailySystem + unlocks + era transitions + events/metrics"
+        },
+        {
+          "id": "spec-political-system-implementation",
+          "title": "Полная реализация spec/political_system_spec в ECS (доктрины, законы, решения, интеграции)",
+          "spec_refs": [
+            "spec/political_system_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md",
+            "spec/diplomacy_trade_spec.md",
+            "spec/crime_justice_spec.md"
+          ],
+          "labels": ["gameplay", "ecs", "design"],
+          "task_file": "dev/tasks/spec-political-system-implementation.md",
+          "notes": "PoliticalDailySystem + doctrine/law modifiers + policy shifts + cross-domain links"
+        },
+        {
+          "id": "spec-global-map-implementation",
+          "title": "Полная реализация spec/global_map_spec в ECS (территории, ресурсы, армии, открытие карты)",
+          "spec_refs": [
+            "spec/global_map_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md",
+            "spec/technology_tree_spec.md"
+          ],
+          "labels": ["gameplay", "ecs", "design", "world"],
+          "task_file": "dev/tasks/spec-global-map-implementation.md",
+          "notes": "WorldMapDailySimulationSystem + resource nodes + territory influence + strategic movement + scale from tech era"
         }
       ]
     },

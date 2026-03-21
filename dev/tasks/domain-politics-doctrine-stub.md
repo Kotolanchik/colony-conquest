@@ -21,3 +21,4 @@
 ## Заметки / журнал
 
 - 2026-03-21 — карточка заведена; код: `game/Client/Assets/_Project/Scripts/Politics/PoliticalDoctrineId.cs` (§1.2–2, §3.1–3.2).
+- 2026-03-21 — Заготовка расширена до полной реализации в задаче `spec-political-system-implementation`.
