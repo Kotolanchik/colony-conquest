@@ -1,0 +1,157 @@
+{
+  "version": 1,
+  "generated": "2026-03-21",
+  "root": "spec",
+  "files": [
+    {
+      "path": "spec/agriculture_mining_spec.md",
+      "h1": "ФЕРМЕРСТВО И ДОБЫЧА — ТЕХНИЧЕСКАЯ СПЕЦИФИКАЦИЯ",
+      "lines": 217,
+      "chars": 6888
+    },
+    {
+      "path": "spec/audio_design_spec.md",
+      "h1": "ЗВУКОВОЙ ДИЗАЙН — ТЕХНИЧЕСКАЯ СПЕЦИФИКАЦИЯ",
+      "lines": 313,
+      "chars": 7617
+    },
+    {
+      "path": "spec/bioengineering_spec.md",
+      "h1": "БИОИНЖЕНЕРИЯ — ТЕХНИЧЕСКАЯ СПЕЦИФИКАЦИЯ",
+      "lines": 252,
+      "chars": 10211
+    },
+    {
+      "path": "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md",
+      "h1": "🎮 COLONY & CONQUEST",
+      "lines": 629,
+      "chars": 27505
+    },
+    {
+      "path": "spec/comfort_housing_spec.md",
+      "h1": "УЮТ И ЖИЛЬЁ — ТЕХНИЧЕСКАЯ СПЕЦИФИКАЦИЯ",
+      "lines": 238,
+      "chars": 9563
+    },
+    {
+      "path": "spec/construction_system_spec.md",
+      "h1": "СИСТЕМА СТРОИТЕЛЬСТВА — ТЕХНИЧЕСКАЯ СПЕЦИФИКАЦИЯ",
+      "lines": 486,
+      "chars": 20216
+    },
+    {
+      "path": "spec/crime_justice_spec.md",
+      "h1": "ПРЕСТУПНОСТЬ И ПРАВОСУДИЕ — ТЕХНИЧЕСКАЯ СПЕЦИФИКАЦИЯ",
+      "lines": 237,
+      "chars": 8782
+    },
+    {
+      "path": "spec/defensive_structures_spec.md",
+      "h1": "ОБОРОНИТЕЛЬНЫЕ СООРУЖЕНИЯ — ТЕХНИЧЕСКАЯ СПЕЦИФИКАЦИЯ",
+      "lines": 261,
+      "chars": 8477
+    },
+    {
+      "path": "spec/diplomacy_trade_spec.md",
+      "h1": "ДИПЛОМАТИЯ И ТОРГОВЛЯ — ТЕХНИЧЕСКАЯ СПЕЦИФИКАЦИЯ",
+      "lines": 429,
+      "chars": 13479
+    },
+    {
+      "path": "spec/ecology_spec.md",
+      "h1": "ЭКОЛОГИЯ И ЗАГРЯЗНЕНИЕ — ТЕХНИЧЕСКАЯ СПЕЦИФИКАЦИЯ",
+      "lines": 207,
+      "chars": 7509
+    },
+    {
+      "path": "spec/economic_system_specification.md",
+      "h1": "ЭКОНОМИЧЕСКАЯ СИСТЕМА — ТЕХНИЧЕСКАЯ СПЕЦИФИКАЦИЯ",
+      "lines": 1358,
+      "chars": 44503
+    },
+    {
+      "path": "spec/entertainment_spec.md",
+      "h1": "РАЗВЛЕЧЕНИЯ — ТЕХНИЧЕСКАЯ СПЕЦИФИКАЦИЯ",
+      "lines": 262,
+      "chars": 11471
+    },
+    {
+      "path": "spec/events_quests_spec.md",
+      "h1": "СОБЫТИЯ И КВЕСТЫ — ТЕХНИЧЕСКАЯ СПЕЦИФИКАЦИЯ",
+      "lines": 355,
+      "chars": 12887
+    },
+    {
+      "path": "spec/global_map_spec.md",
+      "h1": "ГЛОБАЛЬНАЯ КАРТА — ТЕХНИЧЕСКАЯ СПЕЦИФИКАЦИЯ",
+      "lines": 411,
+      "chars": 12673
+    },
+    {
+      "path": "spec/manufacturing_plants_spec.md",
+      "h1": "ПРОИЗВОДСТВЕННЫЕ ЗАВОДЫ — ТЕХНИЧЕСКАЯ СПЕЦИФИКАЦИЯ",
+      "lines": 230,
+      "chars": 10603
+    },
+    {
+      "path": "spec/military_system_specification.md",
+      "h1": "ВОЕННАЯ СИСТЕМА — ТЕХНИЧЕСКАЯ СПЕЦИФИКАЦИЯ",
+      "lines": 1717,
+      "chars": 52561
+    },
+    {
+      "path": "spec/plant_breeding_spec.md",
+      "h1": "СЕЛЕКЦИЯ РАСТЕНИЙ — ТЕХНИЧЕСКАЯ СПЕЦИФИКАЦИЯ",
+      "lines": 174,
+      "chars": 4835
+    },
+    {
+      "path": "spec/political_system_spec.md",
+      "h1": "ПОЛИТИЧЕСКАЯ СИСТЕМА — ТЕХНИЧЕСКАЯ СПЕЦИФИКАЦИЯ",
+      "lines": 374,
+      "chars": 21355
+    },
+    {
+      "path": "spec/README.md",
+      "h1": "Спецификации Colony & Conquest",
+      "lines": 32,
+      "chars": 1772
+    },
+    {
+      "path": "spec/religion_cults_spec.md",
+      "h1": "РЕЛИГИИ И КУЛЬТЫ — ТЕХНИЧЕСКАЯ СПЕЦИФИКАЦИЯ",
+      "lines": 257,
+      "chars": 13015
+    },
+    {
+      "path": "spec/settler_simulation_system_spec.md",
+      "h1": "СИСТЕМА СИМУЛЯЦИИ ПОСЕЛЕНЦЕВ — ТЕХНИЧЕСКАЯ СПЕЦИФИКАЦИЯ",
+      "lines": 2017,
+      "chars": 55824
+    },
+    {
+      "path": "spec/statistics_analytics_spec.md",
+      "h1": "СТАТИСТИКА И АНАЛИТИКА — ТЕХНИЧЕСКАЯ СПЕЦИФИКАЦИЯ",
+      "lines": 283,
+      "chars": 10654
+    },
+    {
+      "path": "spec/technical_architecture_specification.md",
+      "h1": "ТЕХНИЧЕСКАЯ АРХИТЕКТУРА — СПЕЦИФИКАЦИЯ",
+      "lines": 1236,
+      "chars": 40341
+    },
+    {
+      "path": "spec/technology_tree_spec.md",
+      "h1": "ДЕРЕВО ТЕХНОЛОГИЙ — ТЕХНИЧЕСКАЯ СПЕЦИФИКАЦИЯ",
+      "lines": 393,
+      "chars": 15263
+    },
+    {
+      "path": "spec/ui_ux_spec.md",
+      "h1": "UI/UX СИСТЕМА — ТЕХНИЧЕСКАЯ СПЕЦИФИКАЦИЯ",
+      "lines": 411,
+      "chars": 23296
+    }
+  ]
+}

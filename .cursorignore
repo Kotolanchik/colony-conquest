@@ -1,0 +1,35 @@
+﻿# Снижает объём индексации Cursor — не исключает файлы с диска, только из контекста.
+
+# Unity
+**/Library/
+**/Temp/
+**/Obj/
+**/Build/
+**/Builds/
+**/Logs/
+**/UserSettings/
+**/MemoryCaptures/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# Python
+**/__pycache__/
+**/.venv/
+**/venv/
+**/.mypy_cache/
+
+# IDE / OS
+**/.vs/
+.DS_Store
+Thumbs.db

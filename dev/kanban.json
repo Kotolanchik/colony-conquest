@@ -1,0 +1,447 @@
+{
+  "version": 1,
+  "updated": "2026-03-25",
+  "columns": [
+    {
+      "id": "backlog",
+      "title": "Backlog",
+      "items": []
+    },
+    {
+      "id": "ready",
+      "title": "Ready",
+      "items": []
+    },
+    {
+      "id": "in_progress",
+      "title": "In progress",
+      "items": []
+    },
+    {
+      "id": "review",
+      "title": "Review",
+      "items": []
+    },
+    {
+      "id": "done",
+      "title": "Done",
+      "items": [
+        {
+          "id": "repo-dev-process",
+          "title": "Настроены rules, skills, AGENTS, канбан, структура, индекс спеков",
+          "labels": ["process"],
+          "notes": "Стартовая инфраструктура репозитория",
+          "adr_refs": ["docs/decisions/001-adr-and-task-traceability.md"]
+        },
+        {
+          "id": "init-unity-dots",
+          "title": "Инициализировать Unity + DOTS проект в game/Client",
+          "spec_refs": ["spec/technical_architecture_specification.md"],
+          "labels": ["setup", "engine"],
+          "task_file": "dev/tasks/init-unity-dots.md",
+          "adr_refs": ["docs/decisions/002-unity6-editor-baseline.md"],
+          "notes": "Каркас на базе EntitiesSamples + Colony.Conquest.Core bootstrap"
+        },
+        {
+          "id": "spec-cross-review",
+          "title": "Первичный кросс-ревью всех spec/*.md против мастер-документа",
+          "spec_refs": ["spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md"],
+          "labels": ["design", "process"],
+          "task_file": "dev/tasks/spec-cross-review.md",
+          "notes": "Отчёт dev/spec_cross_review_report.md; добавлен §3.11 в мастер-спеку"
+        },
+        {
+          "id": "tech-spec-unity6-align",
+          "title": "Согласовать техспеку и мастер §5.1 с Unity 6 (ADR-002)",
+          "spec_refs": [
+            "spec/technical_architecture_specification.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md"
+          ],
+          "labels": ["design", "engine"],
+          "task_file": "dev/tasks/tech-spec-unity6-align.md",
+          "adr_refs": ["docs/decisions/002-unity6-editor-baseline.md"],
+          "notes": "§1.3 техспеки, §5.1 мастера, обновлён отчёт кросс-ревью"
+        },
+        {
+          "id": "feat-ecs-simulation-root",
+          "title": "ECS: синглтон SimulationRootState + тик в GameBootstrapSystem",
+          "spec_refs": ["spec/technical_architecture_specification.md"],
+          "labels": ["engine", "gameplay"],
+          "task_file": "dev/tasks/feat-ecs-simulation-root.md",
+          "notes": "Первый игровой контур симуляции без сцены"
+        },
+        {
+          "id": "scene-bootstrap-subscene",
+          "title": "Сцена Bootstrap + SubScene (DOTS) и запись в Build Settings",
+          "spec_refs": ["spec/technical_architecture_specification.md"],
+          "labels": ["engine", "scene"],
+          "task_file": "dev/tasks/scene-bootstrap-subscene.md",
+          "notes": "Assets/_Project/Scenes/Bootstrap.unity, SubScenes/GameSubScene.unity, EditorBuildSettings"
+        },
+        {
+          "id": "input-actions-wasd",
+          "title": "Input System: базовый .inputactions и чтение в ECS/бридже",
+          "spec_refs": ["spec/ui_ux_spec.md"],
+          "labels": ["engine", "input"],
+          "task_file": "dev/tasks/input-actions-wasd.md",
+          "notes": "InputGatherSystem, InputCommandState, Settings/ColonyInputActions.inputactions"
+        },
+        {
+          "id": "ecs-subscene-baked-entity",
+          "title": "SubScene: одна тестовая сущность с LocalTransform после baking",
+          "spec_refs": [
+            "spec/technical_architecture_specification.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md"
+          ],
+          "labels": ["engine", "ecs", "scene"],
+          "task_file": "dev/tasks/ecs-subscene-baked-entity.md",
+          "notes": "TestMoveTarget + PlayerMoveTargetAuthoring/Baker в GameSubScene; PlayerMoveTargetTag"
+        },
+        {
+          "id": "ecs-movement-from-input",
+          "title": "Система движения: InputCommandState.Move → сдвиг LocalTransform (масштаб/скорость из констант)",
+          "spec_refs": [
+            "spec/technical_architecture_specification.md",
+            "spec/ui_ux_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md"
+          ],
+          "labels": ["engine", "gameplay", "input"],
+          "task_file": "dev/tasks/ecs-movement-from-input.md",
+          "notes": "PlayerMoveFromInputSystem, скорость 5 u/s, плоскость XZ"
+        },
+        {
+          "id": "roadmap-phase0-benchmark",
+          "title": "Прототип фазы 0: замер производительности ECS (цель из дорожной карты §6)",
+          "spec_refs": [
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md",
+            "spec/technical_architecture_specification.md"
+          ],
+          "labels": ["engine", "perf"],
+          "task_file": "dev/tasks/roadmap-phase0-benchmark.md",
+          "notes": "BenchmarkPhase0Tuning.Enabled, Spawn+Drift+Report; §6.1 ориентир 1000 / 60 FPS"
+        },
+        {
+          "id": "domain-settler-components-stub",
+          "title": "Заготовка набора ECS-компонентов поселенца (без полной симуляции)",
+          "spec_refs": [
+            "spec/settler_simulation_system_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md"
+          ],
+          "labels": ["gameplay", "design"],
+          "task_file": "dev/tasks/domain-settler-components-stub.md",
+          "notes": "Пространство имён ColonyConquest.Settlers; §1.1–1.7 спеки; SkillSet: FixedList256Bytes"
+        },
+        {
+          "id": "domain-economy-resource-ids",
+          "title": "Идентификаторы ресурсов и перечень в коде по экономической спеке",
+          "spec_refs": [
+            "spec/economic_system_specification.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md"
+          ],
+          "labels": ["gameplay", "data"],
+          "task_file": "dev/tasks/domain-economy-resource-ids.md",
+          "notes": "ColonyConquest.Economy: ResourceId 1–55, ResourceCatalog §1.2 базовые цены"
+        },
+        {
+          "id": "domain-military-unit-stub",
+          "title": "Минимальная ECS-схема боевого юнита (без полного боя)",
+          "spec_refs": [
+            "spec/military_system_specification.md",
+            "spec/technical_architecture_specification.md"
+          ],
+          "labels": ["gameplay", "combat"],
+          "task_file": "dev/tasks/domain-military-unit-stub.md",
+          "notes": "ColonyConquest.Military: CommandHierarchy, MilitaryOrder, CombatStats, BattleUnitTag"
+        },
+        {
+          "id": "tech-audio-bus-stub",
+          "title": "Заготовка аудио-событий / шины под звуковую спеку",
+          "spec_refs": ["spec/audio_design_spec.md"],
+          "labels": ["audio", "engine"],
+          "task_file": "dev/tasks/tech-audio-bus-stub.md",
+          "notes": "AudioSfxCategory, AudioBusStub.Post"
+        },
+        {
+          "id": "world-map-chunk-stub",
+          "title": "Заготовка чанка/тайла глобальной карты (данные + границы)",
+          "spec_refs": [
+            "spec/global_map_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md"
+          ],
+          "labels": ["gameplay", "world"],
+          "task_file": "dev/tasks/world-map-chunk-stub.md",
+          "notes": "WorldBiomeId, MapChunkCoord, MapChunkBounds"
+        },
+        {
+          "id": "meta-events-pipeline-stub",
+          "title": "Заготовка конвейера событий/квестов (очередь + типы из спеки)",
+          "spec_refs": [
+            "spec/events_quests_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md"
+          ],
+          "labels": ["gameplay", "scripting"],
+          "task_file": "dev/tasks/meta-events-pipeline-stub.md",
+          "notes": "StoryEventKind, QuestKind, GameEventQueueEntry IBufferElementData"
+        },
+        {
+          "id": "meta-analytics-hooks-stub",
+          "title": "Точки телеметрии/статистики по спеке аналитики",
+          "spec_refs": ["spec/statistics_analytics_spec.md"],
+          "labels": ["engine", "telemetry"],
+          "task_file": "dev/tasks/meta-analytics-hooks-stub.md",
+          "notes": "AnalyticsDomain, AnalyticsHooks"
+        },
+        {
+          "id": "domain-construction-ghost-stub",
+          "title": "Заготовка потока «режим строительства / призрак» (без полной сетки)",
+          "spec_refs": [
+            "spec/construction_system_spec.md",
+            "spec/ui_ux_spec.md"
+          ],
+          "labels": ["gameplay", "ui"],
+          "task_file": "dev/tasks/domain-construction-ghost-stub.md",
+          "notes": "ConstructionBlueprintId, ConstructionGhostState, ConstructionGhostBootstrapSystem (ClientWorld)"
+        },
+        {
+          "id": "feat-construction-build-toggle",
+          "title": "Ввод ToggleBuild (B) и переключение режима призрака без дубля систем",
+          "spec_refs": [
+            "spec/ui_ux_spec.md",
+            "spec/construction_system_spec.md"
+          ],
+          "labels": ["engine", "input", "gameplay"],
+          "task_file": "dev/tasks/feat-construction-build-toggle.md",
+          "notes": "ConstructionBuildModeToggleSystem (ClientSimulation, после InputGatherSystem) → ConstructionGhostState.Active; ConstructionGhostCursorSystem"
+        },
+        {
+          "id": "tech-netcode-spike",
+          "title": "Spike: Netcode for Entities (подключение, пустой сценарий)",
+          "spec_refs": [
+            "spec/technical_architecture_specification.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md"
+          ],
+          "labels": ["engine", "network"],
+          "task_file": "dev/tasks/tech-netcode-spike.md",
+          "notes": "com.unity.netcode 1.5.1, ColonyNetcodeBootstrap, GoInGameSpike, WorldSystemFilter на системах"
+        },
+        {
+          "id": "domain-agriculture-mining-stub",
+          "title": "Заготовка CropKindId и MiningDepositKindId по agriculture_mining_spec",
+          "spec_refs": ["spec/agriculture_mining_spec.md", "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md"],
+          "labels": ["gameplay", "data"],
+          "task_file": "dev/tasks/domain-agriculture-mining-stub.md",
+          "notes": "ColonyConquest.Agriculture: культуры эпохи 1, типы месторождений §2.1"
+        },
+        {
+          "id": "domain-agriculture-phase0-stub",
+          "title": "Агро фазы 0: LivestockKindId + MiningDepositRuntime",
+          "spec_refs": ["spec/agriculture_mining_spec.md"],
+          "labels": ["gameplay", "data"],
+          "task_file": "dev/tasks/domain-agriculture-phase0-stub.md",
+          "notes": "Животноводство §1.4; компонент узла месторождения §2.3"
+        },
+        {
+          "id": "domain-technology-tree-ids-stub",
+          "title": "Заготовка TechEraId и TechBranchId по technology_tree_spec",
+          "spec_refs": [
+            "spec/technology_tree_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md"
+          ],
+          "labels": ["gameplay", "data"],
+          "task_file": "dev/tasks/domain-technology-tree-ids-stub.md",
+          "notes": "ColonyConquest.Technology: 5 эпох §1.2, 5 веток §1.3"
+        },
+        {
+          "id": "domain-bioengineering-prosthesis-ids-stub",
+          "title": "Заготовка CyberneticProsthesisKindId и StimulantKindId по bioengineering_spec",
+          "spec_refs": [
+            "spec/bioengineering_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md"
+          ],
+          "labels": ["gameplay", "data"],
+          "task_file": "dev/tasks/domain-bioengineering-prosthesis-ids-stub.md",
+          "notes": "§2.2 протезы, §2.1 органы; §3.1 стимуляторы"
+        },
+        {
+          "id": "domain-plant-breeding-trait-axes-stub",
+          "title": "Заготовка PlantTraitAxisId по plant_breeding_spec §1.2",
+          "spec_refs": [
+            "spec/plant_breeding_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md"
+          ],
+          "labels": ["gameplay", "data"],
+          "task_file": "dev/tasks/domain-plant-breeding-trait-axes-stub.md",
+          "notes": "ColonyConquest.PlantBreeding: 7 осей характеристик"
+        },
+        {
+          "id": "feat-simulation-calendar-stub",
+          "title": "Игровой календарь: день и время суток от SimulationTick",
+          "spec_refs": [
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md",
+            "spec/technical_architecture_specification.md"
+          ],
+          "labels": ["engine", "gameplay"],
+          "task_file": "dev/tasks/feat-simulation-calendar-stub.md",
+          "notes": "GameCalendarState, GameCalendarTuning, ColonyCalendarAdvanceSystem"
+        },
+        {
+          "id": "domain-ecology-indicators-stub",
+          "title": "Заготовка индикаторов экологии и полос загрязнения",
+          "spec_refs": [
+            "spec/ecology_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md"
+          ],
+          "labels": ["gameplay", "data"],
+          "task_file": "dev/tasks/domain-ecology-indicators-stub.md",
+          "notes": "EcologyIndicatorKind, PollutionLevelBand"
+        },
+        {
+          "id": "feat-phase0-manual-mining",
+          "title": "Фаза 0: ручная добыча — склад ECS, маппинг месторождение→ResourceId, демо-узел",
+          "spec_refs": [
+            "spec/agriculture_mining_spec.md",
+            "spec/economic_system_specification.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md"
+          ],
+          "labels": ["gameplay", "ecs", "data"],
+          "task_file": "dev/tasks/feat-phase0-manual-mining.md",
+          "notes": "Суперсeded полной реализацией spec-agriculture-mining-implementation (формулы §2, Interact)"
+        },
+        {
+          "id": "spec-agriculture-mining-implementation",
+          "title": "Полная реализация spec/agriculture_mining_spec в коде (формулы + ручная добыча)",
+          "spec_refs": ["spec/agriculture_mining_spec.md", "spec/economic_system_specification.md"],
+          "labels": ["gameplay", "ecs", "design"],
+          "task_file": "dev/tasks/spec-agriculture-mining-implementation.md",
+          "notes": "CropGrowthSimulationSystem, LivestockDailyProductionSystem, CropYieldFormulas/CropYieldMath, MiningManualFormulas, ManualMiningGatherSystem, Interact (E), bootstrap: грядка + загон + InitialAmount у узла"
+        },
+        {
+          "id": "spec-economy-production-workshop",
+          "title": "Экономика: §2.1 эффективность + §2.2–2.3 цепочки (демо-цех)",
+          "spec_refs": [
+            "spec/economic_system_specification.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md"
+          ],
+          "labels": ["gameplay", "ecs", "data"],
+          "task_file": "dev/tasks/spec-economy-production-workshop.md",
+          "notes": "§2.1 math; эпоха 1–3 + §2.4.1 легирование; SelectionPriorityOrder; EconomyWorkshopProductionSystem; склад"
+        },
+        {
+          "id": "feat-statistics-analytics-spec-full",
+          "title": "Слой данных статистики и аналитики по statistics_analytics_spec (снимок, метрики, ИЧР)",
+          "spec_refs": [
+            "spec/statistics_analytics_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md"
+          ],
+          "labels": ["gameplay", "data", "telemetry"],
+          "task_file": "dev/tasks/feat-statistics-analytics-spec-full.md",
+          "notes": "AnalyticsMetricIds, AnalyticsLocalSnapshot, AnalyticsSnapshotUpdateSystem, ColonyDemography/Tech, Hooks по World.All"
+        },
+        {
+          "id": "feat-ai-director-policy-stub",
+          "title": "AI Director: политика событий §2.3 + очередь триггеров",
+          "spec_refs": [
+            "spec/events_quests_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md"
+          ],
+          "labels": ["gameplay", "ecs", "scripting"],
+          "task_file": "dev/tasks/feat-ai-director-policy-stub.md",
+          "notes": "AiDirectorPolicyKind/State, AiDirectorPolicyUpdateSystem, enqueue при смене политики (tick>1)"
+        },
+        {
+          "id": "domain-diplomacy-faction-ids-stub",
+          "title": "Заготовка FactionKindId и FactionIdeologyId по diplomacy_trade_spec",
+          "spec_refs": [
+            "spec/diplomacy_trade_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md"
+          ],
+          "labels": ["gameplay", "data"],
+          "task_file": "dev/tasks/domain-diplomacy-faction-ids-stub.md",
+          "notes": "ColonyConquest.Diplomacy: §1.2 типы фракций, §2.3 идеологии"
+        },
+        {
+          "id": "domain-crime-offense-ids-stub",
+          "title": "Заготовка CrimeOffenseKindId по crime_justice_spec §2",
+          "spec_refs": [
+            "spec/crime_justice_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md"
+          ],
+          "labels": ["gameplay", "data"],
+          "task_file": "dev/tasks/domain-crime-offense-ids-stub.md",
+          "notes": "ColonyConquest.Justice: мелкие/серьёзные/особо тяжкие"
+        },
+        {
+          "id": "domain-entertainment-ids-stub",
+          "title": "Заготовка EntertainmentCategoryId / EntertainmentActivityKindId по entertainment_spec §1.2",
+          "spec_refs": [
+            "spec/entertainment_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md"
+          ],
+          "labels": ["gameplay", "data"],
+          "task_file": "dev/tasks/domain-entertainment-ids-stub.md",
+          "notes": "ColonyConquest.Entertainment: 4 категории + примеры активностей"
+        },
+        {
+          "id": "domain-religion-archetype-stub",
+          "title": "Заготовка ReligionArchetypeId по religion_cults_spec §1.2",
+          "spec_refs": [
+            "spec/religion_cults_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md"
+          ],
+          "labels": ["gameplay", "data"],
+          "task_file": "dev/tasks/domain-religion-archetype-stub.md",
+          "notes": "ColonyConquest.Religion: организованные, культы, атеизм/секуляризм"
+        },
+        {
+          "id": "domain-politics-doctrine-stub",
+          "title": "Заготовка PoliticalDoctrineId по political_system_spec §1.2–2",
+          "spec_refs": [
+            "spec/political_system_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md"
+          ],
+          "labels": ["gameplay", "data"],
+          "task_file": "dev/tasks/domain-politics-doctrine-stub.md",
+          "notes": "ColonyConquest.Politics: спектр и основные формы/течения"
+        },
+        {
+          "id": "domain-defensive-structure-ids-stub",
+          "title": "Заготовка DefensiveStructureKindId по defensive_structures_spec §1.2",
+          "spec_refs": [
+            "spec/defensive_structures_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md"
+          ],
+          "labels": ["gameplay", "data", "combat"],
+          "task_file": "dev/tasks/domain-defensive-structure-ids-stub.md",
+          "notes": "ColonyConquest.Defense: полевые, укреплённые, эпоха 5"
+        },
+        {
+          "id": "domain-diplomacy-trade-contracts-stub",
+          "title": "Торговля и союзы: TradeDeal / TradeGoods / DiplomaticAlliance по diplomacy_trade_spec §3",
+          "spec_refs": [
+            "spec/diplomacy_trade_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md"
+          ],
+          "labels": ["gameplay", "data"],
+          "task_file": "dev/tasks/domain-diplomacy-trade-contracts-stub.md",
+          "notes": "ColonyConquest.Diplomacy: §3.2–3.3"
+        },
+        {
+          "id": "domain-world-map-scale-stub",
+          "title": "Заготовка WorldMapScaleLevel по global_map_spec §1.2",
+          "spec_refs": [
+            "spec/global_map_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md"
+          ],
+          "labels": ["gameplay", "data", "world"],
+          "task_file": "dev/tasks/domain-world-map-scale-stub.md",
+          "notes": "ColonyConquest.WorldMap: 4 уровня масштаба"
+        }
+      ]
+    },
+    {
+      "id": "blocked",
+      "title": "Blocked",
+      "items": []
+    }
+  ]
+}

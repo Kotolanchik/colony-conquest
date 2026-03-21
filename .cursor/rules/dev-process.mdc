@@ -1,0 +1,18 @@
+---
+description: Процесс разработки — dev/, канбан, инструменты
+globs: dev/**/*
+alwaysApply: false
+---
+
+# Каталог dev/
+
+- **`kanban.json`** — каноничное состояние доски; агент обновляет при смене статуса задачи (`adr_refs`, `task_file` по навыку `colony-kanban`).
+- **`kanban.md`** — зеркало для чтения людьми; обновлять при изменении JSON.
+- **`TASK_CARD_TEMPLATE.md`** — шаблон карточки задачи; копия в `tasks/<id>.md` при переводе в ready/review.
+- **`tasks/`** — детализация задач по `id` канбана.
+- **`spec_index.*`** — вывод `tools/spec_index.py`, не править руками.
+- **`PROJECT_STRUCTURE.md`** — описание деревьев `game/`, `tools/`, `spec/`, `docs/`; обновлять при появлении новых корневых модулей.
+
+Корень **`docs/decisions/`** — ADR (см. `docs/decisions/README.md`).
+
+При добавлении этапа пайплайна или чеклиста — отразить в `AGENTS.md` или в навыке `colony-kanban`, если это касается ритма работы агента.
