@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-03-25",
+  "updated": "2026-03-21",
   "columns": [
     {
       "id": "backlog",
@@ -435,6 +435,40 @@
           "labels": ["gameplay", "data", "world"],
           "task_file": "dev/tasks/domain-world-map-scale-stub.md",
           "notes": "ColonyConquest.WorldMap: 4 уровня масштаба"
+        },
+        {
+          "id": "spec-plant-breeding-implementation",
+          "title": "Полная реализация spec/plant_breeding_spec в ECS (геном, скрещивание, риск ГМО)",
+          "spec_refs": [
+            "spec/plant_breeding_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md"
+          ],
+          "labels": ["gameplay", "ecs", "design"],
+          "task_file": "dev/tasks/spec-plant-breeding-implementation.md",
+          "notes": "PlantBreedingLabState, PlantCultivarEntry, WorkOrder, daily simulation, story/analytics integration"
+        },
+        {
+          "id": "spec-religion-cults-implementation",
+          "title": "Полная реализация spec/religion_cults_spec в ECS (вера, напряжение, священные войны)",
+          "spec_refs": [
+            "spec/religion_cults_spec.md",
+            "spec/events_quests_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md"
+          ],
+          "labels": ["gameplay", "ecs", "design"],
+          "task_file": "dev/tasks/spec-religion-cults-implementation.md",
+          "notes": "ReligionSimulationState + HolyWarState machine + queue events + analytics metrics"
+        },
+        {
+          "id": "spec-comfort-housing-implementation",
+          "title": "Полная реализация spec/comfort_housing_spec в ECS (расселение, уют, аварии)",
+          "spec_refs": [
+            "spec/comfort_housing_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md"
+          ],
+          "labels": ["gameplay", "ecs", "design"],
+          "task_file": "dev/tasks/spec-comfort-housing-implementation.md",
+          "notes": "HousingUnitRuntime, assignment queue, daily comfort/decay/incidents, analytics metrics"
         }
       ]
     },

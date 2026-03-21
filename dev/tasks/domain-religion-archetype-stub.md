@@ -21,3 +21,4 @@
 ## Заметки / журнал
 
 - 2026-03-21 — `game/Client/Assets/_Project/Scripts/Religion/ReligionArchetypeId.cs`.
+- 2026-03-21 — Заготовка расширена до полной реализации в задаче `spec-religion-cults-implementation`.

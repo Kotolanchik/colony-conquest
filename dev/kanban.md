@@ -6,7 +6,7 @@
 
 **Definition of Done:** см. навык `colony-kanban` и чеклист в `dev/TASK_CARD_TEMPLATE.md`.
 
-**Обновлено:** 2026-03-25
+**Обновлено:** 2026-03-21
 
 ---
 
@@ -232,6 +232,21 @@ _(пусто)_
   - Spec: `spec/global_map_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`  
   - Task: `dev/tasks/domain-world-map-scale-stub.md`  
   - Labels: gameplay, data, world
+
+- **spec-plant-breeding-implementation** — Полная реализация `spec/plant_breeding_spec` в ECS (геном, скрещивание, риск ГМО)  
+  - Spec: `spec/plant_breeding_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`  
+  - Task: `dev/tasks/spec-plant-breeding-implementation.md`  
+  - Labels: gameplay, ecs, design
+
+- **spec-religion-cults-implementation** — Полная реализация `spec/religion_cults_spec` в ECS (вера, напряжение, священные войны)  
+  - Spec: `spec/religion_cults_spec.md`, `spec/events_quests_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`  
+  - Task: `dev/tasks/spec-religion-cults-implementation.md`  
+  - Labels: gameplay, ecs, design
+
+- **spec-comfort-housing-implementation** — Полная реализация `spec/comfort_housing_spec` в ECS (расселение, уют, аварии)  
+  - Spec: `spec/comfort_housing_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`  
+  - Task: `dev/tasks/spec-comfort-housing-implementation.md`  
+  - Labels: gameplay, ecs, design
 
 ## Blocked
 
