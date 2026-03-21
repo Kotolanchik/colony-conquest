@@ -131,5 +131,30 @@ namespace ColonyConquest.Analytics
         public const uint WorldMapControlledResourceNodes = 0x8A02;
         public const uint WorldMapActiveArmiesMoving = 0x8A03;
         public const uint WorldMapActiveScale = 0x8A04;
+
+        // --- Строительство (runtime) (0x8Bnn) ---
+        public const uint ConstructionProjectsBacklog = 0x8B01;
+        public const uint ConstructionProjectsCompletedTotal = 0x8B02;
+        public const uint ConstructionProjectsBlockedTotal = 0x8B03;
+        public const uint ConstructionAverageProgress01 = 0x8B04;
+        public const uint ConstructionCompletionsToday = 0x8B05;
+
+        // --- Оборонительные сооружения (0x8Cnn) ---
+        public const uint DefenseActiveStructuresCount = 0x8C01;
+        public const uint DefenseAverageStructureHp01 = 0x8C02;
+        public const uint DefenseStructuresBuiltTotal = 0x8C03;
+        public const uint DefenseStructuresDestroyedTotal = 0x8C04;
+        public const uint DefenseOrdersBlockedByEraTotal = 0x8C05;
+        public const uint DefenseBuildsCompletedToday = 0x8C06;
+        public const uint DefenseDestroyedToday = 0x8C07;
+
+        // --- Биоинженерия (0x8Dnn) ---
+        public const uint BioengineeringProceduresCompletedTotal = 0x8D01;
+        public const uint BioengineeringProcedureFailuresTotal = 0x8D02;
+        public const uint BioengineeringDependencyCases = 0x8D03;
+        public const uint BioengineeringAveragePatientHealth01 = 0x8D04;
+        public const uint BioengineeringActiveStimulantCases = 0x8D05;
+        public const uint BioengineeringCompletedToday = 0x8D06;
+        public const uint BioengineeringFailedToday = 0x8D07;
     }
 }

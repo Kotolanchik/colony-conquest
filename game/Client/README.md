@@ -39,6 +39,13 @@
 - У `WorldMapFocusState` поле `ActiveScale` меняется через `WorldMapScaleFromTechSystem` по текущей эпохе.
 - В аналитике появляются метрики `Tech*` (runtime), `Politics*`, `WorldMap*`.
 
+**Проверка строительства/укреплений/биоинженерии (`spec/construction_system_spec.md`, `spec/defensive_structures_spec.md`, `spec/bioengineering_spec.md`):**
+
+- Строительство: `ConstructionRuntimeBootstrapSystem` создаёт `ConstructionSimulationSingleton` и буфер `ConstructionProjectEntry`; `ConstructionRuntimeDailySystem` по `GameCalendarState.DayIndex` списывает материалы со склада (`ResourceStockEntry`), продвигает стадии (`Planning→...→Completed`) и завершает проекты.
+- Оборона: `DefensiveBootstrapSystem` создаёт `DefensiveSimulationSingleton`, буферы `DefensiveConstructionOrderEntry`/`DefensiveStructureRuntimeEntry`; `DefensiveDailySystem` строит укрепления с учётом `UnderFireIntensity`, применяет суточный урон и энергопитание high-tech сооружений.
+- Биоинженерия: `BioengineeringBootstrapSystem` создаёт `BioengineeringSimulationSingleton`, буферы `BioPatientEntry`/`BioengineeringProcedureEntry`; `BioengineeringDailySystem` обрабатывает процедуры (протезы, стимуляторы, генная терапия, клонирование, нейроинтерфейсы), эффекты/откат стимуляторов и зависимость.
+- В `GameEventQueueEntry` появляются события `build-complete`/`defense-built`/`bio-success`; в аналитике пишутся метрики `Construction*`, `Defense*`, `Bioengineering*`.
+
 ## Замер ECS (фаза 0, дорожная карта §6.1)
 
 Ориентир из мастер-спеки: **~1000 сущностей при 60 FPS**. В коде:
@@ -61,6 +68,9 @@
 - `Assets/_Project/Scripts/Technology/` — runtime дерева технологий: `TechTreeSimulationState`, `TechTreeCatalog`, `TechTreeDailySystem` (разблокировки/переход эпох).
 - `Assets/_Project/Scripts/Politics/` — политический контур: `PoliticalSimulationState`, `PoliticalLawState`, `PoliticalDailySystem`, `PoliticalMath`.
 - `Assets/_Project/Scripts/World/` — симуляция глобальной карты: `WorldMapSimulationState`, территориальный контроль, стратегические армии, `WorldMapDailySimulationSystem`.
+- `Assets/_Project/Scripts/Construction/` — runtime строительства: `ConstructionSimulationState`, `ConstructionProjectEntry`, `ConstructionRuntimeDailySystem` + режим призрака (`ConstructionGhostState`, `ConstructionBuildModeToggleSystem`).
+- `Assets/_Project/Scripts/Defense/` — оборонительные сооружения: `DefensiveSimulationState`, `DefensiveConstructionOrderEntry`, `DefensiveStructureRuntimeEntry`, `DefensiveDailySystem`.
+- `Assets/_Project/Scripts/Bioengineering/` — биоинженерия: `BioengineeringSimulationState`, `BioPatientEntry`, `BioengineeringProcedureEntry`, `BioengineeringDailySystem`.
 - `Assets/_Project/Scripts/Settlers/` — схема ECS-компонентов поселенца по `spec/settler_simulation_system_spec.md` §1.1–1.7 (пространство имён `ColonyConquest.Settlers`; симуляция не подключена — только типы).
 - `Assets/_Project/Scripts/Economy/` — идентификаторы и каталог ресурсов по `spec/economic_system_specification.md` §1.2: `ResourceId` (промышленный блок 1…55, сельхоз 56…67, доп. эпоха 1: 68…72, добыча/прочее 73…77, эпоха 2: известь/прокат 78…79, рыба 80, артиллерия эпохи 1: 81…82), `ResourceCatalog`, `ColonyConquest.Economy`.
 
