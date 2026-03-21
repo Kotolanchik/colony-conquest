@@ -72,5 +72,26 @@ namespace ColonyConquest.Analytics
         // --- Интеграция / события / UI (0x8nnn–0x9nnn) ---
         public const uint IntegrationStoryEventBase = 0x8000;
         public const uint IntegrationConstructionModeActive = 0x8101;
+
+        // --- Селекция растений (0x82nn) ---
+        public const uint PlantBreedingCyclesTotal = 0x8201;
+        public const uint PlantBreedingSuccessTotal = 0x8202;
+        public const uint PlantBreedingGmoIncidentTotal = 0x8203;
+        public const uint PlantBreedingLineStabilityAvg = 0x8204;
+        public const uint PlantBreedingMutationPositiveShare = 0x8205;
+
+        // --- Религия и культы (0x83nn) ---
+        public const uint ReligionFaithLevelAvg = 0x8301;
+        public const uint ReligionConversionEventsTotal = 0x8302;
+        public const uint ReligionTensionAvg = 0x8303;
+        public const uint ReligionHolyWarsStartedTotal = 0x8304;
+        public const uint ReligionCultRadicalizationCases = 0x8305;
+
+        // --- Жильё и комфорт (0x84nn) ---
+        public const uint HousingCapacityTotal = 0x8401;
+        public const uint HousingOccupancyRatio = 0x8402;
+        public const uint HousingComfortScoreAvg = 0x8403;
+        public const uint HousingIncidentsTotal = 0x8404;
+        public const uint HousingOvercrowdingHouseholds = 0x8405;
     }
 }
