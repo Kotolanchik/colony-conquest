@@ -42,3 +42,4 @@
 - 2026-03-24 — Рецепты §2.3.1 калибровка (`CalibrateSteelPlate` → `CalibratedSteelPlate`), §2.2.2 фанера (`CraftPlywoodEpoch1`), §2.2.3 униформа (`SewUniformEpoch1`); сид склада для проверки цепочек.
 - 2026-03-24 — §2.3.4 оружие/снаряды эпохи 2; сид `SteelIndustrial` / `Dynamite`.
 - 2026-03-21 — §2.5.1 бакелит, §2.4.3 винтовка с магазином, демо-плавка урана → `NuclearMaterial`; сид `UraniumOre`.
+- 2026-03-21 — Демо-цех superseded полной реализацией экономики: `dev/tasks/spec-economy-full-implementation.md`.

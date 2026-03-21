@@ -181,7 +181,7 @@ _(пусто)_
   - Spec: `spec/economic_system_specification.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`  
   - Task: `dev/tasks/spec-economy-production-workshop.md`  
   - Labels: gameplay, ecs, data  
-  - Примечание: эпоха 1–3 + §2.4.1 легирование; стройка §2.2 эпоха 2 — сетки в `ConstructionBlueprintFootprints`
+  - Примечание: эпоха 1–3 + §2.4.1 легирование; superseded полной реализацией `spec-economy-full-implementation`
 
 - **feat-statistics-analytics-spec-full** — Слой данных статистики и аналитики по statistics_analytics_spec (снимок, метрики, ИЧР)  
   - Spec: `spec/statistics_analytics_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`  
@@ -292,6 +292,11 @@ _(пусто)_
   - Spec: `spec/bioengineering_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`  
   - Task: `dev/tasks/spec-bioengineering-implementation.md`  
   - Labels: gameplay, ecs, design, medicine
+
+- **spec-economy-full-implementation** — Полная реализация `spec/economic_system_specification` в ECS (энергия, логистика, склады, военный режим, снабжение)  
+  - Spec: `spec/economic_system_specification.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`, `spec/statistics_analytics_spec.md`  
+  - Task: `dev/tasks/spec-economy-full-implementation.md`  
+  - Labels: gameplay, ecs, design, economy
 
 ## Blocked
 

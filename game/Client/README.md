@@ -46,6 +46,18 @@
 - Биоинженерия: `BioengineeringBootstrapSystem` создаёт `BioengineeringSimulationSingleton`, буферы `BioPatientEntry`/`BioengineeringProcedureEntry`; `BioengineeringDailySystem` обрабатывает процедуры (протезы, стимуляторы, генная терапия, клонирование, нейроинтерфейсы), эффекты/откат стимуляторов и зависимость.
 - В `GameEventQueueEntry` появляются события `build-complete`/`defense-built`/`bio-success`; в аналитике пишутся метрики `Construction*`, `Defense*`, `Bioengineering*`.
 
+**Проверка полной экономики (`spec/economic_system_specification.md`):**
+
+- В мире есть `EconomySimulationSingleton` + состояния: `EconomySimulationState`, `EconomyEnergyState`, `EconomyLogisticsState`, `EconomyWarehouseState`, `EconomyMilitaryIndustryState`, `EconomyArmySupplyState`.
+- Буферы экономики: `EconomyProductionFacilityEntry`, `EconomyPowerGeneratorEntry`, `EconomyTransportRouteEntry`, `EconomyWarehouseEntry`.
+- `EconomySimulationDailySystem` раз в игровой день:
+  - ведёт фазы цикла экономики,
+  - считает генерацию/потери/доставку энергии,
+  - прогоняет производство по рецептам с формулами эффективности,
+  - обновляет логистику/склады и bottleneck,
+  - считает adequacy снабжения армии и приоритет военного производства.
+- В аналитике появляются метрики `EconomyPower*`, `EconomyLogistics*`, `EconomyWarehouse*`, `EconomyArmySupplyAdequacy01`, `EconomyCurrentCyclePhase`; в `AnalyticsLocalSnapshot.Economy` заполняются инфляция/безработица/экспорт/импорт/баланс.
+
 ## Замер ECS (фаза 0, дорожная карта §6.1)
 
 Ориентир из мастер-спеки: **~1000 сущностей при 60 FPS**. В коде:
@@ -71,15 +83,15 @@
 - `Assets/_Project/Scripts/Construction/` — runtime строительства: `ConstructionSimulationState`, `ConstructionProjectEntry`, `ConstructionRuntimeDailySystem` + режим призрака (`ConstructionGhostState`, `ConstructionBuildModeToggleSystem`).
 - `Assets/_Project/Scripts/Defense/` — оборонительные сооружения: `DefensiveSimulationState`, `DefensiveConstructionOrderEntry`, `DefensiveStructureRuntimeEntry`, `DefensiveDailySystem`.
 - `Assets/_Project/Scripts/Bioengineering/` — биоинженерия: `BioengineeringSimulationState`, `BioPatientEntry`, `BioengineeringProcedureEntry`, `BioengineeringDailySystem`.
+- `Assets/_Project/Scripts/Economy/` — полный runtime экономики: `EconomySimulationState`, энергия/логистика/склады/военное производство/снабжение, `EconomySimulationDailySystem`, плюс каталоги ресурсов и рецептов.
 - `Assets/_Project/Scripts/Settlers/` — схема ECS-компонентов поселенца по `spec/settler_simulation_system_spec.md` §1.1–1.7 (пространство имён `ColonyConquest.Settlers`; симуляция не подключена — только типы).
-- `Assets/_Project/Scripts/Economy/` — идентификаторы и каталог ресурсов по `spec/economic_system_specification.md` §1.2: `ResourceId` (промышленный блок 1…55, сельхоз 56…67, доп. эпоха 1: 68…72, добыча/прочее 73…77, эпоха 2: известь/прокат 78…79, рыба 80, артиллерия эпохи 1: 81…82), `ResourceCatalog`, `ColonyConquest.Economy`.
 
 ### Экономика (данные)
 
 - Список ресурсов и **базовые цены** соответствуют таблицам §1.2 экономической спеки; доступ: `ResourceCatalog.Get(ResourceId.IronOre)` и т.д.
 - Добавление нового ресурса: только **новое значение в конце** `ResourceId` + строка в `ResourceCatalog.BuildTable()` и обновление спеки; версионирование сохранений — отдельная задача.
 - Фермерство и добыча (`spec/agriculture_mining_spec.md`): `CropCareDailySystem`, `CropGrowthSimulationSystem`, `FertilizerEcologyTuning` → `ColonyAgrochemicalLoadState` → `AgrochemicalEcologyBridgeSystem` → `ColonyEcologyIndicatorsState` (связь с `AnalyticsLocalSnapshot.Social.Ecology01`), `LivestockDailyProductionSystem`, `ManualMiningGatherSystem` (**E**), `MiningForestRegenerationSystem`, `IndustrialMiningFormulas` + `IndustrialMiningProductionSystem` (демо-карьер), `MiningHazardDailySystem`; демо в `SubsystemBootstrapUtility`.
-- Производство (`spec/economic_system_specification.md` §2.1–2.3): `ProductionEfficiencyMath`, `ProductionRecipeCatalog` (эпоха 1 + домен/конвертер/прокат/НПЗ/динамит/известь), `EconomyWorkshopProductionSystem` — приоритетный список рецептов; bootstrap: руда, нефть, кокс, камень, уголь и пр.
+- Полная экономика (`spec/economic_system_specification.md`): `EconomySimulationDailySystem` (циклы, энергия, логистика, склады, военный режим, снабжение); `EconomyWorkshopProductionSystem` остаётся как fallback-демо и отключается при активном full-runtime.
 - `Packages/manifest.json` — зависимости (Entities, URP, Input System, Unity Physics).
 
 ## Сеть (спайк)

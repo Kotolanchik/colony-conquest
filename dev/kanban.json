@@ -324,7 +324,7 @@
           ],
           "labels": ["gameplay", "ecs", "data"],
           "task_file": "dev/tasks/spec-economy-production-workshop.md",
-          "notes": "§2.1 math; эпоха 1–3 + §2.4.1 легирование; SelectionPriorityOrder; EconomyWorkshopProductionSystem; склад"
+          "notes": "§2.1 math; эпоха 1–3 + §2.4.1 легирование; SelectionPriorityOrder; EconomyWorkshopProductionSystem; superseded полной реализацией spec-economy-full-implementation"
         },
         {
           "id": "feat-statistics-analytics-spec-full",
@@ -575,6 +575,18 @@
           "labels": ["gameplay", "ecs", "design", "medicine"],
           "task_file": "dev/tasks/spec-bioengineering-implementation.md",
           "notes": "BioengineeringSimulationState + procedure pipeline + stimulant/dependency loop + daily metrics/events"
+        },
+        {
+          "id": "spec-economy-full-implementation",
+          "title": "Полная реализация spec/economic_system_specification в ECS (энергия, логистика, склады, военный режим, снабжение)",
+          "spec_refs": [
+            "spec/economic_system_specification.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md",
+            "spec/statistics_analytics_spec.md"
+          ],
+          "labels": ["gameplay", "ecs", "design", "economy"],
+          "task_file": "dev/tasks/spec-economy-full-implementation.md",
+          "notes": "EconomySimulationState + full daily loop (cycle/energy/logistics/warehouses/military-supply) + analytics integration"
         }
       ]
     },
