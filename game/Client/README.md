@@ -31,6 +31,14 @@
 - Развлечения: `EntertainmentSimulationSingleton` + `EntertainmentSimulationState`; `EntertainmentDailySystem` считает итоговое настроение/продуктивность, праздники и передаёт `EntertainmentAccess01` в `CrimeJusticeState`.
 - В очереди событий `GameEventQueueEntry` появляются события по торговым завершениям/войнам, преступлениям и праздникам.
 
+**Проверка технологий/политики/глобальной карты (`spec/technology_tree_spec.md`, `spec/political_system_spec.md`, `spec/global_map_spec.md`):**
+
+- Технологии: `TechTreeSimulationSingleton` + `TechTreeSimulationState` + буфер `TechUnlockedEntry`; `TechTreeDailySystem` ведёт активное исследование, разблокировки и переходы эпох.
+- Политика: `PoliticalSimulationSingleton`, `PoliticalSimulationState`, `PoliticalLawState`; `PoliticalDailySystem` пересчитывает модификаторы доктрины/законов и обновляет связки с технологиями/crime/дипломатией.
+- Глобальная карта: `WorldMapSimulationSingleton` + буферы `WorldResourceNodeEntry`, `TerritoryControlEntry`, `StrategicArmyEntry`, `SpecialSiteEntry`; `WorldMapDailySimulationSystem` обновляет открытие чанков, влияние территорий и стратегическое движение армий.
+- У `WorldMapFocusState` поле `ActiveScale` меняется через `WorldMapScaleFromTechSystem` по текущей эпохе.
+- В аналитике появляются метрики `Tech*` (runtime), `Politics*`, `WorldMap*`.
+
 ## Замер ECS (фаза 0, дорожная карта §6.1)
 
 Ориентир из мастер-спеки: **~1000 сущностей при 60 FPS**. В коде:
@@ -50,6 +58,9 @@
 - `Assets/_Project/Scripts/Diplomacy/` — межфракционные отношения, торговые сделки, союзы и войны: `DiplomacySimulationState`, `DiplomacyDailySystem`, `DiplomacyMath`.
 - `Assets/_Project/Scripts/Justice/` — преступность, полиция, суд, наказания и рецидив: `CrimeJusticeState`, `CrimeJusticeDailySystem`, `CrimeJusticeMath`.
 - `Assets/_Project/Scripts/Entertainment/` — досуг и праздники, влияние на настроение/продуктивность и преступность: `EntertainmentSimulationState`, `EntertainmentDailySystem`, `EntertainmentMath`.
+- `Assets/_Project/Scripts/Technology/` — runtime дерева технологий: `TechTreeSimulationState`, `TechTreeCatalog`, `TechTreeDailySystem` (разблокировки/переход эпох).
+- `Assets/_Project/Scripts/Politics/` — политический контур: `PoliticalSimulationState`, `PoliticalLawState`, `PoliticalDailySystem`, `PoliticalMath`.
+- `Assets/_Project/Scripts/World/` — симуляция глобальной карты: `WorldMapSimulationState`, территориальный контроль, стратегические армии, `WorldMapDailySimulationSystem`.
 - `Assets/_Project/Scripts/Settlers/` — схема ECS-компонентов поселенца по `spec/settler_simulation_system_spec.md` §1.1–1.7 (пространство имён `ColonyConquest.Settlers`; симуляция не подключена — только типы).
 - `Assets/_Project/Scripts/Economy/` — идентификаторы и каталог ресурсов по `spec/economic_system_specification.md` §1.2: `ResourceId` (промышленный блок 1…55, сельхоз 56…67, доп. эпоха 1: 68…72, добыча/прочее 73…77, эпоха 2: известь/прокат 78…79, рыба 80, артиллерия эпохи 1: 81…82), `ResourceCatalog`, `ColonyConquest.Economy`.
 

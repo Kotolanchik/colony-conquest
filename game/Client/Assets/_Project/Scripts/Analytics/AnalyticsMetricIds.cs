@@ -113,5 +113,23 @@ namespace ColonyConquest.Analytics
         public const uint EntertainmentStressReduction = 0x8703;
         public const uint EntertainmentGamblingRisk = 0x8704;
         public const uint EntertainmentAvailability = 0x8705;
+
+        // --- Дерево технологий (runtime) (0x88nn) ---
+        public const uint TechActiveResearchId = 0x8801;
+        public const uint TechResearchPoolPoints = 0x8802;
+        public const uint TechEraTransitionsTotal = 0x8803;
+
+        // --- Политическая система (0x89nn) ---
+        public const uint PoliticsStability01 = 0x8901;
+        public const uint PoliticsEconomyModifier = 0x8902;
+        public const uint PoliticsHappinessModifier = 0x8903;
+        public const uint PoliticsScienceModifier = 0x8904;
+        public const uint PoliticsDefenseModifier = 0x8905;
+
+        // --- Глобальная карта (0x8Ann) ---
+        public const uint WorldMapDiscoveredChunks = 0x8A01;
+        public const uint WorldMapControlledResourceNodes = 0x8A02;
+        public const uint WorldMapActiveArmiesMoving = 0x8A03;
+        public const uint WorldMapActiveScale = 0x8A04;
     }
 }

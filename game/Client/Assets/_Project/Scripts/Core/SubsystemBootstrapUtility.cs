@@ -47,7 +47,8 @@ namespace ColonyConquest.Core
                 em.CreateSingleton(new WorldMapFocusState
                 {
                     PlayerChunk = new MapChunkCoord(0, 0),
-                    PreviewBiome = WorldBiomeId.MixedForest
+                    PreviewBiome = WorldBiomeId.MixedForest,
+                    ActiveScale = WorldMapScaleLevel.Local
                 });
 
                 em.CreateSingleton(new GameCalendarState());
