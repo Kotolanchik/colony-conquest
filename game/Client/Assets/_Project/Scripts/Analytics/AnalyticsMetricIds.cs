@@ -156,5 +156,18 @@ namespace ColonyConquest.Analytics
         public const uint BioengineeringActiveStimulantCases = 0x8D05;
         public const uint BioengineeringCompletedToday = 0x8D06;
         public const uint BioengineeringFailedToday = 0x8D07;
+
+        // --- Экономика (full runtime) (0x8Enn) ---
+        public const uint EconomyPowerGeneratedKw = 0x8E01;
+        public const uint EconomyPowerDemandKw = 0x8E02;
+        public const uint EconomyPowerLossPercent = 0x8E03;
+        public const uint EconomyLogisticsCapacityTonKm = 0x8E04;
+        public const uint EconomyLogisticsRequiredTonKm = 0x8E05;
+        public const uint EconomyWarehouseUtilization01 = 0x8E06;
+        public const uint EconomyMilitaryProductionShare01 = 0x8E07;
+        public const uint EconomyArmySupplyAdequacy01 = 0x8E08;
+        public const uint EconomyCurrentCyclePhase = 0x8E09;
+        public const uint EconomyResearchPointsFromEconomy = 0x8E0A;
+        public const uint EconomyActiveFacilities = 0x8E0B;
     }
 }

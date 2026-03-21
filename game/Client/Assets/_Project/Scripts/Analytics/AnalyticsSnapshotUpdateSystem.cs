@@ -93,11 +93,23 @@ namespace ColonyConquest.Analytics
             snap.Economy.Gdp = gdp;
             snap.Economy.GdpPerCapita = gdp / population;
             snap.Economy.GdpGrowthPercent = prevGdp > 1e-3f ? (gdp - prevGdp) / prevGdp * 100f : 0f;
-            snap.Economy.InflationPercent = 0f;
-            snap.Economy.UnemploymentRate01 = 0.05f;
-            snap.Economy.ExportVolume = 0f;
-            snap.Economy.ImportVolume = 0f;
-            snap.Economy.TradeBalance = 0f;
+            if (SystemAPI.HasSingleton<EconomySimulationState>())
+            {
+                var eco = SystemAPI.GetSingleton<EconomySimulationState>();
+                snap.Economy.InflationPercent = eco.InflationPercent;
+                snap.Economy.UnemploymentRate01 = eco.Unemployment01;
+                snap.Economy.ExportVolume = eco.ExportVolume;
+                snap.Economy.ImportVolume = eco.ImportVolume;
+                snap.Economy.TradeBalance = eco.TradeBalance;
+            }
+            else
+            {
+                snap.Economy.InflationPercent = 0f;
+                snap.Economy.UnemploymentRate01 = 0.05f;
+                snap.Economy.ExportVolume = 0f;
+                snap.Economy.ImportVolume = 0f;
+                snap.Economy.TradeBalance = 0f;
+            }
             snap.Economy.PrimarySectorShare01 = pShare;
             snap.Economy.SecondarySectorShare01 = sShare;
             snap.Economy.TertiarySectorShare01 = tShare;
