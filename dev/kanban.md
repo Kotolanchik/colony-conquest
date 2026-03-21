@@ -278,6 +278,21 @@ _(пусто)_
   - Task: `dev/tasks/spec-global-map-implementation.md`  
   - Labels: gameplay, ecs, design, world
 
+- **spec-construction-system-implementation** — Полная реализация `spec/construction_system_spec` в ECS (очередь, этапы, ресурсы, приоритеты)  
+  - Spec: `spec/construction_system_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`, `spec/economic_system_specification.md`  
+  - Task: `dev/tasks/spec-construction-system-implementation.md`  
+  - Labels: gameplay, ecs, design
+
+- **spec-defensive-structures-implementation** — Полная реализация `spec/defensive_structures_spec` в ECS (стройка под огнём, урон, эпохальные ограничения)  
+  - Spec: `spec/defensive_structures_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`, `spec/technology_tree_spec.md`  
+  - Task: `dev/tasks/spec-defensive-structures-implementation.md`  
+  - Labels: gameplay, ecs, design, combat
+
+- **spec-bioengineering-implementation** — Полная реализация `spec/bioengineering_spec` в ECS (пациенты, процедуры, риски, зависимость)  
+  - Spec: `spec/bioengineering_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`  
+  - Task: `dev/tasks/spec-bioengineering-implementation.md`  
+  - Labels: gameplay, ecs, design, medicine
+
 ## Blocked
 
 _(пусто)_

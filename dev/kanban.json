@@ -540,6 +540,41 @@
           "labels": ["gameplay", "ecs", "design", "world"],
           "task_file": "dev/tasks/spec-global-map-implementation.md",
           "notes": "WorldMapDailySimulationSystem + resource nodes + territory influence + strategic movement + scale from tech era"
+        },
+        {
+          "id": "spec-construction-system-implementation",
+          "title": "Полная реализация spec/construction_system_spec в ECS (очередь, этапы, ресурсы, приоритеты)",
+          "spec_refs": [
+            "spec/construction_system_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md",
+            "spec/economic_system_specification.md"
+          ],
+          "labels": ["gameplay", "ecs", "design"],
+          "task_file": "dev/tasks/spec-construction-system-implementation.md",
+          "notes": "ConstructionSimulationState + queue + stage progression + resource commit + daily telemetry/events"
+        },
+        {
+          "id": "spec-defensive-structures-implementation",
+          "title": "Полная реализация spec/defensive_structures_spec в ECS (стройка под огнём, урон, эпохальные ограничения)",
+          "spec_refs": [
+            "spec/defensive_structures_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md",
+            "spec/technology_tree_spec.md"
+          ],
+          "labels": ["gameplay", "ecs", "design", "combat"],
+          "task_file": "dev/tasks/spec-defensive-structures-implementation.md",
+          "notes": "DefensiveSimulationState + build orders + runtime structures + high-tech power + daily damage"
+        },
+        {
+          "id": "spec-bioengineering-implementation",
+          "title": "Полная реализация spec/bioengineering_spec в ECS (пациенты, процедуры, риски, зависимость)",
+          "spec_refs": [
+            "spec/bioengineering_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md"
+          ],
+          "labels": ["gameplay", "ecs", "design", "medicine"],
+          "task_file": "dev/tasks/spec-bioengineering-implementation.md",
+          "notes": "BioengineeringSimulationState + procedure pipeline + stimulant/dependency loop + daily metrics/events"
         }
       ]
     },

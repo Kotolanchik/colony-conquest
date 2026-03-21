@@ -21,3 +21,4 @@
 ## Заметки / журнал
 
 - 2026-03-24 — `game/Client/Assets/_Project/Scripts/Defense/DefensiveStructureKindId.cs`.
+- 2026-03-21 — Заготовка закрыта полной реализацией: `dev/tasks/spec-defensive-structures-implementation.md`.
