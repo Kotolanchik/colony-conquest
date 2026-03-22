@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-03-25",
+  "updated": "2026-03-21",
   "columns": [
     {
       "id": "backlog",
@@ -10,7 +10,50 @@
     {
       "id": "ready",
       "title": "Ready",
-      "items": []
+      "items": [
+        {
+          "id": "content-units-buildings-visual-pack-phase1",
+          "title": "Пак модельных ассетов юнитов и зданий + привязка к визуальным каталогам",
+          "spec_refs": [
+            "spec/ui_ux_spec.md",
+            "spec/military_system_specification.md",
+            "spec/construction_system_spec.md",
+            "spec/manufacturing_plants_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md"
+          ],
+          "labels": ["content", "art", "presentation", "3d"],
+          "task_file": "dev/tasks/content-units-buildings-visual-pack-phase1.md",
+          "notes": "Заполнить UnitVisualCatalog/BuildingVisualCatalog и проверить bridge-resolve в Play Mode"
+        },
+        {
+          "id": "content-ui-icons-pack-phase1",
+          "title": "Пак UI-иконок + atlas и заполнение UiIconCatalog",
+          "spec_refs": [
+            "spec/ui_ux_spec.md",
+            "spec/statistics_analytics_spec.md",
+            "spec/events_quests_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md"
+          ],
+          "labels": ["content", "art", "presentation", "ui"],
+          "task_file": "dev/tasks/content-ui-icons-pack-phase1.md",
+          "notes": "Согласованный набор iconId/sprite/tint и проверка UI-резолва через каталог"
+        },
+        {
+          "id": "content-vfx-pack-phase1",
+          "title": "Базовый VFX-пак (бой/строительство/UI/погода) + VfxCatalog/pooling",
+          "spec_refs": [
+            "spec/audio_design_spec.md",
+            "spec/ui_ux_spec.md",
+            "spec/military_system_specification.md",
+            "spec/construction_system_spec.md",
+            "spec/ecology_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md"
+          ],
+          "labels": ["content", "art", "presentation", "vfx"],
+          "task_file": "dev/tasks/content-vfx-pack-phase1.md",
+          "notes": "Заполнить VfxCatalog и проверить пиковую нагрузку без аллокационных всплесков"
+        }
+      ]
     },
     {
       "id": "in_progress",
@@ -129,7 +172,7 @@
           ],
           "labels": ["gameplay", "design"],
           "task_file": "dev/tasks/domain-settler-components-stub.md",
-          "notes": "Пространство имён ColonyConquest.Settlers; §1.1–1.7 спеки; SkillSet: FixedList256Bytes"
+          "notes": "Пространство имён ColonyConquest.Settlers; §1.1–1.7 спеки; SkillSet: FixedList256Bytes; superseded полной реализацией spec-settler-simulation-full-implementation"
         },
         {
           "id": "domain-economy-resource-ids",
@@ -151,7 +194,7 @@
           ],
           "labels": ["gameplay", "combat"],
           "task_file": "dev/tasks/domain-military-unit-stub.md",
-          "notes": "ColonyConquest.Military: CommandHierarchy, MilitaryOrder, CombatStats, BattleUnitTag"
+          "notes": "ColonyConquest.Military: CommandHierarchy, MilitaryOrder, CombatStats, BattleUnitTag; superseded полной реализацией spec-military-system-implementation"
         },
         {
           "id": "tech-audio-bus-stub",
@@ -159,7 +202,7 @@
           "spec_refs": ["spec/audio_design_spec.md"],
           "labels": ["audio", "engine"],
           "task_file": "dev/tasks/tech-audio-bus-stub.md",
-          "notes": "AudioSfxCategory, AudioBusStub.Post"
+          "notes": "AudioSfxCategory, AudioBusStub.Post; superseded полной реализацией spec-audio-design-full-implementation"
         },
         {
           "id": "world-map-chunk-stub",
@@ -181,7 +224,7 @@
           ],
           "labels": ["gameplay", "scripting"],
           "task_file": "dev/tasks/meta-events-pipeline-stub.md",
-          "notes": "StoryEventKind, QuestKind, GameEventQueueEntry IBufferElementData"
+          "notes": "StoryEventKind, QuestKind, GameEventQueueEntry IBufferElementData; superseded полной реализацией spec-events-quests-full-implementation"
         },
         {
           "id": "meta-analytics-hooks-stub",
@@ -293,7 +336,7 @@
           ],
           "labels": ["gameplay", "data"],
           "task_file": "dev/tasks/domain-ecology-indicators-stub.md",
-          "notes": "EcologyIndicatorKind, PollutionLevelBand"
+          "notes": "EcologyIndicatorKind, PollutionLevelBand; superseded полной реализацией spec-ecology-implementation"
         },
         {
           "id": "feat-phase0-manual-mining",
@@ -324,7 +367,7 @@
           ],
           "labels": ["gameplay", "ecs", "data"],
           "task_file": "dev/tasks/spec-economy-production-workshop.md",
-          "notes": "§2.1 math; эпоха 1–3 + §2.4.1 легирование; SelectionPriorityOrder; EconomyWorkshopProductionSystem; склад"
+          "notes": "§2.1 math; эпоха 1–3 + §2.4.1 легирование; SelectionPriorityOrder; EconomyWorkshopProductionSystem; superseded полной реализацией spec-economy-full-implementation"
         },
         {
           "id": "feat-statistics-analytics-spec-full",
@@ -435,6 +478,290 @@
           "labels": ["gameplay", "data", "world"],
           "task_file": "dev/tasks/domain-world-map-scale-stub.md",
           "notes": "ColonyConquest.WorldMap: 4 уровня масштаба"
+        },
+        {
+          "id": "spec-plant-breeding-implementation",
+          "title": "Полная реализация spec/plant_breeding_spec в ECS (геном, скрещивание, риск ГМО)",
+          "spec_refs": [
+            "spec/plant_breeding_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md"
+          ],
+          "labels": ["gameplay", "ecs", "design"],
+          "task_file": "dev/tasks/spec-plant-breeding-implementation.md",
+          "notes": "PlantBreedingLabState, PlantCultivarEntry, WorkOrder, daily simulation, story/analytics integration"
+        },
+        {
+          "id": "spec-religion-cults-implementation",
+          "title": "Полная реализация spec/religion_cults_spec в ECS (вера, напряжение, священные войны)",
+          "spec_refs": [
+            "spec/religion_cults_spec.md",
+            "spec/events_quests_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md"
+          ],
+          "labels": ["gameplay", "ecs", "design"],
+          "task_file": "dev/tasks/spec-religion-cults-implementation.md",
+          "notes": "ReligionSimulationState + HolyWarState machine + queue events + analytics metrics"
+        },
+        {
+          "id": "spec-comfort-housing-implementation",
+          "title": "Полная реализация spec/comfort_housing_spec в ECS (расселение, уют, аварии)",
+          "spec_refs": [
+            "spec/comfort_housing_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md"
+          ],
+          "labels": ["gameplay", "ecs", "design"],
+          "task_file": "dev/tasks/spec-comfort-housing-implementation.md",
+          "notes": "HousingUnitRuntime, assignment queue, daily comfort/decay/incidents, analytics metrics"
+        },
+        {
+          "id": "spec-diplomacy-trade-implementation",
+          "title": "Полная реализация spec/diplomacy_trade_spec в ECS (отношения, торговля, союзы, войны)",
+          "spec_refs": [
+            "spec/diplomacy_trade_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md"
+          ],
+          "labels": ["gameplay", "ecs", "design"],
+          "task_file": "dev/tasks/spec-diplomacy-trade-implementation.md",
+          "notes": "DiplomacyDailySystem + trade pricing + alliance maintenance + AI war decision + events/metrics"
+        },
+        {
+          "id": "spec-crime-justice-implementation",
+          "title": "Полная реализация spec/crime_justice_spec в ECS (инциденты, полиция, суд, рецидив)",
+          "spec_refs": [
+            "spec/crime_justice_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md",
+            "spec/religion_cults_spec.md"
+          ],
+          "labels": ["gameplay", "ecs", "design"],
+          "task_file": "dev/tasks/spec-crime-justice-implementation.md",
+          "notes": "CrimeJusticeDailySystem + police/court formulas + punishment + recidivism + events/metrics"
+        },
+        {
+          "id": "spec-entertainment-implementation",
+          "title": "Полная реализация spec/entertainment_spec в ECS (настроение, досуг, праздники, влияние на crime)",
+          "spec_refs": [
+            "spec/entertainment_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md",
+            "spec/crime_justice_spec.md"
+          ],
+          "labels": ["gameplay", "ecs", "design"],
+          "task_file": "dev/tasks/spec-entertainment-implementation.md",
+          "notes": "EntertainmentDailySystem + mood/productivity formulas + festival events + crime integration"
+        },
+        {
+          "id": "spec-technology-tree-implementation",
+          "title": "Полная реализация spec/technology_tree_spec в ECS (каталог, исследования, переходы эпох)",
+          "spec_refs": [
+            "spec/technology_tree_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md"
+          ],
+          "labels": ["gameplay", "ecs", "design"],
+          "task_file": "dev/tasks/spec-technology-tree-implementation.md",
+          "notes": "TechTreeCatalog + TechTreeDailySystem + unlocks + era transitions + events/metrics"
+        },
+        {
+          "id": "spec-political-system-implementation",
+          "title": "Полная реализация spec/political_system_spec в ECS (доктрины, законы, решения, интеграции)",
+          "spec_refs": [
+            "spec/political_system_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md",
+            "spec/diplomacy_trade_spec.md",
+            "spec/crime_justice_spec.md"
+          ],
+          "labels": ["gameplay", "ecs", "design"],
+          "task_file": "dev/tasks/spec-political-system-implementation.md",
+          "notes": "PoliticalDailySystem + doctrine/law modifiers + policy shifts + cross-domain links"
+        },
+        {
+          "id": "spec-global-map-implementation",
+          "title": "Полная реализация spec/global_map_spec в ECS (территории, ресурсы, армии, открытие карты)",
+          "spec_refs": [
+            "spec/global_map_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md",
+            "spec/technology_tree_spec.md"
+          ],
+          "labels": ["gameplay", "ecs", "design", "world"],
+          "task_file": "dev/tasks/spec-global-map-implementation.md",
+          "notes": "WorldMapDailySimulationSystem + resource nodes + territory influence + strategic movement + scale from tech era"
+        },
+        {
+          "id": "spec-construction-system-implementation",
+          "title": "Полная реализация spec/construction_system_spec в ECS (очередь, этапы, ресурсы, приоритеты)",
+          "spec_refs": [
+            "spec/construction_system_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md",
+            "spec/economic_system_specification.md"
+          ],
+          "labels": ["gameplay", "ecs", "design"],
+          "task_file": "dev/tasks/spec-construction-system-implementation.md",
+          "notes": "ConstructionSimulationState + queue + stage progression + resource commit + daily telemetry/events"
+        },
+        {
+          "id": "spec-defensive-structures-implementation",
+          "title": "Полная реализация spec/defensive_structures_spec в ECS (стройка под огнём, урон, эпохальные ограничения)",
+          "spec_refs": [
+            "spec/defensive_structures_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md",
+            "spec/technology_tree_spec.md"
+          ],
+          "labels": ["gameplay", "ecs", "design", "combat"],
+          "task_file": "dev/tasks/spec-defensive-structures-implementation.md",
+          "notes": "DefensiveSimulationState + build orders + runtime structures + high-tech power + daily damage"
+        },
+        {
+          "id": "spec-bioengineering-implementation",
+          "title": "Полная реализация spec/bioengineering_spec в ECS (пациенты, процедуры, риски, зависимость)",
+          "spec_refs": [
+            "spec/bioengineering_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md"
+          ],
+          "labels": ["gameplay", "ecs", "design", "medicine"],
+          "task_file": "dev/tasks/spec-bioengineering-implementation.md",
+          "notes": "BioengineeringSimulationState + procedure pipeline + stimulant/dependency loop + daily metrics/events"
+        },
+        {
+          "id": "spec-economy-full-implementation",
+          "title": "Полная реализация spec/economic_system_specification в ECS (энергия, логистика, склады, военный режим, снабжение)",
+          "spec_refs": [
+            "spec/economic_system_specification.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md",
+            "spec/statistics_analytics_spec.md"
+          ],
+          "labels": ["gameplay", "ecs", "design", "economy"],
+          "task_file": "dev/tasks/spec-economy-full-implementation.md",
+          "notes": "EconomySimulationState + full daily loop (cycle/energy/logistics/warehouses/military-supply) + analytics integration"
+        },
+        {
+          "id": "spec-settler-simulation-full-implementation",
+          "title": "Полная реализация spec/settler_simulation_system_spec в ECS (генерация, нужды, психика, физиология, навыки, автономия, демография)",
+          "spec_refs": [
+            "spec/settler_simulation_system_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md",
+            "spec/statistics_analytics_spec.md",
+            "spec/economic_system_specification.md"
+          ],
+          "labels": ["gameplay", "ecs", "design", "social"],
+          "task_file": "dev/tasks/spec-settler-simulation-full-implementation.md",
+          "notes": "SettlerCharacterGenerator + SettlerEntityFactory + SettlerSimulationBootstrapSystem + SettlerSimulationDailySystem + Settler* analytics + snapshot integration"
+        },
+        {
+          "id": "spec-ecology-implementation",
+          "title": "Полная реализация spec/ecology_spec в ECS (загрязнение, меры защиты, климат, восстановление, интеграции)",
+          "spec_refs": [
+            "spec/ecology_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md",
+            "spec/economic_system_specification.md",
+            "spec/settler_simulation_system_spec.md",
+            "spec/statistics_analytics_spec.md"
+          ],
+          "labels": ["gameplay", "ecs", "design", "ecology"],
+          "task_file": "dev/tasks/spec-ecology-implementation.md",
+          "notes": "EcologySimulationState + mitigation levels + sources buffers + climate loop + ecological events + settlers/economy/analytics integration"
+        },
+        {
+          "id": "spec-manufacturing-plants-implementation",
+          "title": "Полная реализация spec/manufacturing_plants_spec в ECS (заводы, очереди, мобилизация, интеграции)",
+          "spec_refs": [
+            "spec/manufacturing_plants_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md",
+            "spec/economic_system_specification.md",
+            "spec/technology_tree_spec.md",
+            "spec/settler_simulation_system_spec.md",
+            "spec/statistics_analytics_spec.md"
+          ],
+          "labels": ["gameplay", "ecs", "design", "industry"],
+          "task_file": "dev/tasks/spec-manufacturing-plants-implementation.md",
+          "notes": "ManufacturingSimulationState + plant/order/product buffers + policy switching (swords/ploughshares) + economy/tech/settlers/energy integration"
+        },
+        {
+          "id": "spec-military-system-implementation",
+          "title": "Полная реализация spec/military_system_specification в ECS (командование, бой, потери, снабжение, LOD-метаюниты)",
+          "spec_refs": [
+            "spec/military_system_specification.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md",
+            "spec/economic_system_specification.md",
+            "spec/manufacturing_plants_spec.md",
+            "spec/global_map_spec.md",
+            "spec/statistics_analytics_spec.md"
+          ],
+          "labels": ["gameplay", "ecs", "design", "combat"],
+          "task_file": "dev/tasks/spec-military-system-implementation.md",
+          "notes": "MilitarySimulationState + command/weather/order/attrition loop + wounded/cover/meta-units + economy/manufacturing/world/analytics integration"
+        },
+        {
+          "id": "spec-events-quests-full-implementation",
+          "title": "Полная реализация spec/events_quests_spec в ECS (AI Director, события, квесты, персональные истории)",
+          "spec_refs": [
+            "spec/events_quests_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md",
+            "spec/statistics_analytics_spec.md",
+            "spec/settler_simulation_system_spec.md",
+            "spec/military_system_specification.md",
+            "spec/economic_system_specification.md",
+            "spec/technology_tree_spec.md"
+          ],
+          "labels": ["gameplay", "ecs", "design", "story"],
+          "task_file": "dev/tasks/spec-events-quests-full-implementation.md",
+          "notes": "StorySimulationState + event definitions/cooldowns/history + procedural quests + personal arcs + cross-domain effects and analytics"
+        },
+        {
+          "id": "spec-ui-ux-full-implementation",
+          "title": "Полная реализация spec/ui_ux_spec в ECS (адаптивный HUD, уведомления, hotkeys, доступность)",
+          "spec_refs": [
+            "spec/ui_ux_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md",
+            "spec/statistics_analytics_spec.md",
+            "spec/events_quests_spec.md",
+            "spec/economic_system_specification.md",
+            "spec/military_system_specification.md"
+          ],
+          "labels": ["gameplay", "ecs", "design", "ui"],
+          "task_file": "dev/tasks/spec-ui-ux-full-implementation.md",
+          "notes": "UiUxSimulationState + notifications/hotkeys/panel visibility/resource indicators + adaptive camera-level UX + Ui* analytics"
+        },
+        {
+          "id": "spec-audio-design-full-implementation",
+          "title": "Полная реализация spec/audio_design_spec в ECS (adaptive music, SFX ingest, 3D бюджет, интеграции)",
+          "spec_refs": [
+            "spec/audio_design_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md",
+            "spec/statistics_analytics_spec.md",
+            "spec/ui_ux_spec.md",
+            "spec/military_system_specification.md",
+            "spec/global_map_spec.md",
+            "spec/technology_tree_spec.md"
+          ],
+          "labels": ["gameplay", "ecs", "design", "audio"],
+          "task_file": "dev/tasks/spec-audio-design-full-implementation.md",
+          "notes": "AudioSimulationState + adaptive music transitions + AudioBus ingest/priorities + 64/32 performance caps + Audio* analytics"
+        },
+        {
+          "id": "feat-presentation-bridge-scaffold",
+          "title": "Каркас presentation-пайплайна: папки контента, SO-каталоги, bridge-контракты и базовый drain",
+          "spec_refs": [
+            "spec/ui_ux_spec.md",
+            "spec/audio_design_spec.md",
+            "spec/construction_system_spec.md",
+            "spec/military_system_specification.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md"
+          ],
+          "labels": ["engine", "presentation", "content-pipeline"],
+          "task_file": "dev/tasks/feat-presentation-bridge-scaffold.md",
+          "notes": "PresentationBridgeBus + request buffers + catalog scripts + Art folder structure + bootstrap integration"
+        },
+        {
+          "id": "feat-presentation-runtime-resolver",
+          "title": "Runtime resolver presentation-bridge: prefab/icon/vfx резолв и pooling",
+          "spec_refs": [
+            "spec/ui_ux_spec.md",
+            "spec/audio_design_spec.md",
+            "spec/military_system_specification.md",
+            "spec/construction_system_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md"
+          ],
+          "labels": ["engine", "presentation", "runtime"],
+          "task_file": "dev/tasks/feat-presentation-runtime-resolver.md",
+          "notes": "PresentationBridgeResolveSystem + PresentationRuntimeResolverService + VFX pooling + icon feed resolve + drain fallback"
         }
       ]
     },

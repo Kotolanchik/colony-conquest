@@ -29,3 +29,4 @@
 - 2026-03-24 — `AiDirectorDimensionsState` (Wealth, Security, Stability, Progress, Tension 0–100 по §2.2), сидирование в `SubsystemBootstrapUtility`; логика расчёта осей — отдельная задача.
 - 2026-03-24 — `AiDirectorDimensionsUpdateSystem` после `AnalyticsSnapshotUpdateSystem`: Wealth/Security/Stability/Progress из снимка; Tension из стабильности, загрязнения (`ColonyPollutionSummaryState` при наличии), бедности; формула tension уточнена (drama = |Stability−50|, без дублирования шкал).
 - 2026-03-21 — `AiDirectorPolicyUpdateSystem` + `AiDirectorPolicyState`: пороги §2.3, триггер в очередь при смене политики (tick>1); `StoryEventPipelineSystem` после политики.
+- 2026-03-21 — Заготовка superseded полной реализацией `dev/tasks/spec-events-quests-full-implementation.md`.

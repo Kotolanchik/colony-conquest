@@ -28,3 +28,4 @@
 ## Заметки / журнал
 
 - 2026-03-22 — Реализовано.
+- 2026-03-21 — Заготовка закрыта полной реализацией: `dev/tasks/spec-settler-simulation-full-implementation.md`.

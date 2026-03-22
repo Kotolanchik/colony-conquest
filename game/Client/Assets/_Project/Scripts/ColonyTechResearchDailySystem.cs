@@ -1,7 +1,6 @@
 using ColonyConquest.Simulation;
 using ColonyConquest.Technology;
 using Unity.Entities;
-using Unity.Mathematics;
 
 namespace ColonyConquest.Core
 {
@@ -41,14 +40,9 @@ namespace ColonyConquest.Core
             var instMult = 1f + tech.ResearchInstitutions * TechResearchTuning.ResearchInstitutionBonusPerBuilding;
             var eraMult = TechResearchTuning.GetEraResearchMultiplier(tech.CurrentEra);
             var perDay = tech.ResearchPointsPerDay * scientistMult * instMult * eraMult;
+            // Начисление «сырого» дохода исследований; распределение по активной технологии/эпохам
+            // выполняет TechTreeDailySystem.
             tech.ResearchPointsAccumulated += perDay * days;
-
-            while (tech.ResearchPointsAccumulated >= TechResearchTuning.ResearchPointsPerEraProgressSlice)
-            {
-                tech.ResearchPointsAccumulated -= TechResearchTuning.ResearchPointsPerEraProgressSlice;
-                tech.CurrentEraProgress01 = math.saturate(
-                    tech.CurrentEraProgress01 + TechResearchTuning.EraProgress01PerSlice);
-            }
         }
     }
 }

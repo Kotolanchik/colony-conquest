@@ -7,5 +7,6 @@ namespace ColonyConquest.WorldMap
     {
         public MapChunkCoord PlayerChunk;
         public WorldBiomeId PreviewBiome;
+        public WorldMapScaleLevel ActiveScale;
     }
 }

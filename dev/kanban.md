@@ -6,7 +6,7 @@
 
 **Definition of Done:** см. навык `colony-kanban` и чеклист в `dev/TASK_CARD_TEMPLATE.md`.
 
-**Обновлено:** 2026-03-25
+**Обновлено:** 2026-03-21
 
 ---
 
@@ -16,7 +16,20 @@ _(пусто)_
 
 ## Ready
 
-_(пусто)_
+- **content-units-buildings-visual-pack-phase1** — Пак модельных ассетов юнитов и зданий + привязка к визуальным каталогам  
+  - Spec: `spec/ui_ux_spec.md`, `spec/military_system_specification.md`, `spec/construction_system_spec.md`, `spec/manufacturing_plants_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`  
+  - Task: `dev/tasks/content-units-buildings-visual-pack-phase1.md`  
+  - Labels: content, art, presentation, 3d
+
+- **content-ui-icons-pack-phase1** — Пак UI-иконок + atlas и заполнение UiIconCatalog  
+  - Spec: `spec/ui_ux_spec.md`, `spec/statistics_analytics_spec.md`, `spec/events_quests_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`  
+  - Task: `dev/tasks/content-ui-icons-pack-phase1.md`  
+  - Labels: content, art, presentation, ui
+
+- **content-vfx-pack-phase1** — Базовый VFX-пак (бой/строительство/UI/погода) + VfxCatalog/pooling  
+  - Spec: `spec/audio_design_spec.md`, `spec/ui_ux_spec.md`, `spec/military_system_specification.md`, `spec/construction_system_spec.md`, `spec/ecology_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`  
+  - Task: `dev/tasks/content-vfx-pack-phase1.md`  
+  - Labels: content, art, presentation, vfx
 
 ## In progress
 
@@ -83,7 +96,8 @@ _(пусто)_
 - **domain-settler-components-stub** — Заготовка набора ECS-компонентов поселенца (без полной симуляции)  
   - Spec: `spec/settler_simulation_system_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`  
   - Task: `dev/tasks/domain-settler-components-stub.md`  
-  - Labels: gameplay, design
+  - Labels: gameplay, design  
+  - Примечание: superseded полной реализацией `spec-settler-simulation-full-implementation`
 
 - **domain-economy-resource-ids** — Идентификаторы ресурсов и перечень в коде по экономической спеке  
   - Spec: `spec/economic_system_specification.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`  
@@ -93,12 +107,14 @@ _(пусто)_
 - **domain-military-unit-stub** — Минимальная ECS-схема боевого юнита (без полного боя)  
   - Spec: `spec/military_system_specification.md`, `spec/technical_architecture_specification.md`  
   - Task: `dev/tasks/domain-military-unit-stub.md`  
-  - Labels: gameplay, combat
+  - Labels: gameplay, combat  
+  - Примечание: superseded полной реализацией `spec-military-system-implementation`
 
 - **tech-audio-bus-stub** — Заготовка аудио-событий / шины под звуковую спеку  
   - Spec: `spec/audio_design_spec.md`  
   - Task: `dev/tasks/tech-audio-bus-stub.md`  
-  - Labels: audio, engine
+  - Labels: audio, engine  
+  - Примечание: superseded полной реализацией `spec-audio-design-full-implementation`
 
 - **world-map-chunk-stub** — Заготовка чанка/тайла глобальной карты (данные + границы)  
   - Spec: `spec/global_map_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`  
@@ -108,7 +124,8 @@ _(пусто)_
 - **meta-events-pipeline-stub** — Заготовка конвейера событий/квестов (очередь + типы из спеки)  
   - Spec: `spec/events_quests_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`  
   - Task: `dev/tasks/meta-events-pipeline-stub.md`  
-  - Labels: gameplay, scripting
+  - Labels: gameplay, scripting  
+  - Примечание: superseded полной реализацией `spec-events-quests-full-implementation`
 
 - **meta-analytics-hooks-stub** — Точки телеметрии/статистики по спеке аналитики  
   - Spec: `spec/statistics_analytics_spec.md`  
@@ -163,7 +180,8 @@ _(пусто)_
 - **domain-ecology-indicators-stub** — Заготовка индикаторов экологии и полос загрязнения  
   - Spec: `spec/ecology_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`  
   - Task: `dev/tasks/domain-ecology-indicators-stub.md`  
-  - Labels: gameplay, data
+  - Labels: gameplay, data  
+  - Примечание: superseded полной реализацией `spec-ecology-implementation`
 
 - **feat-phase0-manual-mining** — Фаза 0: ручная добыча — склад ECS, маппинг месторождение→ResourceId, демо-узел  
   - Spec: `spec/agriculture_mining_spec.md`, `spec/economic_system_specification.md`, мастер §6.1  
@@ -181,7 +199,7 @@ _(пусто)_
   - Spec: `spec/economic_system_specification.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`  
   - Task: `dev/tasks/spec-economy-production-workshop.md`  
   - Labels: gameplay, ecs, data  
-  - Примечание: эпоха 1–3 + §2.4.1 легирование; стройка §2.2 эпоха 2 — сетки в `ConstructionBlueprintFootprints`
+  - Примечание: эпоха 1–3 + §2.4.1 легирование; superseded полной реализацией `spec-economy-full-implementation`
 
 - **feat-statistics-analytics-spec-full** — Слой данных статистики и аналитики по statistics_analytics_spec (снимок, метрики, ИЧР)  
   - Spec: `spec/statistics_analytics_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`  
@@ -232,6 +250,116 @@ _(пусто)_
   - Spec: `spec/global_map_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`  
   - Task: `dev/tasks/domain-world-map-scale-stub.md`  
   - Labels: gameplay, data, world
+
+- **spec-plant-breeding-implementation** — Полная реализация `spec/plant_breeding_spec` в ECS (геном, скрещивание, риск ГМО)  
+  - Spec: `spec/plant_breeding_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`  
+  - Task: `dev/tasks/spec-plant-breeding-implementation.md`  
+  - Labels: gameplay, ecs, design
+
+- **spec-religion-cults-implementation** — Полная реализация `spec/religion_cults_spec` в ECS (вера, напряжение, священные войны)  
+  - Spec: `spec/religion_cults_spec.md`, `spec/events_quests_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`  
+  - Task: `dev/tasks/spec-religion-cults-implementation.md`  
+  - Labels: gameplay, ecs, design
+
+- **spec-comfort-housing-implementation** — Полная реализация `spec/comfort_housing_spec` в ECS (расселение, уют, аварии)  
+  - Spec: `spec/comfort_housing_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`  
+  - Task: `dev/tasks/spec-comfort-housing-implementation.md`  
+  - Labels: gameplay, ecs, design
+
+- **spec-diplomacy-trade-implementation** — Полная реализация `spec/diplomacy_trade_spec` в ECS (отношения, торговля, союзы, войны)  
+  - Spec: `spec/diplomacy_trade_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`  
+  - Task: `dev/tasks/spec-diplomacy-trade-implementation.md`  
+  - Labels: gameplay, ecs, design
+
+- **spec-crime-justice-implementation** — Полная реализация `spec/crime_justice_spec` в ECS (инциденты, полиция, суд, рецидив)  
+  - Spec: `spec/crime_justice_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`, `spec/religion_cults_spec.md`  
+  - Task: `dev/tasks/spec-crime-justice-implementation.md`  
+  - Labels: gameplay, ecs, design
+
+- **spec-entertainment-implementation** — Полная реализация `spec/entertainment_spec` в ECS (настроение, досуг, праздники, влияние на crime)  
+  - Spec: `spec/entertainment_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`, `spec/crime_justice_spec.md`  
+  - Task: `dev/tasks/spec-entertainment-implementation.md`  
+  - Labels: gameplay, ecs, design
+
+- **spec-technology-tree-implementation** — Полная реализация `spec/technology_tree_spec` в ECS (каталог, исследования, переходы эпох)  
+  - Spec: `spec/technology_tree_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`  
+  - Task: `dev/tasks/spec-technology-tree-implementation.md`  
+  - Labels: gameplay, ecs, design
+
+- **spec-political-system-implementation** — Полная реализация `spec/political_system_spec` в ECS (доктрины, законы, решения, интеграции)  
+  - Spec: `spec/political_system_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`, `spec/diplomacy_trade_spec.md`, `spec/crime_justice_spec.md`  
+  - Task: `dev/tasks/spec-political-system-implementation.md`  
+  - Labels: gameplay, ecs, design
+
+- **spec-global-map-implementation** — Полная реализация `spec/global_map_spec` в ECS (территории, ресурсы, армии, открытие карты)  
+  - Spec: `spec/global_map_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`, `spec/technology_tree_spec.md`  
+  - Task: `dev/tasks/spec-global-map-implementation.md`  
+  - Labels: gameplay, ecs, design, world
+
+- **spec-construction-system-implementation** — Полная реализация `spec/construction_system_spec` в ECS (очередь, этапы, ресурсы, приоритеты)  
+  - Spec: `spec/construction_system_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`, `spec/economic_system_specification.md`  
+  - Task: `dev/tasks/spec-construction-system-implementation.md`  
+  - Labels: gameplay, ecs, design
+
+- **spec-defensive-structures-implementation** — Полная реализация `spec/defensive_structures_spec` в ECS (стройка под огнём, урон, эпохальные ограничения)  
+  - Spec: `spec/defensive_structures_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`, `spec/technology_tree_spec.md`  
+  - Task: `dev/tasks/spec-defensive-structures-implementation.md`  
+  - Labels: gameplay, ecs, design, combat
+
+- **spec-bioengineering-implementation** — Полная реализация `spec/bioengineering_spec` в ECS (пациенты, процедуры, риски, зависимость)  
+  - Spec: `spec/bioengineering_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`  
+  - Task: `dev/tasks/spec-bioengineering-implementation.md`  
+  - Labels: gameplay, ecs, design, medicine
+
+- **spec-economy-full-implementation** — Полная реализация `spec/economic_system_specification` в ECS (энергия, логистика, склады, военный режим, снабжение)  
+  - Spec: `spec/economic_system_specification.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`, `spec/statistics_analytics_spec.md`  
+  - Task: `dev/tasks/spec-economy-full-implementation.md`  
+  - Labels: gameplay, ecs, design, economy
+
+- **spec-settler-simulation-full-implementation** — Полная реализация `spec/settler_simulation_system_spec` в ECS (генерация, нужды, психика, физиология, навыки, автономия, демография)  
+  - Spec: `spec/settler_simulation_system_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`, `spec/statistics_analytics_spec.md`, `spec/economic_system_specification.md`  
+  - Task: `dev/tasks/spec-settler-simulation-full-implementation.md`  
+  - Labels: gameplay, ecs, design, social
+
+- **spec-ecology-implementation** — Полная реализация `spec/ecology_spec` в ECS (загрязнение, меры защиты, климат, восстановление, интеграции)  
+  - Spec: `spec/ecology_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`, `spec/economic_system_specification.md`, `spec/settler_simulation_system_spec.md`, `spec/statistics_analytics_spec.md`  
+  - Task: `dev/tasks/spec-ecology-implementation.md`  
+  - Labels: gameplay, ecs, design, ecology
+
+- **spec-manufacturing-plants-implementation** — Полная реализация `spec/manufacturing_plants_spec` в ECS (заводы, очереди, мобилизация, интеграции)  
+  - Spec: `spec/manufacturing_plants_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`, `spec/economic_system_specification.md`, `spec/technology_tree_spec.md`, `spec/settler_simulation_system_spec.md`, `spec/statistics_analytics_spec.md`  
+  - Task: `dev/tasks/spec-manufacturing-plants-implementation.md`  
+  - Labels: gameplay, ecs, design, industry
+
+- **spec-military-system-implementation** — Полная реализация `spec/military_system_specification` в ECS (командование, бой, потери, снабжение, LOD-метаюниты)  
+  - Spec: `spec/military_system_specification.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`, `spec/economic_system_specification.md`, `spec/manufacturing_plants_spec.md`, `spec/global_map_spec.md`, `spec/statistics_analytics_spec.md`  
+  - Task: `dev/tasks/spec-military-system-implementation.md`  
+  - Labels: gameplay, ecs, design, combat
+
+- **spec-events-quests-full-implementation** — Полная реализация `spec/events_quests_spec` в ECS (AI Director, события, квесты, персональные истории)  
+  - Spec: `spec/events_quests_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`, `spec/statistics_analytics_spec.md`, `spec/settler_simulation_system_spec.md`, `spec/military_system_specification.md`, `spec/economic_system_specification.md`, `spec/technology_tree_spec.md`  
+  - Task: `dev/tasks/spec-events-quests-full-implementation.md`  
+  - Labels: gameplay, ecs, design, story
+
+- **spec-ui-ux-full-implementation** — Полная реализация `spec/ui_ux_spec` в ECS (адаптивный HUD, уведомления, hotkeys, доступность)  
+  - Spec: `spec/ui_ux_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`, `spec/statistics_analytics_spec.md`, `spec/events_quests_spec.md`, `spec/economic_system_specification.md`, `spec/military_system_specification.md`  
+  - Task: `dev/tasks/spec-ui-ux-full-implementation.md`  
+  - Labels: gameplay, ecs, design, ui
+
+- **spec-audio-design-full-implementation** — Полная реализация `spec/audio_design_spec` в ECS (adaptive music, SFX ingest, 3D бюджет, интеграции)  
+  - Spec: `spec/audio_design_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`, `spec/statistics_analytics_spec.md`, `spec/ui_ux_spec.md`, `spec/military_system_specification.md`, `spec/global_map_spec.md`, `spec/technology_tree_spec.md`  
+  - Task: `dev/tasks/spec-audio-design-full-implementation.md`  
+  - Labels: gameplay, ecs, design, audio
+
+- **feat-presentation-bridge-scaffold** — Каркас presentation-пайплайна: папки контента, SO-каталоги, bridge-контракты и базовый drain  
+  - Spec: `spec/ui_ux_spec.md`, `spec/audio_design_spec.md`, `spec/construction_system_spec.md`, `spec/military_system_specification.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`  
+  - Task: `dev/tasks/feat-presentation-bridge-scaffold.md`  
+  - Labels: engine, presentation, content-pipeline
+
+- **feat-presentation-runtime-resolver** — Runtime resolver presentation-bridge: prefab/icon/vfx резолв и pooling  
+  - Spec: `spec/ui_ux_spec.md`, `spec/audio_design_spec.md`, `spec/military_system_specification.md`, `spec/construction_system_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`  
+  - Task: `dev/tasks/feat-presentation-runtime-resolver.md`  
+  - Labels: engine, presentation, runtime
 
 ## Blocked
 

@@ -25,3 +25,4 @@
 - 2026-03-22 — `StimulantKindId.cs` по §3.1.
 - 2026-03-24 — Расширение данных: `StimulantDependencyLevel` §3.2; `GeneTherapyApplicationKindId` / `GeneTherapyRiskKindId` §4; `CloningProcedureKindId` §5.1; `NeuroInterfaceKindId` / `NeuroInterfaceRiskKindId` §6 (без симуляции).
 - 2026-03-24 — `StimulantEffectTuning` / `StimulantEffectDefinition` — таблица чисел §3.1 по видам; зависимость §3.2 в коде не симулируется.
+- 2026-03-21 — Заготовка закрыта полной реализацией: `dev/tasks/spec-bioengineering-implementation.md`.

@@ -21,6 +21,10 @@ namespace ColonyConquest.Core
 
         public void OnUpdate(ref SystemState state)
         {
+            // При наличии полного экономического контура демо-цех отключается, чтобы не дублировать производство.
+            if (SystemAPI.HasSingleton<EconomySimulationSingleton>())
+                return;
+
             var dt = SystemAPI.Time.DeltaTime;
             if (dt <= 0f)
                 return;

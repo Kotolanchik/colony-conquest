@@ -28,3 +28,4 @@
 - 2026-03-24 — `ConstructionBlueprintId`: эпоха 1 — `Cabin`, `House`, `Manor` (§2.2); `ConstructionZoneKindId` §3.1.
 - 2026-03-24 — `ConstructionBlueprintFootprints.GetFootprintCells` → `ConstructionGhostState.FootprintCells` при активном режиме.
 - 2026-03-21 — Эпоха 2 §2.2: `WorkerTenement` (4×6), `TownhouseEpoch2` (5×8); синхронизация следа в `ConstructionGhostCursorSystem` (`ConstructionSystems.cs`). Дубликат `ConstructionGhostCursorSystem.cs` удалён (двойной `OnUpdate` в partial).
+- 2026-03-21 — Заготовка закрыта полной реализацией: `dev/tasks/spec-construction-system-implementation.md`.

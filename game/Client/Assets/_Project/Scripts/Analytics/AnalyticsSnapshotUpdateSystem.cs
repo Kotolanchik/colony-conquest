@@ -2,6 +2,7 @@ using ColonyConquest.Core;
 using ColonyConquest.Economy;
 using ColonyConquest.Ecology;
 using ColonyConquest.Military;
+using ColonyConquest.Settlers;
 using ColonyConquest.Simulation;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -44,6 +45,8 @@ namespace ColonyConquest.Analytics
             }
 
             float population = math.max(1f, demo.Population);
+            if (SystemAPI.HasSingleton<SettlerSimulationState>())
+                population = math.max(1f, SystemAPI.GetSingleton<SettlerSimulationState>().PopulationAlive);
 
             float stockPrimary = 0f;
             float stockSecondary = 0f;
@@ -93,11 +96,23 @@ namespace ColonyConquest.Analytics
             snap.Economy.Gdp = gdp;
             snap.Economy.GdpPerCapita = gdp / population;
             snap.Economy.GdpGrowthPercent = prevGdp > 1e-3f ? (gdp - prevGdp) / prevGdp * 100f : 0f;
-            snap.Economy.InflationPercent = 0f;
-            snap.Economy.UnemploymentRate01 = 0.05f;
-            snap.Economy.ExportVolume = 0f;
-            snap.Economy.ImportVolume = 0f;
-            snap.Economy.TradeBalance = 0f;
+            if (SystemAPI.HasSingleton<EconomySimulationState>())
+            {
+                var eco = SystemAPI.GetSingleton<EconomySimulationState>();
+                snap.Economy.InflationPercent = eco.InflationPercent;
+                snap.Economy.UnemploymentRate01 = eco.Unemployment01;
+                snap.Economy.ExportVolume = eco.ExportVolume;
+                snap.Economy.ImportVolume = eco.ImportVolume;
+                snap.Economy.TradeBalance = eco.TradeBalance;
+            }
+            else
+            {
+                snap.Economy.InflationPercent = 0f;
+                snap.Economy.UnemploymentRate01 = 0.05f;
+                snap.Economy.ExportVolume = 0f;
+                snap.Economy.ImportVolume = 0f;
+                snap.Economy.TradeBalance = 0f;
+            }
             snap.Economy.PrimarySectorShare01 = pShare;
             snap.Economy.SecondarySectorShare01 = sShare;
             snap.Economy.TertiarySectorShare01 = tShare;
@@ -112,22 +127,48 @@ namespace ColonyConquest.Analytics
             snap.Demography.EmigrationPerYear = 0f;
             snap.Demography.LifeExpectancyYears = 40f;
 
-            var army = _battleUnitsQuery.CalculateEntityCount();
-            snap.Military.ActiveArmy = army;
-            snap.Military.Reserve = 0f;
-            snap.Military.DraftAgePool = math.max(0f, population - army);
-            snap.Military.MilitaryBudgetPercentGdp = gdp > 1e-3f ? 5f : 0f;
-            snap.Military.BattlesTotal = 0f;
-            snap.Military.BattlesWon = 0f;
-            snap.Military.BattlesLost = 0f;
-            snap.Military.BattlesDraw = 0f;
-            snap.Military.CasualtiesFriendlyKilled = 0f;
-            snap.Military.CasualtiesFriendlyWounded = 0f;
-            snap.Military.CasualtiesFriendlyMia = 0f;
-            snap.Military.EquipmentDestroyedFriendly = 0f;
-            snap.Military.CasualtiesEnemyKilled = 0f;
-            snap.Military.EnemyEquipmentDestroyed = 0f;
-            snap.Military.TerritoryCapturedKm2 = 0f;
+            float army = _battleUnitsQuery.CalculateEntityCount();
+            if (SystemAPI.HasSingleton<MilitarySimulationState>())
+            {
+                var military = SystemAPI.GetSingleton<MilitarySimulationState>();
+                army = military.ActiveArmyUnits;
+                snap.Military.ActiveArmy = military.ActiveArmyUnits;
+                snap.Military.Reserve = military.ReserveUnits;
+                snap.Military.DraftAgePool = math.max(0f, population - military.ActiveArmyUnits);
+                snap.Military.BattlesTotal = military.BattlesTotal;
+                snap.Military.BattlesWon = military.BattlesWon;
+                snap.Military.BattlesLost = military.BattlesLost;
+                snap.Military.BattlesDraw = military.BattlesDraw;
+                snap.Military.CasualtiesFriendlyKilled = military.CasualtiesFriendlyKilled;
+                snap.Military.CasualtiesFriendlyWounded = military.CasualtiesFriendlyWounded;
+                snap.Military.CasualtiesFriendlyMia = military.CasualtiesFriendlyMia;
+                snap.Military.EquipmentDestroyedFriendly = military.EquipmentDestroyedFriendly;
+                snap.Military.CasualtiesEnemyKilled = military.CasualtiesEnemyKilled;
+                snap.Military.EnemyEquipmentDestroyed = military.EnemyEquipmentDestroyed;
+                snap.Military.TerritoryCapturedKm2 = military.TerritoryCapturedKm2;
+            }
+            else
+            {
+                snap.Military.ActiveArmy = army;
+                snap.Military.Reserve = 0f;
+                snap.Military.DraftAgePool = math.max(0f, population - army);
+                snap.Military.BattlesTotal = 0f;
+                snap.Military.BattlesWon = 0f;
+                snap.Military.BattlesLost = 0f;
+                snap.Military.BattlesDraw = 0f;
+                snap.Military.CasualtiesFriendlyKilled = 0f;
+                snap.Military.CasualtiesFriendlyWounded = 0f;
+                snap.Military.CasualtiesFriendlyMia = 0f;
+                snap.Military.EquipmentDestroyedFriendly = 0f;
+                snap.Military.CasualtiesEnemyKilled = 0f;
+                snap.Military.EnemyEquipmentDestroyed = 0f;
+                snap.Military.TerritoryCapturedKm2 = 0f;
+            }
+
+            if (SystemAPI.HasSingleton<EconomySimulationState>())
+                snap.Military.MilitaryBudgetPercentGdp = SystemAPI.GetSingleton<EconomySimulationState>().MilitaryProductionShare01 * 100f;
+            else
+                snap.Military.MilitaryBudgetPercentGdp = gdp > 1e-3f ? 5f : 0f;
 
             snap.Technology.ResearchPointsPerDay = tech.ResearchPointsPerDay;
             snap.Technology.TechnologiesUnlocked = tech.TechnologiesUnlocked;
@@ -139,6 +180,13 @@ namespace ColonyConquest.Analytics
             var happiness = 0.5f;
             var health = 0.55f;
             var education = 0.5f;
+            if (SystemAPI.HasSingleton<SettlerSimulationState>())
+            {
+                var settlers = SystemAPI.GetSingleton<SettlerSimulationState>();
+                happiness = math.saturate((settlers.AverageMood + 100f) / 200f);
+                health = settlers.AverageHealth01;
+                education = math.max(education, settlers.EducationIndex01);
+            }
             var security = math.saturate((float)army / math.max(1f, population * 0.02f));
             var ecology = 0.5f;
             if (SystemAPI.HasSingleton<ColonyEcologyIndicatorsState>())
@@ -146,6 +194,12 @@ namespace ColonyConquest.Analytics
                 var e = SystemAPI.GetSingleton<ColonyEcologyIndicatorsState>();
                 ecology = (e.AirQuality01 + e.WaterQuality01 + e.SoilFertilityIndicator01 + e.ForestCover01 +
                             e.Biodiversity01) * 0.2f;
+            }
+            if (SystemAPI.HasSingleton<ColonyPollutionSummaryState>())
+            {
+                var band = SystemAPI.GetSingleton<ColonyPollutionSummaryState>().Band;
+                happiness = math.saturate(happiness * EcologyPollutionMath.GetColonyMoodMultiplier(band));
+                health = math.saturate(health * EcologyPollutionMath.GetPopulationHealthMultiplier(band));
             }
             var income01 = math.saturate(snap.Economy.GdpPerCapita / 2000f);
             snap.Social.Happiness01 = happiness;

@@ -4,6 +4,18 @@
   "root": "spec",
   "files": [
     {
+      "path": "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md",
+      "h1": "🎮 COLONY & CONQUEST",
+      "lines": 629,
+      "chars": 27505
+    },
+    {
+      "path": "spec/README.md",
+      "h1": "Спецификации Colony & Conquest",
+      "lines": 32,
+      "chars": 1772
+    },
+    {
       "path": "spec/agriculture_mining_spec.md",
       "h1": "ФЕРМЕРСТВО И ДОБЫЧА — ТЕХНИЧЕСКАЯ СПЕЦИФИКАЦИЯ",
       "lines": 217,
@@ -22,16 +34,10 @@
       "chars": 10211
     },
     {
-      "path": "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md",
-      "h1": "🎮 COLONY & CONQUEST",
-      "lines": 629,
-      "chars": 27505
-    },
-    {
       "path": "spec/comfort_housing_spec.md",
       "h1": "УЮТ И ЖИЛЬЁ — ТЕХНИЧЕСКАЯ СПЕЦИФИКАЦИЯ",
-      "lines": 238,
-      "chars": 9563
+      "lines": 350,
+      "chars": 14444
     },
     {
       "path": "spec/construction_system_spec.md",
@@ -102,8 +108,8 @@
     {
       "path": "spec/plant_breeding_spec.md",
       "h1": "СЕЛЕКЦИЯ РАСТЕНИЙ — ТЕХНИЧЕСКАЯ СПЕЦИФИКАЦИЯ",
-      "lines": 174,
-      "chars": 4835
+      "lines": 282,
+      "chars": 9735
     },
     {
       "path": "spec/political_system_spec.md",
@@ -112,16 +118,10 @@
       "chars": 21355
     },
     {
-      "path": "spec/README.md",
-      "h1": "Спецификации Colony & Conquest",
-      "lines": 32,
-      "chars": 1772
-    },
-    {
       "path": "spec/religion_cults_spec.md",
       "h1": "РЕЛИГИИ И КУЛЬТЫ — ТЕХНИЧЕСКАЯ СПЕЦИФИКАЦИЯ",
-      "lines": 257,
-      "chars": 13015
+      "lines": 374,
+      "chars": 17894
     },
     {
       "path": "spec/settler_simulation_system_spec.md",

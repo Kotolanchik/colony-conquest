@@ -26,3 +26,4 @@
 ## Заметки / журнал
 
 - 2026-03-21 — Заготовка в `Assets/_Project/Scripts/Military/MilitaryUnitComponents.cs`.
+- 2026-03-21 — Заготовка superseded полной реализацией `dev/tasks/spec-military-system-implementation.md`.

@@ -5,7 +5,7 @@ using Unity.Entities;
 
 namespace ColonyConquest.Core
 {
-    /// <summary>Тестовая запись в очередь на первом тике и выборка из очереди с телеметрией.</summary>
+    /// <summary>Legacy-fallback: тестовая запись/выборка очереди, когда full story runtime не активен.</summary>
     [WorldSystemFilter(WorldSystemFilterFlags.ClientSimulation | WorldSystemFilterFlags.ServerSimulation)]
     [UpdateInGroup(typeof(SimulationSystemGroup))]
     [UpdateAfter(typeof(AiDirectorPolicyUpdateSystem))]
@@ -13,6 +13,9 @@ namespace ColonyConquest.Core
     {
         public void OnUpdate(ref SystemState state)
         {
+            if (SystemAPI.HasSingleton<StorySimulationSingleton>())
+                return;
+
             uint tick = SystemAPI.GetSingleton<SimulationRootState>().SimulationTick;
             ref var pipe = ref SystemAPI.GetSingletonRW<StoryEventPipelineState>().ValueRW;
             var buffer = SystemAPI.GetSingletonBuffer<GameEventQueueEntry>();

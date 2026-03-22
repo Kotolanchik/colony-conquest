@@ -26,3 +26,4 @@
 - 2026-03-24 — Идентификаторы источников §2.1–2.3: `EcologyAirPollutionSourceId`, `EcologyWaterPollutionSourceId`, `EcologySoilImpactSourceId`.
 - 2026-03-24 — `EcologyPollutionSourceRates`: номиналы §2.1 воздух, §2.2 вода (поток и разливы).
 - 2026-03-24 — `EcologySoilImpactRates.GetAnnualFertilityDelta01` — §2.3 почва (навоз, удобрения, пестициды, металлы, нефть).
+- 2026-03-21 — Заготовка закрыта полной реализацией: `dev/tasks/spec-ecology-implementation.md`.

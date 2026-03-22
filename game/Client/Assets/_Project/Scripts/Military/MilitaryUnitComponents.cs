@@ -3,23 +3,30 @@ using Unity.Mathematics;
 
 namespace ColonyConquest.Military
 {
-    /// <summary>Тип приказа; расширяется по мере появления боевых систем.</summary>
+    /// <summary>Тип приказа по контуру <c>spec/military_system_specification.md</c> §1.3, §6.4.</summary>
     public enum OrderType : byte
     {
         None = 0,
         Move = 1,
         Attack = 2,
         HoldPosition = 3,
-        Retreat = 4
+        Retreat = 4,
+        Defend = 5,
+        SuppressArea = 6,
+        BuildFortification = 7,
+        EvacuateWounded = 8,
+        Resupply = 9
     }
 
-    /// <summary>Поведение ИИ; источник: <c>spec/military_system_specification.md</c> §10.3.</summary>
+    /// <summary>Поведение ИИ; источник: <c>spec/military_system_specification.md</c> §6.4, §10.3.</summary>
     public enum AIBehavior : byte
     {
         Idle = 0,
         MoveTo = 1,
         Engage = 2,
-        Defend = 3
+        Defend = 3,
+        Support = 4,
+        Withdraw = 5
     }
 
     /// <summary>Иерархия командования; псевдокод в <c>spec/military_system_specification.md</c> §1.3.</summary>

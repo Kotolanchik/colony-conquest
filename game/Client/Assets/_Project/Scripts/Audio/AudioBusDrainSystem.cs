@@ -11,6 +11,10 @@ namespace ColonyConquest.Audio
     {
         public void OnUpdate(ref SystemState state)
         {
+            // Full runtime аудио сам ingest-ит AudioBus; drain оставляем только как legacy fallback.
+            if (SystemAPI.HasSingleton<AudioSimulationSingleton>())
+                return;
+
             var buffer = SystemAPI.GetSingletonBuffer<AudioBusPendingEntry>();
             if (buffer.Length > 0)
                 buffer.Clear();

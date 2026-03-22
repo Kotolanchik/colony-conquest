@@ -22,3 +22,4 @@
 
 - 2026-03-21 — `Assets/_Project/Scripts/PlantBreeding/PlantTraitAxisId.cs`.
 - 2026-03-24 — `PlantTraitAxisTuning` — диапазоны §1.2 (мин/макс % по осям), `NormalizeTo01` для будущей селекции.
+- 2026-03-21 — Заготовка расширена до полной реализации в задаче `spec-plant-breeding-implementation`.
