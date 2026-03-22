@@ -356,6 +356,11 @@ _(пусто)_
   - Task: `dev/tasks/feat-presentation-bridge-scaffold.md`  
   - Labels: engine, presentation, content-pipeline
 
+- **feat-presentation-runtime-resolver** — Runtime resolver presentation-bridge: prefab/icon/vfx резолв и pooling  
+  - Spec: `spec/ui_ux_spec.md`, `spec/audio_design_spec.md`, `spec/military_system_specification.md`, `spec/construction_system_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`  
+  - Task: `dev/tasks/feat-presentation-runtime-resolver.md`  
+  - Labels: engine, presentation, runtime
+
 ## Blocked
 
 _(пусто)_

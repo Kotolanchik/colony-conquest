@@ -188,7 +188,7 @@
 - `Assets/_Project/Scripts/Story/` — полный runtime событий/квестов: AI Director catalog/cooldowns/active history, процедурные квесты, персональные арки (`EventsQuestBootstrapSystem`, `EventsQuestDailySystem`, `EventsQuestSimulationMath`).
 - `Assets/_Project/Scripts/UI/` — полный runtime UI/UX: адаптивные уровни камеры, панели HUD, уведомления, accessibility и hotkey-телеметрия (`UiUxBootstrapSystem`, `UiUxRuntimeSystem`, `UiUxSimulationMath`).
 - `Assets/_Project/Scripts/Audio/` — полный runtime аудио: adaptive music, ingest шины SFX, бюджет голосов/3D источников, transition history (`AudioSimulationBootstrapSystem`, `AudioSimulationRuntimeSystem`, `AudioSimulationMath`).
-- `Assets/_Project/Scripts/Presentation/` — bridge-контракты для визуального слоя (`PresentationBridgeBus`, request buffers, drain/bootstrap systems) и ScriptableObject-каталоги (`Presentation/Catalogs/*`).
+- `Assets/_Project/Scripts/Presentation/` — bridge-контракты и runtime-resolver визуального слоя (`PresentationBridgeBus`, request buffers, `PresentationBridgeResolveSystem`, `PresentationRuntimeResolverService`; fallback: `PresentationBridgeDrainSystem`) + ScriptableObject-каталоги (`Presentation/Catalogs/*`).
 
 ### Экономика (данные)
 
@@ -208,6 +208,18 @@
 
 Сами художественные ассеты обычно создаются во внешних инструментах (Blender/Substance/Figma и т.д.) и импортируются в Unity,  
 а кодовая часть (контракты, каталоги, bridge-системы, валидации, канбан) может подготавливаться агентами.
+
+### Как включить runtime resolver в сцене
+
+1. На сцене `Bootstrap` создайте объект `PresentationRuntimeResolver`.
+2. Добавьте компонент `PresentationRuntimeResolverService`.
+3. Создайте assets каталогов через `Create -> Colony Conquest -> Presentation -> ... Catalog` и назначьте их в компонент:
+   - `UnitVisualCatalog`,
+   - `BuildingVisualCatalog`,
+   - `UiIconCatalog`,
+   - `VfxCatalog`.
+4. Заполните каталоги реальными prefab/sprite/vfx.
+5. В Play Mode запросы из `PresentationBridgeBus` будут обрабатываться `PresentationBridgeResolveSystem`; если сервис отсутствует, останется безопасный fallback-drain.
 
 ## Сеть (спайк)
 
