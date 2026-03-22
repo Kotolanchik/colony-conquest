@@ -237,5 +237,23 @@ namespace ColonyConquest.Analytics
         public const uint StoryArcActiveCount = 0x930A;
         public const uint StoryArcBeatsTotal = 0x930B;
         public const uint StoryTension01 = 0x930C;
+
+        // --- UI/UX (full runtime) (0x94nn) ---
+        public const uint UiCameraLevel = 0x9401;
+        public const uint UiNotificationsActive = 0x9402;
+        public const uint UiCriticalNotificationsToday = 0x9403;
+        public const uint UiResourceStress01 = 0x9404;
+        public const uint UiHudLoad01 = 0x9405;
+        public const uint UiTimeSpeed = 0x9406;
+        public const uint UiHotkeyActivationsToday = 0x9407;
+
+        // --- Audio design (full runtime) (0x95nn) ---
+        public const uint AudioMusicIntensity01 = 0x9501;
+        public const uint AudioMusicLevel = 0x9502;
+        public const uint AudioActiveVoices = 0x9503;
+        public const uint AudioActive3dSources = 0x9504;
+        public const uint AudioDroppedEventsTotal = 0x9505;
+        public const uint AudioEstimatedMemoryMb = 0x9506;
+        public const uint AudioEstimatedLatencyMs = 0x9507;
     }
 }
