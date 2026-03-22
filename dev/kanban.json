@@ -10,7 +10,50 @@
     {
       "id": "ready",
       "title": "Ready",
-      "items": []
+      "items": [
+        {
+          "id": "content-units-buildings-visual-pack-phase1",
+          "title": "Пак модельных ассетов юнитов и зданий + привязка к визуальным каталогам",
+          "spec_refs": [
+            "spec/ui_ux_spec.md",
+            "spec/military_system_specification.md",
+            "spec/construction_system_spec.md",
+            "spec/manufacturing_plants_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md"
+          ],
+          "labels": ["content", "art", "presentation", "3d"],
+          "task_file": "dev/tasks/content-units-buildings-visual-pack-phase1.md",
+          "notes": "Заполнить UnitVisualCatalog/BuildingVisualCatalog и проверить bridge-resolve в Play Mode"
+        },
+        {
+          "id": "content-ui-icons-pack-phase1",
+          "title": "Пак UI-иконок + atlas и заполнение UiIconCatalog",
+          "spec_refs": [
+            "spec/ui_ux_spec.md",
+            "spec/statistics_analytics_spec.md",
+            "spec/events_quests_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md"
+          ],
+          "labels": ["content", "art", "presentation", "ui"],
+          "task_file": "dev/tasks/content-ui-icons-pack-phase1.md",
+          "notes": "Согласованный набор iconId/sprite/tint и проверка UI-резолва через каталог"
+        },
+        {
+          "id": "content-vfx-pack-phase1",
+          "title": "Базовый VFX-пак (бой/строительство/UI/погода) + VfxCatalog/pooling",
+          "spec_refs": [
+            "spec/audio_design_spec.md",
+            "spec/ui_ux_spec.md",
+            "spec/military_system_specification.md",
+            "spec/construction_system_spec.md",
+            "spec/ecology_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md"
+          ],
+          "labels": ["content", "art", "presentation", "vfx"],
+          "task_file": "dev/tasks/content-vfx-pack-phase1.md",
+          "notes": "Заполнить VfxCatalog и проверить пиковую нагрузку без аллокационных всплесков"
+        }
+      ]
     },
     {
       "id": "in_progress",
@@ -691,6 +734,20 @@
           "labels": ["gameplay", "ecs", "design", "audio"],
           "task_file": "dev/tasks/spec-audio-design-full-implementation.md",
           "notes": "AudioSimulationState + adaptive music transitions + AudioBus ingest/priorities + 64/32 performance caps + Audio* analytics"
+        },
+        {
+          "id": "feat-presentation-bridge-scaffold",
+          "title": "Каркас presentation-пайплайна: папки контента, SO-каталоги, bridge-контракты и базовый drain",
+          "spec_refs": [
+            "spec/ui_ux_spec.md",
+            "spec/audio_design_spec.md",
+            "spec/construction_system_spec.md",
+            "spec/military_system_specification.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md"
+          ],
+          "labels": ["engine", "presentation", "content-pipeline"],
+          "task_file": "dev/tasks/feat-presentation-bridge-scaffold.md",
+          "notes": "PresentationBridgeBus + request buffers + catalog scripts + Art folder structure + bootstrap integration"
         }
       ]
     },

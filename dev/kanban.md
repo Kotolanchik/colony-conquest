@@ -16,7 +16,20 @@ _(пусто)_
 
 ## Ready
 
-_(пусто)_
+- **content-units-buildings-visual-pack-phase1** — Пак модельных ассетов юнитов и зданий + привязка к визуальным каталогам  
+  - Spec: `spec/ui_ux_spec.md`, `spec/military_system_specification.md`, `spec/construction_system_spec.md`, `spec/manufacturing_plants_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`  
+  - Task: `dev/tasks/content-units-buildings-visual-pack-phase1.md`  
+  - Labels: content, art, presentation, 3d
+
+- **content-ui-icons-pack-phase1** — Пак UI-иконок + atlas и заполнение UiIconCatalog  
+  - Spec: `spec/ui_ux_spec.md`, `spec/statistics_analytics_spec.md`, `spec/events_quests_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`  
+  - Task: `dev/tasks/content-ui-icons-pack-phase1.md`  
+  - Labels: content, art, presentation, ui
+
+- **content-vfx-pack-phase1** — Базовый VFX-пак (бой/строительство/UI/погода) + VfxCatalog/pooling  
+  - Spec: `spec/audio_design_spec.md`, `spec/ui_ux_spec.md`, `spec/military_system_specification.md`, `spec/construction_system_spec.md`, `spec/ecology_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`  
+  - Task: `dev/tasks/content-vfx-pack-phase1.md`  
+  - Labels: content, art, presentation, vfx
 
 ## In progress
 
@@ -337,6 +350,11 @@ _(пусто)_
   - Spec: `spec/audio_design_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`, `spec/statistics_analytics_spec.md`, `spec/ui_ux_spec.md`, `spec/military_system_specification.md`, `spec/global_map_spec.md`, `spec/technology_tree_spec.md`  
   - Task: `dev/tasks/spec-audio-design-full-implementation.md`  
   - Labels: gameplay, ecs, design, audio
+
+- **feat-presentation-bridge-scaffold** — Каркас presentation-пайплайна: папки контента, SO-каталоги, bridge-контракты и базовый drain  
+  - Spec: `spec/ui_ux_spec.md`, `spec/audio_design_spec.md`, `spec/construction_system_spec.md`, `spec/military_system_specification.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`  
+  - Task: `dev/tasks/feat-presentation-bridge-scaffold.md`  
+  - Labels: engine, presentation, content-pipeline
 
 ## Blocked
 
