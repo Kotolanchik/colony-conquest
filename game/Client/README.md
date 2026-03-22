@@ -65,6 +65,17 @@
 - `SettlerSimulationDailySystem` по `GameCalendarState.DayIndex` обновляет нужды, стресс/настроение, травмы/инфекции, рост и деградацию навыков, уровни автономии, демографию, а также интеграции с `ResourceStockEntry`, `CrimeJusticeState`, `ColonyTechProgressState`.
 - В аналитике появляются метрики `Settler*` (население, настроение, стресс, эффективность, доля голодных/истощённых/инфицированных), а `AnalyticsLocalSnapshot.Social` заполняется фактическими данными из `SettlerSimulationState`.
 
+**Проверка экологии и загрязнения (`spec/ecology_spec.md`):**
+
+- В мире есть `EcologySimulationSingleton` + `EcologySimulationState`, `EcologyMitigationState`, `EcologyDisasterState`, а также буферы `EcologyAirSourceEntry`, `EcologyWaterSourceEntry`, `EcologySoilSourceEntry`.
+- `EcologySimulationDailySystem` раз в игровой день:
+  - рассчитывает загрязнение воздуха/воды/почвы из источников и экономики,
+  - применяет уровни очистки и восстановление природы,
+  - пересчитывает климат (`GreenhouseGasIndex`, `TemperatureAnomalyC`, `ExtremeWeatherRisk01`),
+  - генерирует события `eco-catastrophe` / `eco-protest` / `climate-anomaly`.
+- `ColonyEcologyIndicatorsState` и `ColonyPollutionSummaryState` обновляются в runtime; в аналитике пишутся метрики `Ecology*`, а `AnalyticsLocalSnapshot.Social.Ecology01` синхронизирован с фактическим состоянием экосистемы.
+- Интеграция: `SettlerSimulationDailySystem` использует `ColonyPollutionSummaryState.Band` для модификации здоровья/настроения населения; `CropGrowthSimulationSystem` использует тот же band для урожайности.
+
 ## Замер ECS (фаза 0, дорожная карта §6.1)
 
 Ориентир из мастер-спеки: **~1000 сущностей при 60 FPS**. В коде:
@@ -91,6 +102,7 @@
 - `Assets/_Project/Scripts/Defense/` — оборонительные сооружения: `DefensiveSimulationState`, `DefensiveConstructionOrderEntry`, `DefensiveStructureRuntimeEntry`, `DefensiveDailySystem`.
 - `Assets/_Project/Scripts/Bioengineering/` — биоинженерия: `BioengineeringSimulationState`, `BioPatientEntry`, `BioengineeringProcedureEntry`, `BioengineeringDailySystem`.
 - `Assets/_Project/Scripts/Economy/` — полный runtime экономики: `EconomySimulationState`, энергия/логистика/склады/военное производство/снабжение, `EconomySimulationDailySystem`, плюс каталоги ресурсов и рецептов.
+- `Assets/_Project/Scripts/Ecology/` — полный runtime экологии: источники загрязнения, меры очистки, климат, восстановление природы, `EcologySimulationDailySystem`, `EcologySimulationMath`.
 - `Assets/_Project/Scripts/Settlers/` — полный runtime поселенцев: генератор (`SettlerCharacterGenerator`), фабрика сущностей (`SettlerEntityFactory`), bootstrap (`SettlerSimulationBootstrapSystem`), daily-контур (`SettlerSimulationDailySystem`), формулы и ECS-компоненты §1–§9 спеки.
 
 ### Экономика (данные)

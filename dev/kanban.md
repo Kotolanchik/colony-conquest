@@ -164,7 +164,8 @@ _(пусто)_
 - **domain-ecology-indicators-stub** — Заготовка индикаторов экологии и полос загрязнения  
   - Spec: `spec/ecology_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`  
   - Task: `dev/tasks/domain-ecology-indicators-stub.md`  
-  - Labels: gameplay, data
+  - Labels: gameplay, data  
+  - Примечание: superseded полной реализацией `spec-ecology-implementation`
 
 - **feat-phase0-manual-mining** — Фаза 0: ручная добыча — склад ECS, маппинг месторождение→ResourceId, демо-узел  
   - Spec: `spec/agriculture_mining_spec.md`, `spec/economic_system_specification.md`, мастер §6.1  
@@ -303,6 +304,11 @@ _(пусто)_
   - Spec: `spec/settler_simulation_system_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`, `spec/statistics_analytics_spec.md`, `spec/economic_system_specification.md`  
   - Task: `dev/tasks/spec-settler-simulation-full-implementation.md`  
   - Labels: gameplay, ecs, design, social
+
+- **spec-ecology-implementation** — Полная реализация `spec/ecology_spec` в ECS (загрязнение, меры защиты, климат, восстановление, интеграции)  
+  - Spec: `spec/ecology_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`, `spec/economic_system_specification.md`, `spec/settler_simulation_system_spec.md`, `spec/statistics_analytics_spec.md`  
+  - Task: `dev/tasks/spec-ecology-implementation.md`  
+  - Labels: gameplay, ecs, design, ecology
 
 ## Blocked
 

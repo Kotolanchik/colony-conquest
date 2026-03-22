@@ -293,7 +293,7 @@
           ],
           "labels": ["gameplay", "data"],
           "task_file": "dev/tasks/domain-ecology-indicators-stub.md",
-          "notes": "EcologyIndicatorKind, PollutionLevelBand"
+          "notes": "EcologyIndicatorKind, PollutionLevelBand; superseded полной реализацией spec-ecology-implementation"
         },
         {
           "id": "feat-phase0-manual-mining",
@@ -600,6 +600,20 @@
           "labels": ["gameplay", "ecs", "design", "social"],
           "task_file": "dev/tasks/spec-settler-simulation-full-implementation.md",
           "notes": "SettlerCharacterGenerator + SettlerEntityFactory + SettlerSimulationBootstrapSystem + SettlerSimulationDailySystem + Settler* analytics + snapshot integration"
+        },
+        {
+          "id": "spec-ecology-implementation",
+          "title": "Полная реализация spec/ecology_spec в ECS (загрязнение, меры защиты, климат, восстановление, интеграции)",
+          "spec_refs": [
+            "spec/ecology_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md",
+            "spec/economic_system_specification.md",
+            "spec/settler_simulation_system_spec.md",
+            "spec/statistics_analytics_spec.md"
+          ],
+          "labels": ["gameplay", "ecs", "design", "ecology"],
+          "task_file": "dev/tasks/spec-ecology-implementation.md",
+          "notes": "EcologySimulationState + mitigation levels + sources buffers + climate loop + ecological events + settlers/economy/analytics integration"
         }
       ]
     },
