@@ -94,7 +94,8 @@ _(пусто)_
 - **domain-military-unit-stub** — Минимальная ECS-схема боевого юнита (без полного боя)  
   - Spec: `spec/military_system_specification.md`, `spec/technical_architecture_specification.md`  
   - Task: `dev/tasks/domain-military-unit-stub.md`  
-  - Labels: gameplay, combat
+  - Labels: gameplay, combat  
+  - Примечание: superseded полной реализацией `spec-military-system-implementation`
 
 - **tech-audio-bus-stub** — Заготовка аудио-событий / шины под звуковую спеку  
   - Spec: `spec/audio_design_spec.md`  
@@ -314,6 +315,11 @@ _(пусто)_
   - Spec: `spec/manufacturing_plants_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`, `spec/economic_system_specification.md`, `spec/technology_tree_spec.md`, `spec/settler_simulation_system_spec.md`, `spec/statistics_analytics_spec.md`  
   - Task: `dev/tasks/spec-manufacturing-plants-implementation.md`  
   - Labels: gameplay, ecs, design, industry
+
+- **spec-military-system-implementation** — Полная реализация `spec/military_system_specification` в ECS (командование, бой, потери, снабжение, LOD-метаюниты)  
+  - Spec: `spec/military_system_specification.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`, `spec/economic_system_specification.md`, `spec/manufacturing_plants_spec.md`, `spec/global_map_spec.md`, `spec/statistics_analytics_spec.md`  
+  - Task: `dev/tasks/spec-military-system-implementation.md`  
+  - Labels: gameplay, ecs, design, combat
 
 ## Blocked
 

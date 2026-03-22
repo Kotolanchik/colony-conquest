@@ -92,6 +92,25 @@
   - c поселенцами — качество труда берётся из `SettlerSimulationState.AverageWorkEfficiency01`.
 - В очереди событий `GameEventQueueEntry` появляются `manufacturing-policy-switch`, `manufacturing-order-completed`, `manufacturing-resource-blocked`, `manufacturing-era-blocked`; в аналитике — метрики `Manufacturing*`.
 
+**Проверка военной системы (`spec/military_system_specification.md`):**
+
+- В мире есть `MilitarySimulationSingleton`, `MilitarySimulationState`, `MilitaryEnvironmentState`, `MilitaryCommandRelayState`, а также буферы:
+  - `MilitaryFormationEntry`,
+  - `MilitaryOperationOrderEntry`,
+  - `MilitaryMetaUnitEntry`.
+- `MilitarySimulationBootstrapSystem` создаёт стартовый состав войск (боевые сущности с `BattleUnitTag`, `MilitaryUnitRuntimeState`, `WoundedState`, `MilitaryCoverState`, `CombatStats`, `CommandHierarchy`).
+- `MilitarySimulationDailySystem` раз в игровой день:
+  - пересчитывает погодно-временные модификаторы боя (видимость, точность, мобильность, связь),
+  - проводит задержки/доставку приказов по иерархии командования,
+  - обновляет мораль/подавление/усталость/боеготовность, расход боеприпасов и топлива,
+  - ведёт потери (killed/wounded/MIA), исходы боёв, резерв и территориальный прогресс,
+  - формирует дальние `MilitaryMetaUnitEntry` для LOD4+ агрегации.
+- Интеграция:
+  - c экономикой — `EconomyArmySupplyState` влияет на боеготовность и медицинскую выживаемость; snapshot бюджета берёт `MilitaryProductionShare01`,
+  - c производством — `ManufacturingSimulationState.MilitaryOutputToday` пополняет резерв,
+  - c миром/обороной/социальным контуром — учитываются `StrategicArmyEntry`, состояние укреплений и колониальная мораль поселенцев.
+- В аналитике пишутся метрики `Military*` (`MilitaryAverageMorale01`, `MilitaryCombatReadiness01`, `MilitaryMetaUnitsCount`, `MilitaryWeatherSeverity01`), в очереди событий появляются `mil-battle`, `mil-heavy-casualties`, `mil-supply-collapse`, `mil-panic`.
+
 ## Замер ECS (фаза 0, дорожная карта §6.1)
 
 Ориентир из мастер-спеки: **~1000 сущностей при 60 FPS**. В коде:
@@ -104,7 +123,7 @@
 
 - `Assets/_Project/Scenes/` — стартовая сцена **Bootstrap** и **SubScenes/GameSubScene** (DOTS).
 - `Assets/_Project/Settings/ColonyInputActions.inputactions` — карта ввода (дублирует JSON в `InputActionsJson.cs` — менять вместе): **Move** (WASD), **ToggleBuild** (B).
-- `Assets/_Project/Scripts/` — игровые сборки (`Colony.Conquest.Core`): `SimulationRootState`, `InputCommandState`, `InputGatherSystem` (WASD → синглтон), `GameBootstrapSystem` + `SubsystemBootstrapUtility` (аналитика, аудио-очередь, сюжетная очередь, карта, **календарь**, netcode-спайк, демо-грядка/загон/месторождение, демо-боевой юнит), `ColonyCalendarAdvanceSystem` → `GameCalendarState`, `CropGrowthSimulationSystem` (§1.2–1.3 `spec/agriculture_mining_spec.md`), `LivestockDailyProductionSystem` (§1.4), `PlayerMoveTargetTag` / `PlayerMoveTargetAuthoring` + Baker, `PlayerMoveFromInputSystem`, `WorldMapFocusFromPlayerSystem`, `StoryEventPipelineSystem`, `AudioBusDrainSystem`, строительство (`ConstructionGhostBootstrapSystem`, `ConstructionBuildModeToggleSystem`, `ConstructionGhostCursorSystem`), доменные enum и данные (`Agriculture`, `Technology`, `Ecology`, …), замер фазы 0 (`BenchmarkPhase0Tuning`, …).
+- `Assets/_Project/Scripts/` — игровые сборки (`Colony.Conquest.Core`): `SimulationRootState`, `InputCommandState`, `InputGatherSystem` (WASD → синглтон), `GameBootstrapSystem` + `SubsystemBootstrapUtility` (аналитика, аудио-очередь, сюжетная очередь, карта, **календарь**, netcode-спайк, демо-грядка/загон/месторождение), `ColonyCalendarAdvanceSystem` → `GameCalendarState`, `CropGrowthSimulationSystem` (§1.2–1.3 `spec/agriculture_mining_spec.md`), `LivestockDailyProductionSystem` (§1.4), `PlayerMoveTargetTag` / `PlayerMoveTargetAuthoring` + Baker, `PlayerMoveFromInputSystem`, `WorldMapFocusFromPlayerSystem`, `StoryEventPipelineSystem`, `AudioBusDrainSystem`, строительство (`ConstructionGhostBootstrapSystem`, `ConstructionBuildModeToggleSystem`, `ConstructionGhostCursorSystem`), доменные enum и данные (`Agriculture`, `Technology`, `Ecology`, …), замер фазы 0 (`BenchmarkPhase0Tuning`, …).
 - `Assets/_Project/Scripts/PlantBreeding/` — селекция: `PlantBreedingLabState`, `PlantCultivarEntry`, `PlantBreedingWorkOrderEntry`, `PlantBreedingMath`, `PlantBreedingDailySimulationSystem`.
 - `Assets/_Project/Scripts/Religion/` — религия и культы: `ReligionSimulationState`, `ReligiousConflictState`, `CultActivityState`, `HolyWarState`, `ReligionDailySimulationSystem`.
 - `Assets/_Project/Scripts/Housing/` — жильё и комфорт: `HousingUnitRuntime`, `HousingComfortSnapshot`, `HousingAssignmentSystem`, `HousingDailyComfortSystem`, `HousingMath`.
@@ -114,6 +133,7 @@
 - `Assets/_Project/Scripts/Technology/` — runtime дерева технологий: `TechTreeSimulationState`, `TechTreeCatalog`, `TechTreeDailySystem` (разблокировки/переход эпох).
 - `Assets/_Project/Scripts/Politics/` — политический контур: `PoliticalSimulationState`, `PoliticalLawState`, `PoliticalDailySystem`, `PoliticalMath`.
 - `Assets/_Project/Scripts/World/` — симуляция глобальной карты: `WorldMapSimulationState`, территориальный контроль, стратегические армии, `WorldMapDailySimulationSystem`.
+- `Assets/_Project/Scripts/Military/` — полный runtime военной системы: иерархия командования, приказы, боевые unit-runtime состояния, погода/ночь, потери/медицина, мета-юниты LOD, `MilitarySimulationDailySystem`.
 - `Assets/_Project/Scripts/Construction/` — runtime строительства: `ConstructionSimulationState`, `ConstructionProjectEntry`, `ConstructionRuntimeDailySystem` + режим призрака (`ConstructionGhostState`, `ConstructionBuildModeToggleSystem`).
 - `Assets/_Project/Scripts/Defense/` — оборонительные сооружения: `DefensiveSimulationState`, `DefensiveConstructionOrderEntry`, `DefensiveStructureRuntimeEntry`, `DefensiveDailySystem`.
 - `Assets/_Project/Scripts/Bioengineering/` — биоинженерия: `BioengineeringSimulationState`, `BioPatientEntry`, `BioengineeringProcedureEntry`, `BioengineeringDailySystem`.

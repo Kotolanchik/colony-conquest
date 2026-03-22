@@ -151,7 +151,7 @@
           ],
           "labels": ["gameplay", "combat"],
           "task_file": "dev/tasks/domain-military-unit-stub.md",
-          "notes": "ColonyConquest.Military: CommandHierarchy, MilitaryOrder, CombatStats, BattleUnitTag"
+          "notes": "ColonyConquest.Military: CommandHierarchy, MilitaryOrder, CombatStats, BattleUnitTag; superseded полной реализацией spec-military-system-implementation"
         },
         {
           "id": "tech-audio-bus-stub",
@@ -629,6 +629,21 @@
           "labels": ["gameplay", "ecs", "design", "industry"],
           "task_file": "dev/tasks/spec-manufacturing-plants-implementation.md",
           "notes": "ManufacturingSimulationState + plant/order/product buffers + policy switching (swords/ploughshares) + economy/tech/settlers/energy integration"
+        },
+        {
+          "id": "spec-military-system-implementation",
+          "title": "Полная реализация spec/military_system_specification в ECS (командование, бой, потери, снабжение, LOD-метаюниты)",
+          "spec_refs": [
+            "spec/military_system_specification.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md",
+            "spec/economic_system_specification.md",
+            "spec/manufacturing_plants_spec.md",
+            "spec/global_map_spec.md",
+            "spec/statistics_analytics_spec.md"
+          ],
+          "labels": ["gameplay", "ecs", "design", "combat"],
+          "task_file": "dev/tasks/spec-military-system-implementation.md",
+          "notes": "MilitarySimulationState + command/weather/order/attrition loop + wounded/cover/meta-units + economy/manufacturing/world/analytics integration"
         }
       ]
     },
