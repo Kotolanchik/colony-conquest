@@ -76,6 +76,22 @@
 - `ColonyEcologyIndicatorsState` и `ColonyPollutionSummaryState` обновляются в runtime; в аналитике пишутся метрики `Ecology*`, а `AnalyticsLocalSnapshot.Social.Ecology01` синхронизирован с фактическим состоянием экосистемы.
 - Интеграция: `SettlerSimulationDailySystem` использует `ColonyPollutionSummaryState.Band` для модификации здоровья/настроения населения; `CropGrowthSimulationSystem` использует тот же band для урожайности.
 
+**Проверка производственных заводов (`spec/manufacturing_plants_spec.md`):**
+
+- В мире есть `ManufacturingSimulationSingleton`, `ManufacturingSimulationState` и буферы:
+  - `ManufacturingPlantRuntimeEntry`,
+  - `ManufacturingProductionOrderEntry`,
+  - `ManufacturingProductStockEntry`.
+- `ManufacturingSimulationDailySystem` раз в игровой день:
+  - рассчитывает выпуск по заказам с учётом рабочих, автоматизации, состояния завода, энергии и эпохи технологий,
+  - применяет переключение «мечи или плуги» (`Peace/Partial/Total/ResourceSaving`) и штраф переоснастки на 7 дней,
+  - списывает входные ресурсы со склада (`ResourceStockEntry`) и добавляет выпуск в склад/виртуальный product stock.
+- Интеграция:
+  - c экономикой — учитывается `EconomyEnergyState` (энергодефицит режет выпуск), обновляются military/civilian output агрегаты,
+  - c технологиями — блокировка заказов, если требуемая эпоха не достигнута,
+  - c поселенцами — качество труда берётся из `SettlerSimulationState.AverageWorkEfficiency01`.
+- В очереди событий `GameEventQueueEntry` появляются `manufacturing-policy-switch`, `manufacturing-order-completed`, `manufacturing-resource-blocked`, `manufacturing-era-blocked`; в аналитике — метрики `Manufacturing*`.
+
 ## Замер ECS (фаза 0, дорожная карта §6.1)
 
 Ориентир из мастер-спеки: **~1000 сущностей при 60 FPS**. В коде:
@@ -103,6 +119,7 @@
 - `Assets/_Project/Scripts/Bioengineering/` — биоинженерия: `BioengineeringSimulationState`, `BioPatientEntry`, `BioengineeringProcedureEntry`, `BioengineeringDailySystem`.
 - `Assets/_Project/Scripts/Economy/` — полный runtime экономики: `EconomySimulationState`, энергия/логистика/склады/военное производство/снабжение, `EconomySimulationDailySystem`, плюс каталоги ресурсов и рецептов.
 - `Assets/_Project/Scripts/Ecology/` — полный runtime экологии: источники загрязнения, меры очистки, климат, восстановление природы, `EcologySimulationDailySystem`, `EcologySimulationMath`.
+- `Assets/_Project/Scripts/Manufacturing/` — полный runtime заводов: типы площадок/продукции, мобилизационные режимы, queue-based выпуск и интеграции (`ManufacturingSimulationDailySystem`).
 - `Assets/_Project/Scripts/Settlers/` — полный runtime поселенцев: генератор (`SettlerCharacterGenerator`), фабрика сущностей (`SettlerEntityFactory`), bootstrap (`SettlerSimulationBootstrapSystem`), daily-контур (`SettlerSimulationDailySystem`), формулы и ECS-компоненты §1–§9 спеки.
 
 ### Экономика (данные)

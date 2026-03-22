@@ -614,6 +614,21 @@
           "labels": ["gameplay", "ecs", "design", "ecology"],
           "task_file": "dev/tasks/spec-ecology-implementation.md",
           "notes": "EcologySimulationState + mitigation levels + sources buffers + climate loop + ecological events + settlers/economy/analytics integration"
+        },
+        {
+          "id": "spec-manufacturing-plants-implementation",
+          "title": "Полная реализация spec/manufacturing_plants_spec в ECS (заводы, очереди, мобилизация, интеграции)",
+          "spec_refs": [
+            "spec/manufacturing_plants_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md",
+            "spec/economic_system_specification.md",
+            "spec/technology_tree_spec.md",
+            "spec/settler_simulation_system_spec.md",
+            "spec/statistics_analytics_spec.md"
+          ],
+          "labels": ["gameplay", "ecs", "design", "industry"],
+          "task_file": "dev/tasks/spec-manufacturing-plants-implementation.md",
+          "notes": "ManufacturingSimulationState + plant/order/product buffers + policy switching (swords/ploughshares) + economy/tech/settlers/energy integration"
         }
       ]
     },

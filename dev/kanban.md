@@ -310,6 +310,11 @@ _(пусто)_
   - Task: `dev/tasks/spec-ecology-implementation.md`  
   - Labels: gameplay, ecs, design, ecology
 
+- **spec-manufacturing-plants-implementation** — Полная реализация `spec/manufacturing_plants_spec` в ECS (заводы, очереди, мобилизация, интеграции)  
+  - Spec: `spec/manufacturing_plants_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`, `spec/economic_system_specification.md`, `spec/technology_tree_spec.md`, `spec/settler_simulation_system_spec.md`, `spec/statistics_analytics_spec.md`  
+  - Task: `dev/tasks/spec-manufacturing-plants-implementation.md`  
+  - Labels: gameplay, ecs, design, industry
+
 ## Blocked
 
 _(пусто)_
