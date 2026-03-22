@@ -3,7 +3,6 @@ using ColonyConquest.Analytics;
 using ColonyConquest.Audio;
 using ColonyConquest.Ecology;
 using ColonyConquest.Economy;
-using ColonyConquest.Military;
 using ColonyConquest.Netcode;
 using ColonyConquest.Simulation;
 using ColonyConquest.Story;
@@ -15,7 +14,7 @@ using Unity.Transforms;
 
 namespace ColonyConquest.Core
 {
-    /// <summary>Создаёт синглтоны подсистем (аналитика, аудио-очередь, события, карта, стройка, netcode) и демо-юнит.</summary>
+    /// <summary>Создаёт синглтоны подсистем (аналитика, аудио-очередь, события, карта, стройка, netcode).</summary>
     internal static class SubsystemBootstrapUtility
     {
         internal static void EnsureSubsystemEntities(ref SystemState state)
@@ -264,19 +263,6 @@ namespace ColonyConquest.Core
                     LastYieldDayIndex = uint.MaxValue
                 });
 
-                var mil = em.CreateEntity();
-                em.AddComponent<BattleUnitTag>(mil);
-                em.AddComponent(mil, new CombatStats
-                {
-                    Accuracy = 0.5f,
-                    Damage = 10f,
-                    FireRate = 1f,
-                    Range = 25f,
-                    Ammo = 30,
-                    MaxAmmo = 30
-                });
-                em.AddComponent(mil, new MilitaryOrder());
-                em.AddComponent(mil, LocalTransform.FromPosition(new float3(10f, 0f, 10f)));
             }
 
             EnsureAnalyticsAndSimulationSingletons(ref em);

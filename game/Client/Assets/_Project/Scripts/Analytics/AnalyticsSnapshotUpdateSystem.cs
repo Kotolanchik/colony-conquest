@@ -127,22 +127,48 @@ namespace ColonyConquest.Analytics
             snap.Demography.EmigrationPerYear = 0f;
             snap.Demography.LifeExpectancyYears = 40f;
 
-            var army = _battleUnitsQuery.CalculateEntityCount();
-            snap.Military.ActiveArmy = army;
-            snap.Military.Reserve = 0f;
-            snap.Military.DraftAgePool = math.max(0f, population - army);
-            snap.Military.MilitaryBudgetPercentGdp = gdp > 1e-3f ? 5f : 0f;
-            snap.Military.BattlesTotal = 0f;
-            snap.Military.BattlesWon = 0f;
-            snap.Military.BattlesLost = 0f;
-            snap.Military.BattlesDraw = 0f;
-            snap.Military.CasualtiesFriendlyKilled = 0f;
-            snap.Military.CasualtiesFriendlyWounded = 0f;
-            snap.Military.CasualtiesFriendlyMia = 0f;
-            snap.Military.EquipmentDestroyedFriendly = 0f;
-            snap.Military.CasualtiesEnemyKilled = 0f;
-            snap.Military.EnemyEquipmentDestroyed = 0f;
-            snap.Military.TerritoryCapturedKm2 = 0f;
+            float army = _battleUnitsQuery.CalculateEntityCount();
+            if (SystemAPI.HasSingleton<MilitarySimulationState>())
+            {
+                var military = SystemAPI.GetSingleton<MilitarySimulationState>();
+                army = military.ActiveArmyUnits;
+                snap.Military.ActiveArmy = military.ActiveArmyUnits;
+                snap.Military.Reserve = military.ReserveUnits;
+                snap.Military.DraftAgePool = math.max(0f, population - military.ActiveArmyUnits);
+                snap.Military.BattlesTotal = military.BattlesTotal;
+                snap.Military.BattlesWon = military.BattlesWon;
+                snap.Military.BattlesLost = military.BattlesLost;
+                snap.Military.BattlesDraw = military.BattlesDraw;
+                snap.Military.CasualtiesFriendlyKilled = military.CasualtiesFriendlyKilled;
+                snap.Military.CasualtiesFriendlyWounded = military.CasualtiesFriendlyWounded;
+                snap.Military.CasualtiesFriendlyMia = military.CasualtiesFriendlyMia;
+                snap.Military.EquipmentDestroyedFriendly = military.EquipmentDestroyedFriendly;
+                snap.Military.CasualtiesEnemyKilled = military.CasualtiesEnemyKilled;
+                snap.Military.EnemyEquipmentDestroyed = military.EnemyEquipmentDestroyed;
+                snap.Military.TerritoryCapturedKm2 = military.TerritoryCapturedKm2;
+            }
+            else
+            {
+                snap.Military.ActiveArmy = army;
+                snap.Military.Reserve = 0f;
+                snap.Military.DraftAgePool = math.max(0f, population - army);
+                snap.Military.BattlesTotal = 0f;
+                snap.Military.BattlesWon = 0f;
+                snap.Military.BattlesLost = 0f;
+                snap.Military.BattlesDraw = 0f;
+                snap.Military.CasualtiesFriendlyKilled = 0f;
+                snap.Military.CasualtiesFriendlyWounded = 0f;
+                snap.Military.CasualtiesFriendlyMia = 0f;
+                snap.Military.EquipmentDestroyedFriendly = 0f;
+                snap.Military.CasualtiesEnemyKilled = 0f;
+                snap.Military.EnemyEquipmentDestroyed = 0f;
+                snap.Military.TerritoryCapturedKm2 = 0f;
+            }
+
+            if (SystemAPI.HasSingleton<EconomySimulationState>())
+                snap.Military.MilitaryBudgetPercentGdp = SystemAPI.GetSingleton<EconomySimulationState>().MilitaryProductionShare01 * 100f;
+            else
+                snap.Military.MilitaryBudgetPercentGdp = gdp > 1e-3f ? 5f : 0f;
 
             snap.Technology.ResearchPointsPerDay = tech.ResearchPointsPerDay;
             snap.Technology.TechnologiesUnlocked = tech.TechnologiesUnlocked;

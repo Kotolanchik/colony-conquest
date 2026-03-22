@@ -84,7 +84,9 @@ namespace ColonyConquest.Economy
             sim.LogisticsEfficiency01 = math.clamp(sim.LogisticsEfficiency01, 0.1f, 1.25f);
 
             UpdateWarehouseState(ref warehouse, ref warehouses, ref stock);
-            var armyUnits = _armyQuery.CalculateEntityCount();
+            var armyUnits = SystemAPI.HasSingleton<MilitarySimulationState>()
+                ? (int)SystemAPI.GetSingleton<MilitarySimulationState>().ActiveArmyUnits
+                : _armyQuery.CalculateEntityCount();
             UpdateArmySupplyState(ref armySupply, ref stock, sim.Phase, armyUnits);
             sim.MilitaryPriority = ResolveMilitaryPriority(sim.Phase, armySupply.ArmySupplyAdequacy01, armyUnits,
                 population: demography.Population);

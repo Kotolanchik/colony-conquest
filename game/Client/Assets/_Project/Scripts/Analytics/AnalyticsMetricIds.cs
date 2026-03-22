@@ -211,5 +211,17 @@ namespace ColonyConquest.Analytics
         public const uint ManufacturingPolicy = 0x910A;
         public const uint ManufacturingRetoolingPenalty01 = 0x910B;
         public const uint ManufacturingVirtualStockUnits = 0x910C;
+
+        // --- Военная система (full runtime) (0x92nn) ---
+        public const uint MilitaryAverageMorale01 = 0x9201;
+        public const uint MilitaryAverageSuppression01 = 0x9202;
+        public const uint MilitaryAverageFatigue01 = 0x9203;
+        public const uint MilitaryCombatReadiness01 = 0x9204;
+        public const uint MilitarySupplyAdequacy01 = 0x9205;
+        public const uint MilitaryWoundedActive = 0x9206;
+        public const uint MilitaryMetaUnitsCount = 0x9207;
+        public const uint MilitaryOrdersInTransit = 0x9208;
+        public const uint MilitaryNightOperation = 0x9209;
+        public const uint MilitaryWeatherSeverity01 = 0x920A;
     }
 }
