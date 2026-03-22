@@ -13,7 +13,7 @@
 1. Откройте папку `game/Client` как проект в Unity Hub.
 2. Дождитесь импорта и разрешения пакетов (появится `Packages/packages-lock.json` — его стоит закоммитить после успешного разрешения).
 3. Откройте сцену **`Assets/_Project/Scenes/Bootstrap.unity`** (двойной клик) и нажмите **Play**. Сцена уже в **File → Build Settings** как первая.
-4. В консоли — лог создания синглтона `SimulationRootState` и подсистем (`SubsystemBootstrapUtility` в `GameBootstrapSystem`). В подсцене **`SubScenes/GameSubScene`** — объект **TestMoveTarget** (authoring → после baking сущность с `LocalTransform` + `PlayerMoveTargetTag`); **WASD** сдвигает её через `PlayerMoveFromInputSystem` (плоскость XZ). **B** — переключение режима строительства (`ConstructionBuildModeToggleSystem` → `ConstructionGhostState`), якорь призрака обновляет `ConstructionGhostCursorSystem`. `EventsQuestDailySystem` ведёт полный контур событий/квестов, а `StoryEventPipelineSystem` остаётся fallback-обработчиком очереди для legacy-режима. `AudioBusStub` → буфер, `AudioBusDrainSystem` очищает очередь (заглушка до FMOD/Wwise). `WorldMapFocusFromPlayerSystem` обновляет `WorldMapFocusState` по чанку игрока. При первом импорте Unity может пересчитать baking SubScene.
+4. В консоли — лог создания синглтона `SimulationRootState` и подсистем (`SubsystemBootstrapUtility` в `GameBootstrapSystem`). В подсцене **`SubScenes/GameSubScene`** — объект **TestMoveTarget** (authoring → после baking сущность с `LocalTransform` + `PlayerMoveTargetTag`); **WASD** сдвигает её через `PlayerMoveFromInputSystem` (плоскость XZ). **B** — переключение режима строительства (`ConstructionBuildModeToggleSystem` → `ConstructionGhostState`), якорь призрака обновляет `ConstructionGhostCursorSystem`. `EventsQuestDailySystem` ведёт полный контур событий/квестов, а `StoryEventPipelineSystem` остаётся fallback-обработчиком очереди для legacy-режима. `UiUxRuntimeSystem` обновляет hotkeys/панели/уведомления, `AudioSimulationRuntimeSystem` — адаптивную музыку и ingest аудио-шины; `AudioBusDrainSystem` остаётся только fallback, если full-audio singleton не активен. `WorldMapFocusFromPlayerSystem` обновляет `WorldMapFocusState` по чанку игрока. При первом импорте Unity может пересчитать baking SubScene.
 
 **Проверка агро/добычи (`spec/agriculture_mining_spec.md`):** в bootstrap — демо-грядка (`CropCareDailySystem` — уход в фазе роста: вредители/сорняки; `CropGrowthSimulationSystem` — этапы §1.2, урожай §1.3 с водой `WaterSupplyKind`, пищевой ценностью §1.1 и сезонностью §1.2), два загона (`LivestockDailyProductionSystem` — куры и козы), лес `(3,0,0)` и железная руда `(6,0,2)` — удерживайте **E** для `ManualMiningGatherSystem`. Нагрузка агрохимии — синглтон `ColonyAgrochemicalLoadState`. Дополнительные грядки: `CropPlotAuthoring` в SubScene. Склад — `ResourceStockpileSingleton` / `ResourceStockEntry`.
 
@@ -129,6 +129,32 @@
 - Интеграция: с `SettlerSimulationState`, `MilitarySimulationState`, `EconomySimulationState`, `ColonyTechProgressState`, `ColonyEcologyIndicatorsState`, `WorldMap` и дипломатией.
 - В аналитике пишутся метрики `Events*`, `Quests*`, `StoryArc*`, `StoryTension01`.
 
+**Проверка UI/UX (`spec/ui_ux_spec.md`):**
+
+- В мире есть `UiUxSimulationSingleton`, `UiUxSimulationState` и буферы:
+  - `UiNotificationEntry`,
+  - `UiHotkeyBindingEntry`,
+  - `UiPanelStateEntry`,
+  - `UiResourceIndicatorEntry`.
+- `UiUxRuntimeSystem` на клиенте:
+  - обрабатывает hotkeys (`Space`, `Tab`, `F1-F4`, `~`, `1-3`, `Esc`) и считает активации,
+  - адаптирует `UiPanelStateEntry.IsVisible` под уровень камеры (`Micro/Tactical/Operational/Strategic`) и режим строительства,
+  - пересчитывает bands ресурсов (food/energy/army-supply), стресс интерфейса и нагрузку HUD,
+  - ведёт ленту уведомлений (critical/important/info/achievement) с авто-паузой на critical.
+- В аналитике пишутся метрики `Ui*` (`UiCameraLevel`, `UiNotificationsActive`, `UiResourceStress01`, `UiHudLoad01`, `UiHotkeyActivationsToday`).
+
+**Проверка аудио (`spec/audio_design_spec.md`):**
+
+- В мире есть `AudioSimulationSingleton`, `AudioSimulationState` и буферы:
+  - `AudioActiveEmitterEntry`,
+  - `AudioMusicTransitionEntry`.
+- `AudioSimulationRuntimeSystem` на клиенте:
+  - рассчитывает adaptive music (интенсивность и уровень) по бою/кризису/времени суток/масштабу камеры,
+  - выполняет ingest `AudioBusPendingEntry` в runtime-эмиттеры с приоритетами категорий SFX,
+  - применяет 3D attenuation/occlusion/reverb по биому/погоде и держит бюджет `64` голоса / `32` 3D-источника.
+- `AudioBusDrainSystem` при активном full-audio singleton не очищает шину (legacy fallback).
+- В аналитике пишутся метрики `Audio*` (`AudioMusicIntensity01`, `AudioActiveVoices`, `AudioActive3dSources`, `AudioEstimatedMemoryMb`, `AudioEstimatedLatencyMs`).
+
 ## Замер ECS (фаза 0, дорожная карта §6.1)
 
 Ориентир из мастер-спеки: **~1000 сущностей при 60 FPS**. В коде:
@@ -141,7 +167,7 @@
 
 - `Assets/_Project/Scenes/` — стартовая сцена **Bootstrap** и **SubScenes/GameSubScene** (DOTS).
 - `Assets/_Project/Settings/ColonyInputActions.inputactions` — карта ввода (дублирует JSON в `InputActionsJson.cs` — менять вместе): **Move** (WASD), **ToggleBuild** (B).
-- `Assets/_Project/Scripts/` — игровые сборки (`Colony.Conquest.Core`): `SimulationRootState`, `InputCommandState`, `InputGatherSystem` (WASD → синглтон), `GameBootstrapSystem` + `SubsystemBootstrapUtility` (аналитика, аудио-очередь, сюжетная очередь, карта, **календарь**, netcode-спайк, демо-грядка/загон/месторождение), `ColonyCalendarAdvanceSystem` → `GameCalendarState`, `CropGrowthSimulationSystem` (§1.2–1.3 `spec/agriculture_mining_spec.md`), `LivestockDailyProductionSystem` (§1.4), `PlayerMoveTargetTag` / `PlayerMoveTargetAuthoring` + Baker, `PlayerMoveFromInputSystem`, `WorldMapFocusFromPlayerSystem`, `StoryEventPipelineSystem`, `AudioBusDrainSystem`, строительство (`ConstructionGhostBootstrapSystem`, `ConstructionBuildModeToggleSystem`, `ConstructionGhostCursorSystem`), доменные enum и данные (`Agriculture`, `Technology`, `Ecology`, …), замер фазы 0 (`BenchmarkPhase0Tuning`, …).
+- `Assets/_Project/Scripts/` — игровые сборки (`Colony.Conquest.Core`): `SimulationRootState`, `InputCommandState`, `InputGatherSystem` (WASD → синглтон), `GameBootstrapSystem` + `SubsystemBootstrapUtility` (аналитика, аудио-очередь, сюжетная очередь, карта, **календарь**, netcode-спайк, демо-грядка/загон/месторождение), `ColonyCalendarAdvanceSystem` → `GameCalendarState`, `CropGrowthSimulationSystem` (§1.2–1.3 `spec/agriculture_mining_spec.md`), `LivestockDailyProductionSystem` (§1.4), `PlayerMoveTargetTag` / `PlayerMoveTargetAuthoring` + Baker, `PlayerMoveFromInputSystem`, `WorldMapFocusFromPlayerSystem`, `StoryEventPipelineSystem`, `AudioBusDrainSystem` (fallback), строительство (`ConstructionGhostBootstrapSystem`, `ConstructionBuildModeToggleSystem`, `ConstructionGhostCursorSystem`), доменные enum и данные (`Agriculture`, `Technology`, `Ecology`, …), замер фазы 0 (`BenchmarkPhase0Tuning`, …).
 - `Assets/_Project/Scripts/PlantBreeding/` — селекция: `PlantBreedingLabState`, `PlantCultivarEntry`, `PlantBreedingWorkOrderEntry`, `PlantBreedingMath`, `PlantBreedingDailySimulationSystem`.
 - `Assets/_Project/Scripts/Religion/` — религия и культы: `ReligionSimulationState`, `ReligiousConflictState`, `CultActivityState`, `HolyWarState`, `ReligionDailySimulationSystem`.
 - `Assets/_Project/Scripts/Housing/` — жильё и комфорт: `HousingUnitRuntime`, `HousingComfortSnapshot`, `HousingAssignmentSystem`, `HousingDailyComfortSystem`, `HousingMath`.
@@ -160,6 +186,8 @@
 - `Assets/_Project/Scripts/Manufacturing/` — полный runtime заводов: типы площадок/продукции, мобилизационные режимы, queue-based выпуск и интеграции (`ManufacturingSimulationDailySystem`).
 - `Assets/_Project/Scripts/Settlers/` — полный runtime поселенцев: генератор (`SettlerCharacterGenerator`), фабрика сущностей (`SettlerEntityFactory`), bootstrap (`SettlerSimulationBootstrapSystem`), daily-контур (`SettlerSimulationDailySystem`), формулы и ECS-компоненты §1–§9 спеки.
 - `Assets/_Project/Scripts/Story/` — полный runtime событий/квестов: AI Director catalog/cooldowns/active history, процедурные квесты, персональные арки (`EventsQuestBootstrapSystem`, `EventsQuestDailySystem`, `EventsQuestSimulationMath`).
+- `Assets/_Project/Scripts/UI/` — полный runtime UI/UX: адаптивные уровни камеры, панели HUD, уведомления, accessibility и hotkey-телеметрия (`UiUxBootstrapSystem`, `UiUxRuntimeSystem`, `UiUxSimulationMath`).
+- `Assets/_Project/Scripts/Audio/` — полный runtime аудио: adaptive music, ingest шины SFX, бюджет голосов/3D источников, transition history (`AudioSimulationBootstrapSystem`, `AudioSimulationRuntimeSystem`, `AudioSimulationMath`).
 
 ### Экономика (данные)
 

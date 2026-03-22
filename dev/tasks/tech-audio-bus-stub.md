@@ -24,3 +24,4 @@
 ## Заметки / журнал
 
 - 2026-03-21 — `Assets/_Project/Scripts/Audio/`.
+- 2026-03-21 — superseded полной реализацией `spec-audio-design-full-implementation` (adaptive music + runtime ingest + бюджеты).

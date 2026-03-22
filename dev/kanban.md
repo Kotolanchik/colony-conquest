@@ -100,7 +100,8 @@ _(пусто)_
 - **tech-audio-bus-stub** — Заготовка аудио-событий / шины под звуковую спеку  
   - Spec: `spec/audio_design_spec.md`  
   - Task: `dev/tasks/tech-audio-bus-stub.md`  
-  - Labels: audio, engine
+  - Labels: audio, engine  
+  - Примечание: superseded полной реализацией `spec-audio-design-full-implementation`
 
 - **world-map-chunk-stub** — Заготовка чанка/тайла глобальной карты (данные + границы)  
   - Spec: `spec/global_map_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`  
@@ -326,6 +327,16 @@ _(пусто)_
   - Spec: `spec/events_quests_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`, `spec/statistics_analytics_spec.md`, `spec/settler_simulation_system_spec.md`, `spec/military_system_specification.md`, `spec/economic_system_specification.md`, `spec/technology_tree_spec.md`  
   - Task: `dev/tasks/spec-events-quests-full-implementation.md`  
   - Labels: gameplay, ecs, design, story
+
+- **spec-ui-ux-full-implementation** — Полная реализация `spec/ui_ux_spec` в ECS (адаптивный HUD, уведомления, hotkeys, доступность)  
+  - Spec: `spec/ui_ux_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`, `spec/statistics_analytics_spec.md`, `spec/events_quests_spec.md`, `spec/economic_system_specification.md`, `spec/military_system_specification.md`  
+  - Task: `dev/tasks/spec-ui-ux-full-implementation.md`  
+  - Labels: gameplay, ecs, design, ui
+
+- **spec-audio-design-full-implementation** — Полная реализация `spec/audio_design_spec` в ECS (adaptive music, SFX ingest, 3D бюджет, интеграции)  
+  - Spec: `spec/audio_design_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`, `spec/statistics_analytics_spec.md`, `spec/ui_ux_spec.md`, `spec/military_system_specification.md`, `spec/global_map_spec.md`, `spec/technology_tree_spec.md`  
+  - Task: `dev/tasks/spec-audio-design-full-implementation.md`  
+  - Labels: gameplay, ecs, design, audio
 
 ## Blocked
 
