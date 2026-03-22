@@ -197,5 +197,19 @@ namespace ColonyConquest.Analytics
         public const uint EcologyExtremeWeatherRisk01 = 0x9009;
         public const uint EcologySustainableDevelopment01 = 0x900A;
         public const uint EcologyEventsToday = 0x900B;
+
+        // --- Производственные заводы (full runtime) (0x91nn) ---
+        public const uint ManufacturingOrdersBacklog = 0x9101;
+        public const uint ManufacturingOrdersCompletedTotal = 0x9102;
+        public const uint ManufacturingOrdersBlockedResourcesTotal = 0x9103;
+        public const uint ManufacturingOrdersBlockedEraTotal = 0x9104;
+        public const uint ManufacturingMilitaryOutputToday = 0x9105;
+        public const uint ManufacturingCivilianOutputToday = 0x9106;
+        public const uint ManufacturingHeavyOutputToday = 0x9107;
+        public const uint ManufacturingEnergyDemandKw = 0x9108;
+        public const uint ManufacturingEnergySatisfied01 = 0x9109;
+        public const uint ManufacturingPolicy = 0x910A;
+        public const uint ManufacturingRetoolingPenalty01 = 0x910B;
+        public const uint ManufacturingVirtualStockUnits = 0x910C;
     }
 }
