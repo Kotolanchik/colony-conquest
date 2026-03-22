@@ -223,5 +223,19 @@ namespace ColonyConquest.Analytics
         public const uint MilitaryOrdersInTransit = 0x9208;
         public const uint MilitaryNightOperation = 0x9209;
         public const uint MilitaryWeatherSeverity01 = 0x920A;
+
+        // --- События и квесты (full runtime) (0x93nn) ---
+        public const uint EventsDirectorPolicy = 0x9301;
+        public const uint EventsTriggeredToday = 0x9302;
+        public const uint EventsActiveCount = 0x9303;
+        public const uint EventsPersonalTotal = 0x9304;
+        public const uint EventsGlobalTotal = 0x9305;
+        public const uint QuestsActiveCount = 0x9306;
+        public const uint QuestsCompletedTotal = 0x9307;
+        public const uint QuestsFailedTotal = 0x9308;
+        public const uint QuestsProceduralGeneratedTotal = 0x9309;
+        public const uint StoryArcActiveCount = 0x930A;
+        public const uint StoryArcBeatsTotal = 0x930B;
+        public const uint StoryTension01 = 0x930C;
     }
 }
