@@ -1,5 +1,6 @@
 using ColonyConquest.Analytics;
 using ColonyConquest.Audio;
+using ColonyConquest.Presentation;
 using Unity.Entities;
 
 namespace ColonyConquest.Core
@@ -37,6 +38,10 @@ namespace ColonyConquest.Core
             }
 
             AudioBusStub.Post(100u, AudioSfxCategory.Interface);
+            PresentationBridgeBus.PostIcon(PresentationIconKind.Notification, ghost.Active != 0 ? "build-mode-on" : "build-mode-off",
+                1.25f, 2);
+            PresentationBridgeBus.PostVfx(ghost.Active != 0 ? PresentationVfxKind.ConstructionStart : PresentationVfxKind.NotificationPing,
+                ghost.AnchorWorld, 0.7f, 1.1f);
             AnalyticsHooks.Record(AnalyticsDomain.LocalSettlement, AnalyticsMetricIds.IntegrationConstructionModeActive,
                 ghost.Active);
         }

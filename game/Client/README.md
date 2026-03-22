@@ -188,6 +188,7 @@
 - `Assets/_Project/Scripts/Story/` — полный runtime событий/квестов: AI Director catalog/cooldowns/active history, процедурные квесты, персональные арки (`EventsQuestBootstrapSystem`, `EventsQuestDailySystem`, `EventsQuestSimulationMath`).
 - `Assets/_Project/Scripts/UI/` — полный runtime UI/UX: адаптивные уровни камеры, панели HUD, уведомления, accessibility и hotkey-телеметрия (`UiUxBootstrapSystem`, `UiUxRuntimeSystem`, `UiUxSimulationMath`).
 - `Assets/_Project/Scripts/Audio/` — полный runtime аудио: adaptive music, ingest шины SFX, бюджет голосов/3D источников, transition history (`AudioSimulationBootstrapSystem`, `AudioSimulationRuntimeSystem`, `AudioSimulationMath`).
+- `Assets/_Project/Scripts/Presentation/` — bridge-контракты для визуального слоя (`PresentationBridgeBus`, request buffers, drain/bootstrap systems) и ScriptableObject-каталоги (`Presentation/Catalogs/*`).
 
 ### Экономика (данные)
 
@@ -196,6 +197,17 @@
 - Фермерство и добыча (`spec/agriculture_mining_spec.md`): `CropCareDailySystem`, `CropGrowthSimulationSystem`, `FertilizerEcologyTuning` → `ColonyAgrochemicalLoadState` → `AgrochemicalEcologyBridgeSystem` → `ColonyEcologyIndicatorsState` (связь с `AnalyticsLocalSnapshot.Social.Ecology01`), `LivestockDailyProductionSystem`, `ManualMiningGatherSystem` (**E**), `MiningForestRegenerationSystem`, `IndustrialMiningFormulas` + `IndustrialMiningProductionSystem` (демо-карьер), `MiningHazardDailySystem`; демо в `SubsystemBootstrapUtility`.
 - Полная экономика (`spec/economic_system_specification.md`): `EconomySimulationDailySystem` (циклы, энергия, логистика, склады, военный режим, снабжение); `EconomyWorkshopProductionSystem` остаётся как fallback-демо и отключается при активном full-runtime.
 - `Packages/manifest.json` — зависимости (Entities, URP, Input System, Unity Physics).
+
+## Контент-пайплайн: где создавать 3D, иконки и VFX
+
+- Модели юнитов: `Assets/_Project/Art/Units/`
+- Модели зданий: `Assets/_Project/Art/Buildings/`
+- Иконки UI: `Assets/_Project/Art/UI/Icons/`
+- Эффекты: `Assets/_Project/Art/VFX/`
+- Каталоги привязки: `Assets/_Project/Catalogs/Presentation/` (SO assets)
+
+Сами художественные ассеты обычно создаются во внешних инструментах (Blender/Substance/Figma и т.д.) и импортируются в Unity,  
+а кодовая часть (контракты, каталоги, bridge-системы, валидации, канбан) может подготавливаться агентами.
 
 ## Сеть (спайк)
 
