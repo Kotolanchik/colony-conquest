@@ -83,7 +83,8 @@ _(пусто)_
 - **domain-settler-components-stub** — Заготовка набора ECS-компонентов поселенца (без полной симуляции)  
   - Spec: `spec/settler_simulation_system_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`  
   - Task: `dev/tasks/domain-settler-components-stub.md`  
-  - Labels: gameplay, design
+  - Labels: gameplay, design  
+  - Примечание: superseded полной реализацией `spec-settler-simulation-full-implementation`
 
 - **domain-economy-resource-ids** — Идентификаторы ресурсов и перечень в коде по экономической спеке  
   - Spec: `spec/economic_system_specification.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`  
@@ -297,6 +298,11 @@ _(пусто)_
   - Spec: `spec/economic_system_specification.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`, `spec/statistics_analytics_spec.md`  
   - Task: `dev/tasks/spec-economy-full-implementation.md`  
   - Labels: gameplay, ecs, design, economy
+
+- **spec-settler-simulation-full-implementation** — Полная реализация `spec/settler_simulation_system_spec` в ECS (генерация, нужды, психика, физиология, навыки, автономия, демография)  
+  - Spec: `spec/settler_simulation_system_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`, `spec/statistics_analytics_spec.md`, `spec/economic_system_specification.md`  
+  - Task: `dev/tasks/spec-settler-simulation-full-implementation.md`  
+  - Labels: gameplay, ecs, design, social
 
 ## Blocked
 

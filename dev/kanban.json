@@ -129,7 +129,7 @@
           ],
           "labels": ["gameplay", "design"],
           "task_file": "dev/tasks/domain-settler-components-stub.md",
-          "notes": "Пространство имён ColonyConquest.Settlers; §1.1–1.7 спеки; SkillSet: FixedList256Bytes"
+          "notes": "Пространство имён ColonyConquest.Settlers; §1.1–1.7 спеки; SkillSet: FixedList256Bytes; superseded полной реализацией spec-settler-simulation-full-implementation"
         },
         {
           "id": "domain-economy-resource-ids",
@@ -587,6 +587,19 @@
           "labels": ["gameplay", "ecs", "design", "economy"],
           "task_file": "dev/tasks/spec-economy-full-implementation.md",
           "notes": "EconomySimulationState + full daily loop (cycle/energy/logistics/warehouses/military-supply) + analytics integration"
+        },
+        {
+          "id": "spec-settler-simulation-full-implementation",
+          "title": "Полная реализация spec/settler_simulation_system_spec в ECS (генерация, нужды, психика, физиология, навыки, автономия, демография)",
+          "spec_refs": [
+            "spec/settler_simulation_system_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md",
+            "spec/statistics_analytics_spec.md",
+            "spec/economic_system_specification.md"
+          ],
+          "labels": ["gameplay", "ecs", "design", "social"],
+          "task_file": "dev/tasks/spec-settler-simulation-full-implementation.md",
+          "notes": "SettlerCharacterGenerator + SettlerEntityFactory + SettlerSimulationBootstrapSystem + SettlerSimulationDailySystem + Settler* analytics + snapshot integration"
         }
       ]
     },
