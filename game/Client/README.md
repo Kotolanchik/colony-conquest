@@ -58,6 +58,13 @@
   - считает adequacy снабжения армии и приоритет военного производства.
 - В аналитике появляются метрики `EconomyPower*`, `EconomyLogistics*`, `EconomyWarehouse*`, `EconomyArmySupplyAdequacy01`, `EconomyCurrentCyclePhase`; в `AnalyticsLocalSnapshot.Economy` заполняются инфляция/безработица/экспорт/импорт/баланс.
 
+**Проверка симуляции поселенцев (`spec/settler_simulation_system_spec.md`):**
+
+- В мире присутствуют `SettlerSimulationSingleton`, `SettlerSimulationState`, `SettlerAutonomyPolicyState` и буфер `SettlerRelationshipEdge`.
+- `SettlerSimulationBootstrapSystem` создаёт стартовую популяцию сущностей с полным набором компонентов (`SettlerIdentity`, `SkillSet`, `PsychologyState`, `PhysiologyState`, `NeedsState`, `SocialBonds`, `LifecycleState`, `SettlerStats`, теги `IsHungry/IsExhausted/HasMentalBreak/...`).
+- `SettlerSimulationDailySystem` по `GameCalendarState.DayIndex` обновляет нужды, стресс/настроение, травмы/инфекции, рост и деградацию навыков, уровни автономии, демографию, а также интеграции с `ResourceStockEntry`, `CrimeJusticeState`, `ColonyTechProgressState`.
+- В аналитике появляются метрики `Settler*` (население, настроение, стресс, эффективность, доля голодных/истощённых/инфицированных), а `AnalyticsLocalSnapshot.Social` заполняется фактическими данными из `SettlerSimulationState`.
+
 ## Замер ECS (фаза 0, дорожная карта §6.1)
 
 Ориентир из мастер-спеки: **~1000 сущностей при 60 FPS**. В коде:
@@ -84,7 +91,7 @@
 - `Assets/_Project/Scripts/Defense/` — оборонительные сооружения: `DefensiveSimulationState`, `DefensiveConstructionOrderEntry`, `DefensiveStructureRuntimeEntry`, `DefensiveDailySystem`.
 - `Assets/_Project/Scripts/Bioengineering/` — биоинженерия: `BioengineeringSimulationState`, `BioPatientEntry`, `BioengineeringProcedureEntry`, `BioengineeringDailySystem`.
 - `Assets/_Project/Scripts/Economy/` — полный runtime экономики: `EconomySimulationState`, энергия/логистика/склады/военное производство/снабжение, `EconomySimulationDailySystem`, плюс каталоги ресурсов и рецептов.
-- `Assets/_Project/Scripts/Settlers/` — схема ECS-компонентов поселенца по `spec/settler_simulation_system_spec.md` §1.1–1.7 (пространство имён `ColonyConquest.Settlers`; симуляция не подключена — только типы).
+- `Assets/_Project/Scripts/Settlers/` — полный runtime поселенцев: генератор (`SettlerCharacterGenerator`), фабрика сущностей (`SettlerEntityFactory`), bootstrap (`SettlerSimulationBootstrapSystem`), daily-контур (`SettlerSimulationDailySystem`), формулы и ECS-компоненты §1–§9 спеки.
 
 ### Экономика (данные)
 

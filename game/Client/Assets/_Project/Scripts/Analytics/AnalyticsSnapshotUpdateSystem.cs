@@ -2,6 +2,7 @@ using ColonyConquest.Core;
 using ColonyConquest.Economy;
 using ColonyConquest.Ecology;
 using ColonyConquest.Military;
+using ColonyConquest.Settlers;
 using ColonyConquest.Simulation;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -44,6 +45,8 @@ namespace ColonyConquest.Analytics
             }
 
             float population = math.max(1f, demo.Population);
+            if (SystemAPI.HasSingleton<SettlerSimulationState>())
+                population = math.max(1f, SystemAPI.GetSingleton<SettlerSimulationState>().PopulationAlive);
 
             float stockPrimary = 0f;
             float stockSecondary = 0f;
@@ -151,6 +154,13 @@ namespace ColonyConquest.Analytics
             var happiness = 0.5f;
             var health = 0.55f;
             var education = 0.5f;
+            if (SystemAPI.HasSingleton<SettlerSimulationState>())
+            {
+                var settlers = SystemAPI.GetSingleton<SettlerSimulationState>();
+                happiness = math.saturate((settlers.AverageMood + 100f) / 200f);
+                health = settlers.AverageHealth01;
+                education = math.max(education, settlers.EducationIndex01);
+            }
             var security = math.saturate((float)army / math.max(1f, population * 0.02f));
             var ecology = 0.5f;
             if (SystemAPI.HasSingleton<ColonyEcologyIndicatorsState>())

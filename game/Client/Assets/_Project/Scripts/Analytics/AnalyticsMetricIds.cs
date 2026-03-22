@@ -169,5 +169,20 @@ namespace ColonyConquest.Analytics
         public const uint EconomyCurrentCyclePhase = 0x8E09;
         public const uint EconomyResearchPointsFromEconomy = 0x8E0A;
         public const uint EconomyActiveFacilities = 0x8E0B;
+
+        // --- Симуляция поселенцев (0x8Fnn) ---
+        public const uint SettlerPopulationAlive = 0x8F01;
+        public const uint SettlerAverageMood = 0x8F02;
+        public const uint SettlerAverageStress = 0x8F03;
+        public const uint SettlerAverageHealth01 = 0x8F04;
+        public const uint SettlerAverageWorkEfficiency01 = 0x8F05;
+        public const uint SettlerColonyMorale01 = 0x8F06;
+        public const uint SettlerFoodSatisfied01 = 0x8F07;
+        public const uint SettlerMentalBreaksToday = 0x8F08;
+        public const uint SettlerDeathsToday = 0x8F09;
+        public const uint SettlerBirthsToday = 0x8F0A;
+        public const uint SettlerHungryShare01 = 0x8F0B;
+        public const uint SettlerExhaustedShare01 = 0x8F0C;
+        public const uint SettlerInfectedShare01 = 0x8F0D;
     }
 }
