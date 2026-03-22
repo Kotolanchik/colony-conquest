@@ -1,5 +1,6 @@
 using ColonyConquest.Analytics;
 using ColonyConquest.Core;
+using ColonyConquest.Ecology;
 using ColonyConquest.Economy;
 using ColonyConquest.Entertainment;
 using ColonyConquest.Housing;
@@ -57,6 +58,11 @@ namespace ColonyConquest.Settlers
             var colonyOvercrowdingUnits = SystemAPI.HasSingleton<HousingColonyState>()
                 ? SystemAPI.GetSingleton<HousingColonyState>().OvercrowdedUnits
                 : 0;
+            var pollutionBand = SystemAPI.HasSingleton<ColonyPollutionSummaryState>()
+                ? SystemAPI.GetSingleton<ColonyPollutionSummaryState>().Band
+                : PollutionLevelBand.Low;
+            var pollutionHealthMultiplier = EcologyPollutionMath.GetPopulationHealthMultiplier(pollutionBand);
+            var pollutionMoodMultiplier = EcologyPollutionMath.GetColonyMoodMultiplier(pollutionBand);
 
             sim.WaterReserveUnits = math.min(10000f, sim.WaterReserveUnits + 30f + housingComfort * 0.15f);
 
@@ -175,6 +181,7 @@ namespace ColonyConquest.Settlers
                     (entertainmentMood - 50f) * 0.12f + (housingComfort - 50f) * 0.10f + socialSupport01 * 8f;
                 psych.Mood = math.clamp(
                     mood.BaseMood + activeMoodModifiers + environmentMood - needPenalty - mental.DepressionLevel * 0.12f +
+                    (pollutionMoodMultiplier - 1f) * 25f +
                     random.NextFloat(-2f, 2f), -100f, 100f);
                 psych.MoodTrend = psych.Mood - prevMood;
 
@@ -210,7 +217,8 @@ namespace ColonyConquest.Settlers
                     psych.ActiveBreakType = 0;
                 }
 
-                UpdatePhysiology(ref physio, ref needs, ref injury, ref medical, in traits, in mental, ref random);
+                UpdatePhysiology(ref physio, ref needs, ref injury, ref medical, in traits, in mental,
+                    pollutionHealthMultiplier, ref random);
 
                 var deadNow = physio.Health <= 0f || physio.BloodVolume < 15f;
                 if (deadNow)
@@ -490,6 +498,7 @@ namespace ColonyConquest.Settlers
             ref MedicalConditions medical,
             in PersonalityTraits traits,
             in MentalConditions mental,
+            float pollutionHealthMultiplier,
             ref Random random)
         {
             var painFromInjuries = 0f;
@@ -545,6 +554,8 @@ namespace ColonyConquest.Settlers
                 healthDamage += (50f - physio.BloodVolume) * 0.15f;
             healthDamage += medical.Toxicity * 0.02f;
             healthDamage += medical.Radiation * 0.03f;
+            if (pollutionHealthMultiplier < 1f)
+                healthDamage += (1f - pollutionHealthMultiplier) * 8f;
 
             if (injuries.InfectionRisk > 0f && random.NextFloat() < math.saturate(injuries.InfectionRisk / 200f))
             {
@@ -580,6 +591,8 @@ namespace ColonyConquest.Settlers
 
             healthDamage += mental.PTSDLevel * 0.005f;
             physio.Health = math.clamp(physio.Health - healthDamage, 0f, physio.MaxHealth);
+            if (pollutionHealthMultiplier > 1f)
+                physio.Health = math.min(physio.MaxHealth, physio.Health + (pollutionHealthMultiplier - 1f) * 1.2f);
 
             var health01 = math.saturate(physio.Health / math.max(1f, physio.MaxHealth));
             physio.Consciousness = math.clamp(100f * health01 - physio.Pain * 0.4f, 0f, 100f);

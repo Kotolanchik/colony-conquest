@@ -169,6 +169,12 @@ namespace ColonyConquest.Analytics
                 ecology = (e.AirQuality01 + e.WaterQuality01 + e.SoilFertilityIndicator01 + e.ForestCover01 +
                             e.Biodiversity01) * 0.2f;
             }
+            if (SystemAPI.HasSingleton<ColonyPollutionSummaryState>())
+            {
+                var band = SystemAPI.GetSingleton<ColonyPollutionSummaryState>().Band;
+                happiness = math.saturate(happiness * EcologyPollutionMath.GetColonyMoodMultiplier(band));
+                health = math.saturate(health * EcologyPollutionMath.GetPopulationHealthMultiplier(band));
+            }
             var income01 = math.saturate(snap.Economy.GdpPerCapita / 2000f);
             snap.Social.Happiness01 = happiness;
             snap.Social.Health01 = health;

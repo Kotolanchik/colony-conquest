@@ -184,5 +184,18 @@ namespace ColonyConquest.Analytics
         public const uint SettlerHungryShare01 = 0x8F0B;
         public const uint SettlerExhaustedShare01 = 0x8F0C;
         public const uint SettlerInfectedShare01 = 0x8F0D;
+
+        // --- Экология и загрязнение (full runtime) (0x90nn) ---
+        public const uint EcologyAirQuality01 = 0x9001;
+        public const uint EcologyWaterQuality01 = 0x9002;
+        public const uint EcologySoilFertility01 = 0x9003;
+        public const uint EcologyForestCover01 = 0x9004;
+        public const uint EcologyBiodiversity01 = 0x9005;
+        public const uint EcologyCombinedPollutionPercent = 0x9006;
+        public const uint EcologyGreenhouseGasIndex = 0x9007;
+        public const uint EcologyTemperatureAnomalyC = 0x9008;
+        public const uint EcologyExtremeWeatherRisk01 = 0x9009;
+        public const uint EcologySustainableDevelopment01 = 0x900A;
+        public const uint EcologyEventsToday = 0x900B;
     }
 }

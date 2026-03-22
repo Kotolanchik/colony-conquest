@@ -7,6 +7,7 @@ namespace ColonyConquest.Core
     [WorldSystemFilter(WorldSystemFilterFlags.ClientSimulation | WorldSystemFilterFlags.ServerSimulation)]
     [UpdateInGroup(typeof(SimulationSystemGroup))]
     [UpdateAfter(typeof(AgrochemicalEcologyBridgeSystem))]
+    [UpdateAfter(typeof(EcologySimulationDailySystem))]
     public partial struct EcologyPollutionSummarySystem : ISystem
     {
         public void OnCreate(ref SystemState state)
