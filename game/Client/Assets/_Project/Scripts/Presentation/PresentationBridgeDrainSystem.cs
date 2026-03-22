@@ -21,6 +21,10 @@ namespace ColonyConquest.Presentation
 
         public void OnUpdate(ref SystemState state)
         {
+            // Если runtime resolver-сервис активен, очереди обрабатывает PresentationBridgeResolveSystem.
+            if (PresentationRuntimeResolverService.HasActiveInstance)
+                return;
+
             var tick = SystemAPI.GetSingleton<SimulationRootState>().SimulationTick;
             ref var bridge = ref SystemAPI.GetSingletonRW<PresentationBridgeState>().ValueRW;
 
