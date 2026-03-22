@@ -13,7 +13,7 @@
 1. Откройте папку `game/Client` как проект в Unity Hub.
 2. Дождитесь импорта и разрешения пакетов (появится `Packages/packages-lock.json` — его стоит закоммитить после успешного разрешения).
 3. Откройте сцену **`Assets/_Project/Scenes/Bootstrap.unity`** (двойной клик) и нажмите **Play**. Сцена уже в **File → Build Settings** как первая.
-4. В консоли — лог создания синглтона `SimulationRootState` и подсистем (`SubsystemBootstrapUtility` в `GameBootstrapSystem`). В подсцене **`SubScenes/GameSubScene`** — объект **TestMoveTarget** (authoring → после baking сущность с `LocalTransform` + `PlayerMoveTargetTag`); **WASD** сдвигает её через `PlayerMoveFromInputSystem` (плоскость XZ). **B** — переключение режима строительства (`ConstructionBuildModeToggleSystem` → `ConstructionGhostState`), якорь призрака обновляет `ConstructionGhostCursorSystem`. На первом тике симуляции `StoryEventPipelineSystem` кладёт тестовое событие в очередь и снимает его с записью в `AnalyticsRecordEntry`; `AudioBusStub` → буфер, `AudioBusDrainSystem` очищает очередь (заглушка до FMOD/Wwise). `WorldMapFocusFromPlayerSystem` обновляет `WorldMapFocusState` по чанку игрока. При первом импорте Unity может пересчитать baking SubScene.
+4. В консоли — лог создания синглтона `SimulationRootState` и подсистем (`SubsystemBootstrapUtility` в `GameBootstrapSystem`). В подсцене **`SubScenes/GameSubScene`** — объект **TestMoveTarget** (authoring → после baking сущность с `LocalTransform` + `PlayerMoveTargetTag`); **WASD** сдвигает её через `PlayerMoveFromInputSystem` (плоскость XZ). **B** — переключение режима строительства (`ConstructionBuildModeToggleSystem` → `ConstructionGhostState`), якорь призрака обновляет `ConstructionGhostCursorSystem`. `EventsQuestDailySystem` ведёт полный контур событий/квестов, а `StoryEventPipelineSystem` остаётся fallback-обработчиком очереди для legacy-режима. `AudioBusStub` → буфер, `AudioBusDrainSystem` очищает очередь (заглушка до FMOD/Wwise). `WorldMapFocusFromPlayerSystem` обновляет `WorldMapFocusState` по чанку игрока. При первом импорте Unity может пересчитать baking SubScene.
 
 **Проверка агро/добычи (`spec/agriculture_mining_spec.md`):** в bootstrap — демо-грядка (`CropCareDailySystem` — уход в фазе роста: вредители/сорняки; `CropGrowthSimulationSystem` — этапы §1.2, урожай §1.3 с водой `WaterSupplyKind`, пищевой ценностью §1.1 и сезонностью §1.2), два загона (`LivestockDailyProductionSystem` — куры и козы), лес `(3,0,0)` и железная руда `(6,0,2)` — удерживайте **E** для `ManualMiningGatherSystem`. Нагрузка агрохимии — синглтон `ColonyAgrochemicalLoadState`. Дополнительные грядки: `CropPlotAuthoring` в SubScene. Склад — `ResourceStockpileSingleton` / `ResourceStockEntry`.
 
@@ -111,6 +111,24 @@
   - c миром/обороной/социальным контуром — учитываются `StrategicArmyEntry`, состояние укреплений и колониальная мораль поселенцев.
 - В аналитике пишутся метрики `Military*` (`MilitaryAverageMorale01`, `MilitaryCombatReadiness01`, `MilitaryMetaUnitsCount`, `MilitaryWeatherSeverity01`), в очереди событий появляются `mil-battle`, `mil-heavy-casualties`, `mil-supply-collapse`, `mil-panic`.
 
+**Проверка событий и квестов (`spec/events_quests_spec.md`):**
+
+- В мире есть `StorySimulationSingleton`, `StorySimulationState` и буферы:
+  - `StoryEventDefinitionEntry`,
+  - `StoryEventCooldownEntry`,
+  - `StoryActiveEventEntry`,
+  - `StoryEventHistoryEntry`,
+  - `QuestRecordEntry`,
+  - `PersonalStoryArcEntry`.
+- `EventsQuestDailySystem` раз в игровой день:
+  - импортирует и классифицирует события из `GameEventQueueEntry`,
+  - выбирает новые события через AI Director (весовой выбор по `AiDirectorDimensionsState` + `AiDirectorPolicyState`),
+  - применяет immediate/ongoing эффекты по категориям (природные, военные, социальные, экономические, технологические, глобальные),
+  - генерирует и прогрессирует квесты (delivery/escort/eliminate/find/defend/investigate),
+  - ведёт персональные арки поселенцев (архетипы §4.2) и timeline истории.
+- Интеграция: с `SettlerSimulationState`, `MilitarySimulationState`, `EconomySimulationState`, `ColonyTechProgressState`, `ColonyEcologyIndicatorsState`, `WorldMap` и дипломатией.
+- В аналитике пишутся метрики `Events*`, `Quests*`, `StoryArc*`, `StoryTension01`.
+
 ## Замер ECS (фаза 0, дорожная карта §6.1)
 
 Ориентир из мастер-спеки: **~1000 сущностей при 60 FPS**. В коде:
@@ -141,6 +159,7 @@
 - `Assets/_Project/Scripts/Ecology/` — полный runtime экологии: источники загрязнения, меры очистки, климат, восстановление природы, `EcologySimulationDailySystem`, `EcologySimulationMath`.
 - `Assets/_Project/Scripts/Manufacturing/` — полный runtime заводов: типы площадок/продукции, мобилизационные режимы, queue-based выпуск и интеграции (`ManufacturingSimulationDailySystem`).
 - `Assets/_Project/Scripts/Settlers/` — полный runtime поселенцев: генератор (`SettlerCharacterGenerator`), фабрика сущностей (`SettlerEntityFactory`), bootstrap (`SettlerSimulationBootstrapSystem`), daily-контур (`SettlerSimulationDailySystem`), формулы и ECS-компоненты §1–§9 спеки.
+- `Assets/_Project/Scripts/Story/` — полный runtime событий/квестов: AI Director catalog/cooldowns/active history, процедурные квесты, персональные арки (`EventsQuestBootstrapSystem`, `EventsQuestDailySystem`, `EventsQuestSimulationMath`).
 
 ### Экономика (данные)
 

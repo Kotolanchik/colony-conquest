@@ -110,7 +110,8 @@ _(пусто)_
 - **meta-events-pipeline-stub** — Заготовка конвейера событий/квестов (очередь + типы из спеки)  
   - Spec: `spec/events_quests_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`  
   - Task: `dev/tasks/meta-events-pipeline-stub.md`  
-  - Labels: gameplay, scripting
+  - Labels: gameplay, scripting  
+  - Примечание: superseded полной реализацией `spec-events-quests-full-implementation`
 
 - **meta-analytics-hooks-stub** — Точки телеметрии/статистики по спеке аналитики  
   - Spec: `spec/statistics_analytics_spec.md`  
@@ -320,6 +321,11 @@ _(пусто)_
   - Spec: `spec/military_system_specification.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`, `spec/economic_system_specification.md`, `spec/manufacturing_plants_spec.md`, `spec/global_map_spec.md`, `spec/statistics_analytics_spec.md`  
   - Task: `dev/tasks/spec-military-system-implementation.md`  
   - Labels: gameplay, ecs, design, combat
+
+- **spec-events-quests-full-implementation** — Полная реализация `spec/events_quests_spec` в ECS (AI Director, события, квесты, персональные истории)  
+  - Spec: `spec/events_quests_spec.md`, `spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md`, `spec/statistics_analytics_spec.md`, `spec/settler_simulation_system_spec.md`, `spec/military_system_specification.md`, `spec/economic_system_specification.md`, `spec/technology_tree_spec.md`  
+  - Task: `dev/tasks/spec-events-quests-full-implementation.md`  
+  - Labels: gameplay, ecs, design, story
 
 ## Blocked
 

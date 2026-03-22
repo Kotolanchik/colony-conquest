@@ -181,7 +181,7 @@
           ],
           "labels": ["gameplay", "scripting"],
           "task_file": "dev/tasks/meta-events-pipeline-stub.md",
-          "notes": "StoryEventKind, QuestKind, GameEventQueueEntry IBufferElementData"
+          "notes": "StoryEventKind, QuestKind, GameEventQueueEntry IBufferElementData; superseded полной реализацией spec-events-quests-full-implementation"
         },
         {
           "id": "meta-analytics-hooks-stub",
@@ -644,6 +644,22 @@
           "labels": ["gameplay", "ecs", "design", "combat"],
           "task_file": "dev/tasks/spec-military-system-implementation.md",
           "notes": "MilitarySimulationState + command/weather/order/attrition loop + wounded/cover/meta-units + economy/manufacturing/world/analytics integration"
+        },
+        {
+          "id": "spec-events-quests-full-implementation",
+          "title": "Полная реализация spec/events_quests_spec в ECS (AI Director, события, квесты, персональные истории)",
+          "spec_refs": [
+            "spec/events_quests_spec.md",
+            "spec/COLONY_CONQUEST_MASTER_SPECIFICATION.md",
+            "spec/statistics_analytics_spec.md",
+            "spec/settler_simulation_system_spec.md",
+            "spec/military_system_specification.md",
+            "spec/economic_system_specification.md",
+            "spec/technology_tree_spec.md"
+          ],
+          "labels": ["gameplay", "ecs", "design", "story"],
+          "task_file": "dev/tasks/spec-events-quests-full-implementation.md",
+          "notes": "StorySimulationState + event definitions/cooldowns/history + procedural quests + personal arcs + cross-domain effects and analytics"
         }
       ]
     },
